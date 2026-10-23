@@ -1,0 +1,4 @@
+{
+  "_note": "The help collection is read-only reference. Its concept pages are assembled by code, so opening it never calls the AI.",
+  "synthesis": "deterministic"
+}

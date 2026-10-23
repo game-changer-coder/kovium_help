@@ -1,0 +1,244 @@
+{
+  "_note": "What this collection describes, written by scripts/build_help_collection.py in the second brain checkout it was built from. Second brain compares platform_version with its own and says so when they differ. size_mb is the size of the notes, the settings and what was derived from them (derived/), which is what fetching it costs.",
+  "name": "kbrain_help",
+  "describes": {
+    "platform_version": "0.1.0",
+    "schema_version": 7
+  },
+  "built_with": "no AI and no tokens: each document is a note written by hand, read by code",
+  "notes": 46,
+  "size_bytes": 4359025,
+  "size_mb": 4.2,
+  "sources": {
+    "README.md": {
+      "sha256": "3a306a820f076515152ef517bbddca07cfdc6151a34af2173e0d53d37a7fc2a5",
+      "note": "sources/wiki/readme.md",
+      "doc_kind": "overview"
+    },
+    "docs/README.md": {
+      "sha256": "ea463bd49b36ceb8de449d512eac1ad9061f2247863e92945e1ae78a49323b0c",
+      "note": "sources/wiki/which-documents-are-current.md",
+      "doc_kind": "overview"
+    },
+    "docs/TEST_ME_FIRST.md": {
+      "sha256": "5bda159fc2292236847a16848378b3c321b4fad97bff504c41e19b81a67a6824",
+      "note": "sources/wiki/test-me-first.md",
+      "doc_kind": "guide"
+    },
+    "docs/adding_documents_v1.md": {
+      "sha256": "24c4fb97a618d5d06e4bff13d3a653454a02f5400077b615cdfa33938d20d01e",
+      "note": "sources/wiki/adding-documents-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/agent_knowledge_contract_v1.md": {
+      "sha256": "2dc0a10190c07ccc0b69c08fed20ffcfbb4d1242e91df4c061f0bb23084d4f4e",
+      "note": "sources/wiki/agent-knowledge-contract-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/agent_memory_contract_v1.md": {
+      "sha256": "9ef6d52514ad9927891dd267e115c9399be77fd8e2920f699fa932e6fb0e0fb7",
+      "note": "sources/wiki/agent-memory-contract-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/api_spec_v1.md": {
+      "sha256": "c37ae83ae57dac69f2ca888fd8a105463976d771c97edccdfcbb6205010ef8cc",
+      "note": "sources/wiki/api-spec-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/collections_v1.md": {
+      "sha256": "15280f3b9e9e126bf77d221c6bf47e967c12af090be44003a6fc61dffb4dd2f9",
+      "note": "sources/wiki/collections-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/concept_notes_v1.md": {
+      "sha256": "f5a62f7f5536c64d7097d18a7619b175360dce2cd090b08aa8257e338e07be12",
+      "note": "sources/wiki/concept-notes-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/deployment_spec_v1.md": {
+      "sha256": "282bd26268039d531280b3ca35182ab83029233ad9f261f6aca800b668735b9f",
+      "note": "sources/wiki/deployment-spec-v1.md",
+      "doc_kind": "guide"
+    },
+    "docs/document_conversion_v1.md": {
+      "sha256": "eb311375325b8e0f4b80038124601225addcdd837fc8ddc843f19bddd7beaaa9",
+      "note": "sources/wiki/document-conversion-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/equations_v1.md": {
+      "sha256": "64b1b322f46ee6f713a8376a1e3d23d151a946b3db847cf0285189bfd5617c20",
+      "note": "sources/wiki/equations-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/first_instance_lifecycle_guide_v1.md": {
+      "sha256": "db38361d390ab4e05982d40f613c81db4aa38e8350e65c07e7f9ef9577f32ccc",
+      "note": "sources/wiki/first-instance-lifecycle-guide-v1.md",
+      "doc_kind": "guide"
+    },
+    "docs/folder_intake_v1.md": {
+      "sha256": "3fe9f708f224e2b831ce37d374f5a78c86e4992ee5ad42acae47330cdc6a90a7",
+      "note": "sources/wiki/folder-intake-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/ideas_v1.md": {
+      "sha256": "69a385b84b6f4b977831f81650a17d056ede8f66453d60a7280b7384d42f95e7",
+      "note": "sources/wiki/ideas-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/images_v1.md": {
+      "sha256": "2f189fecad6775b91aaf98499097816dbf8dcddf5b72a13c87359d04ba71663d",
+      "note": "sources/wiki/images-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/implementation_overview.md": {
+      "sha256": "0723bd9f8d97a04cfaff82ccb4c63553c641078b0a3fd9afe37b41d4ba2f9e19",
+      "note": "sources/wiki/implementation-overview.md",
+      "doc_kind": "guide"
+    },
+    "docs/ingestion_spec_v1.md": {
+      "sha256": "cc82d9147a8e3aac54b32c229e3ca45c99a2db0e6277c3be6edaf3b8aa02495e",
+      "note": "sources/wiki/ingestion-spec-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/install_and_caller_agent_v1.md": {
+      "sha256": "5e69f7b25e54b1511d2754b5803e4f449b7d4f32e35a397ce5c3907f3f605ffe",
+      "note": "sources/wiki/install-and-caller-agent-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/instance_tails_v1.md": {
+      "sha256": "95cb009a029c7d32c32fb616af7d770eee05977d62dba2300b90dd6946ce1784",
+      "note": "sources/wiki/instance-tails-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/mcp_server_v1.md": {
+      "sha256": "bf5dc3366b093aadf6b1a2a9946ca4691eb81e22a85394183f03e9c8b9166379",
+      "note": "sources/wiki/mcp-server-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/next_steps_v1.md": {
+      "sha256": "62b889d6e515e8f9b383b95ad9e3d746654d062f2ec669687817e0114c776192",
+      "note": "sources/wiki/next-steps-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/note_format_contract_v1.md": {
+      "sha256": "82cff5209fbb95239b05a1f13e81c60015b7c85450f1274b283a88fdcb3c9853",
+      "note": "sources/wiki/note-format-contract-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/owner_work_v1.md": {
+      "sha256": "ac87db55ad2e57af906fc3c72ee49cc47e3aa6e8b8b63728f6d6bf109576a9ec",
+      "note": "sources/wiki/owner-work-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/plain_language_rules_v1.md": {
+      "sha256": "e3954f6b245fc871b8efb179d0d051c8a35ab053f003780a6554d0fef5e0e636",
+      "note": "sources/wiki/plain-language-rules-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/prompt_system_v1.md": {
+      "sha256": "8ed12d8fc7f0d527106293ffaf85e2e9f9863fd06cacb736463965fd8fc3c77c",
+      "note": "sources/wiki/prompt-system-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/reading_fidelity_v1.md": {
+      "sha256": "9fce3cc536eb5ffc11e0331a62c5422786b9d74255017de38475b626f8f979ef",
+      "note": "sources/wiki/reading-fidelity-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/reference_lists_v1.md": {
+      "sha256": "c2caceeca8d56e07ed0d5ad927ee5ca4579d4e20fcca0613d093ff5cafd3f116",
+      "note": "sources/wiki/reference-lists-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/renames_v1.md": {
+      "sha256": "16bc1f79f5f675e2a8cac4d75d8b5b89efa37c30918392a426e8631e22a94854",
+      "note": "sources/wiki/renames-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/run_local.md": {
+      "sha256": "4b1f1c1129d281b6b725bfe35915a17b95a2ff7c34aead2f69b054dd87bbe40d",
+      "note": "sources/wiki/run-local.md",
+      "doc_kind": "guide"
+    },
+    "docs/source_renames_v1.md": {
+      "sha256": "2199baf05bcdb88f267e213631667bfa4262a6d11790f4b09050434403f3621a",
+      "note": "sources/wiki/source-renames-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/source_roots_and_portable_provenance_v1.md": {
+      "sha256": "6be605dade898fe0ba4e19e89edf1ef512778b71b6a6486e4103642bba5261aa",
+      "note": "sources/wiki/source-roots-and-portable-provenance-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/source_tables_v1.md": {
+      "sha256": "8a3bf475a8d903086dfcaf79146b660449ca63a589acca8bf7895282701cc88a",
+      "note": "sources/wiki/source-tables-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/user_guide_v1.md": {
+      "sha256": "be006124574ebfd2c6abfb3e69a7daeedaab06ba2e16ac94f33658bbf0c545ef",
+      "note": "sources/wiki/user-guide-v1.md",
+      "doc_kind": "guide"
+    },
+    "docs/video_intake_v1.md": {
+      "sha256": "32488c842413b0afc7dd8c7760eda253d8953ae3b4ff2519b5ec742fc59142fc",
+      "note": "sources/wiki/video-intake-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/welcome_v1.md": {
+      "sha256": "6a326af86e5213a01182d605ebfb4e4c03501ee1975480abdfb5a56fa7a90b71",
+      "note": "sources/wiki/welcome-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/workstream_b_governance_and_routing_policy_v1.md": {
+      "sha256": "5075bea4cf47a749a232a3b0724acefcf2f22ee76270967a6ebc7ed942683128",
+      "note": "sources/wiki/workstream-b-governance-and-routing-policy-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/workstream_c_human_review_workflow_v1.md": {
+      "sha256": "a631721048b1c65de79f02606093928b8d519a4251375c766b1af7a3f3015e40",
+      "note": "sources/wiki/workstream-c-human-review-workflow-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/workstream_d_operations_recovery_policy_v1.md": {
+      "sha256": "5793e4788feec713e667ab32b890dd7c819f54746707ce8309e527b7d1d56499",
+      "note": "sources/wiki/workstream-d-operations-recovery-policy-v1.md",
+      "doc_kind": "contract"
+    },
+    "second_brain/catalogue/options_v1.json": {
+      "sha256": "af4f88d7fea53146b49e9e563bd951e91d26808f76d68c73f76bdb883b024e18",
+      "note": "sources/wiki/the-option-catalogue.md",
+      "doc_kind": "reference"
+    },
+    "second_brain_architecture.md": {
+      "sha256": "cb11130d085d8a0040254a8d5c3d280930dbfe8ffe4d5a05359ccb54ec738bb3",
+      "note": "sources/wiki/second-brain-architecture.md",
+      "doc_kind": "overview"
+    },
+    "skills/claude-code/second-brain-intake/SKILL.md": {
+      "sha256": "794abe565a41b68f95eb203f4915d4d44f975eaf6a2430936e80d73b19431933",
+      "note": "sources/wiki/second-brain-intake.md",
+      "doc_kind": "skill"
+    },
+    "skills/claude-code/second-brain-onboarding/SKILL.md": {
+      "sha256": "d046f91471e8e5277b1ea02bbaa22616d51446c48bf80859b8522f4ec0715e86",
+      "note": "sources/wiki/second-brain-onboarding.md",
+      "doc_kind": "skill"
+    },
+    "skills/claude-code/second-brain-operations/SKILL.md": {
+      "sha256": "ef28e2abd482cc99026b6deab51e66eaca9cbd4ed1c02d9e25c49e0da94b975c",
+      "note": "sources/wiki/second-brain-operations.md",
+      "doc_kind": "skill"
+    },
+    "skills/claude-code/second-brain-research-answering/SKILL.md": {
+      "sha256": "af1989fdc15daa83c72bef9f3b4f18169d0418a65fd61fd1311ae5288e3576fb",
+      "note": "sources/wiki/second-brain-research-answering.md",
+      "doc_kind": "skill"
+    },
+    "specifications.md": {
+      "sha256": "909c0b399836ca9567e46cf6c3c60040618b9a93de962ee11acd620b79c57a83",
+      "note": "sources/wiki/specifications.md",
+      "doc_kind": "specification"
+    }
+  }
+}

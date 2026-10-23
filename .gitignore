@@ -1,0 +1,16 @@
+# Everything below is built on a person's own computer when second brain opens
+# this collection. None of it is ever committed.
+/data/
+/logs/
+/maintenance/
+/brain_keeper/
+/sources/raw/
+/sources/converted_markdown/
+/sources/templated_markdown/
+/sources/wiki/maps/
+/sources/wiki/concepts/
+# Settings second brain adds when it registers the collection.
+/config/*
+!/config/concepts.json
+!/config/maintenance.json
+!/config/embeddings.json

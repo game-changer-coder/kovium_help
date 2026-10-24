@@ -9,7 +9,7 @@ product_version: "0.1.0"
 doc_kind: "contract"
 audience: "people and agents using or changing second brain"
 doc_path: "docs/source_roots_and_portable_provenance_v1.md"
-doc_sha256: "6be605dade898fe0ba4e19e89edf1ef512778b71b6a6486e4103642bba5261aa"
+doc_sha256: "d0a37ca8afda96cd938970fac3cec89037ec45d595f2dcf6f19bbfe3052b8abd"
 ---
 
 # Source roots and portable provenance
@@ -24,6 +24,11 @@ Two rules pulled against each other, and the code resolved it by throwing
 information away.
 
 - **Self-containment:** nothing written down may name a home directory.
+- **Asked at the first addition (Track AZ4):** a collection made from the
+  conversation starts at `source_retention: ask` (read as `copy`); its first
+  addition from outside asks whether to keep a copy of each original or to
+  point to it, and pointing names each folder as a root, after its own name
+  ([[adding-documents-v1|adding_documents_v1.md]]).
 - **Your own library:** with `source_retention: reference` a workspace reads
   originals where they lie — a 50 GB library is not copied in.
 

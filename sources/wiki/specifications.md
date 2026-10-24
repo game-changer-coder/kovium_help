@@ -9,7 +9,7 @@ product_version: "0.1.0"
 doc_kind: "specification"
 audience: "people and agents running second brain"
 doc_path: "specifications.md"
-doc_sha256: "909c0b399836ca9567e46cf6c3c60040618b9a93de962ee11acd620b79c57a83"
+doc_sha256: "d0152b5f084bc3f64cdd8f68f9494d4c018c0724facee7c76fb1031f91c93367"
 ---
 
 # Second Brain — the specification and operator's guide
@@ -98,10 +98,13 @@ already use, and their agent makes the calls. The contracts are
    which optional helpers are missing (the better PDF reader, the reader for
    Word files and web pages, search by meaning), and connects every program
    it found in **welcome mode**: a connection with no collection yet, under
-   the program's own agent id. Claude Code gets the plugin this checkout is
-   (its connection, the four operator skills and a `/second-brain:start`
-   command); the others get a connection in their own format. A second run
-   changes nothing. No service is left running and no token is spent.
+   the program's own agent id. Claude Code gets the plugin this checkout
+   ships, a small folder of its own (`skills/claude-code/`: its connection,
+   the four operator skills and a `/second-brain:start` command; Track AY1:
+   Claude Code copies a plugin's folder at install), and never a second, plain
+   connection beside it; the others get a connection in their own format. A
+   second run changes nothing. No service is left running and no token is
+   spent.
 2. **Welcome.** The person says "help me start with second brain". A
    connection in welcome mode offers only the welcome's tools: `welcome` (what
    to do next), `help` (a question about the software itself), `try_example`
@@ -114,14 +117,23 @@ already use, and their agent makes the calls. The contracts are
    and maps derived from its notes at release (`derived/`), or builds them by
    code in a few seconds when its notes or the code changed since, and
    answers a suggested question with
-   its sources: no tokens. The tour's steps point at real files. Its waiting
+   its sources: no tokens. The tour (Track BA) is eight steps, each with
+   something to do and a question back to the person, every file given with
+   its full place on this computer at run time: how to look (Obsidian, a text
+   editor, or described in the chat), one document at every stop of its way,
+   where files live with one note kept as a copy beside one pointed to, a
+   note, a map, links, and a ready concept page beside a waiting one with a
+   practice night that fills it from a prepared answer (free, said to be a
+   practice, with what a real night costs). Its waiting
    page is added either free (read by code, as a note written by hand) or by
    the AI, which is a plan with its cost first and runs only with that plan's
    approval. The last step offers the full manual, once its address is set
    (section 12.5).
 4. **A collection of one's own.** "Make a collection for ...":
-   `create_collection` with a name and a sentence of what it will hold. The
-   collection is registered, its maker is named its manager, the connection is
+   `create_collection` with a name and a sentence of what it will hold. It
+   first asks where the collection goes: the folder the person works in now,
+   a folder they name, or the default place (Track AZ1). The collection is
+   registered, its maker is named its manager, the connection is
    bound to it in the same session and at every later start, the free nightly
    tidy is switched on for this computer (section 20), and asking before
    anything is spent is switched on (section 14). An existing collection, from
@@ -255,7 +267,10 @@ the budget). Contract: `docs/adding_documents_v1.md`.
 **The request.** `POST /sources/add` takes files, folders (at any depth) and
 links together (`paths`, `urls`). Over MCP its doors are `plan_adding`,
 `start_adding` and `adding_status`, for an agent the collection lets add
-documents (section 10).
+documents (section 10). Text from the conversation is kept as a note by
+`POST /sources/note` (`add_note`, Track AY4): a plan first, then on the
+person's `confirm` the text is written word for word as a note written by
+hand in the collection's notes and taken in by code, with no tokens.
 
 1. **The plan** is the default (`dry_run`), free, with no agent call. It says
    in a sentence or two what will be added, what it costs and what is skipped
@@ -923,10 +938,13 @@ and rebuildable; never hand-edit it.
 
 **Making and opening a collection.** From the conversation (Track AG2,
 `docs/collections_v1.md`): `create_collection` (`POST /collections`) with a
-name in any script and a sentence of what it will hold; it is kept where the
-install keeps collections, or in a folder the person names in full (a folder
-already holding other files gets a folder of its own inside it, so the
-person's files are never mixed in). `open_collection`
+name in any script and a sentence of what it will hold; it first asks where
+it goes (Track AZ1): the folder the caller's AI program works in (sent as
+`working_folder`, never one inside the program's own folder), a folder the
+person names in full, or where the install keeps collections, said to be
+inside the program's own folder when it is (a folder already holding other
+files gets a folder of its own inside it, so the person's files are never
+mixed in). `open_collection`
 (`POST /collections/open`) opens an existing collection's folder, from
 another computer too, and says what did not travel: named folders for
 originals that are not on this computer, search entries built by another
@@ -1111,6 +1129,7 @@ adds the connection (section 3); the contract is `docs/mcp_server_v1.md`.
 | `create_collection`, `open_collection` | a connection holding the `manage` grant (welcome mode, or a managing agent) | make or open a collection |
 | `connect_agent`, `set_access`, `change_setting`, `make_agent` | a bound managing agent | another program's connection, who may do what, one choice, the caller agent |
 | `plan_adding`, `start_adding`, `adding_status` | a bound managing agent that may `add` | adding documents (section 4.1); `start_adding` spends, with its plan's approval |
+| `add_note` | a bound managing agent that may `add` | text from the conversation kept as a note, shown first; free (Track AY4) |
 | `get_manual` | a connection holding `manage` | fetch the full manual (section 12.5) |
 | `read_next`, `review_queue`, `codes`, `contract`, `capabilities` | a session widened to the `wider` surface | the reading list, the review queue's open items, the codes, the contract, the connection's capabilities |
 | `remember`, `forget` | the `write` surface, where proposals are allowed | proposals for the owner's review (below) |
@@ -1409,8 +1428,10 @@ more, and a run above the cap now is refused (`adding_over_agent_limit`). A cap
 limits what can be approved; it never replaces the approval.
 
 **At night.** The nightly steps that use the AI run only within
-`ai_tokens_per_night` (section 20). A collection made from the conversation
-has `0`, which holds them until the owner sets a limit.
+`ai_tokens_per_night` (section 20), chosen as a level in plain words (off,
+light, medium, heavy; Track AX). The welcome asks once per install; a
+collection made before the answer has `0`, which holds them, and one made
+after starts at the answer.
 
 | action | consent | estimate | report |
 |---|---|---|---|
@@ -1426,7 +1447,7 @@ has `0`, which holds them until the owner sets a limit.
 | query widening | a question not asked before | — | `expansion.billed_tokens`; `widen: cache_only` never spends |
 | a written answer, a relevance judgment | `synthesize`, `judge_relevance` | — | in the response |
 | concept synthesis, curation, gap filling | configuration, or the route | the intake estimate includes concept upkeep; `/gaps/fill` dry run | in the response; `/ops/metrics`; each concept call's `for_sources` in the log |
-| the nightly AI steps | `ai_tokens_per_night` | — | the night's report, in words |
+| the nightly AI steps | the level the person chose (`ai_tokens_per_night`, `ai_level`), asked once in the welcome | the level's most, said in brackets | the night's report, in words |
 
 Every call is logged with its tokens (`logs/agent_calls.jsonl`), and
 `GET /ops/metrics?group_by=operation` adds them up. Estimates are this
@@ -1634,16 +1655,18 @@ repaired in its notes or proposed for review (section 18).
 
 ```json
 { "enabled": true, "machine": "<this computer>", "time": "02:00",
-  "ai_tokens_per_night": 0, "equations_minutes": 60, "refacet_batch": 5 }
+  "ai_tokens_per_night": 0, "ai_level": "off", "equations_minutes": 60, "refacet_batch": 5 }
 ```
 
 What `POST /collections` writes. Without the file, or with `enabled: false`,
 nothing runs at night; `check_setup` says so. `change_setting` turns the tidy
-on here, sets the AI token limit and the equation minutes;
+on here, sets the nightly AI level (`light`, `medium`, `heavy`, `off`, or a number of
+tokens shown as custom) and the equation minutes;
 `scripts/maintenance_cron.py enable <workspace_id> --at 02:00` does the first
 from a terminal (`status`, `disable`). A schedule without
-`ai_tokens_per_night` has no limit on the AI steps. Section 20 says what the
-night does.
+`ai_tokens_per_night` (written before the levels) is read as medium, the
+catalogue's `level_when_unset`, computed on read and never rewritten (Track
+AX). `ai_level` is the name shown back. Section 20 says what the night does.
 
 ## 16. A normal working day
 
@@ -1831,11 +1854,12 @@ swapped in only when whole (`POST /ops/embeddings/rebuild`, free); a build
 that fails changes nothing.
 
 **The steps that use the AI program** (judging label words, merging concept
-pages, faceting, hints, suggestions) run only within the nightly token limit
-`ai_tokens_per_night` of the collection's `config/maintenance.json`. A
-collection made now has `0`, which holds them until the owner sets a limit
-with `change_setting`; a schedule written before the limit existed has none
-and runs them as it did. A step already begun is finished, and the next waits
+pages, faceting, hints, suggestions) run only within the nightly most
+`ai_tokens_per_night` of the collection's `config/maintenance.json`, chosen as
+a level (off; light 50,000; medium 150,000; heavy 400,000 tokens a night: the
+option catalogue's numbers, Track AX). The welcome asks once per install;
+`0` is off. A schedule written before the levels has no number and runs at
+medium; the example collection never uses the AI at night. A step already begun is finished, and the next waits
 for the next night. The free steps run either way.
 
 **What it will never do on its own:** merge or retire a vocabulary value;
@@ -1886,8 +1910,10 @@ approval with its dry run, and a real run without it is refused where the
 collection asks for it (always for `POST /sources/add`); a cap per agent
 limits what can be approved (section 14).
 
-**A person is asked two things only:** the standing token budget, and deleting
-or overwriting their own originals. Everything else is settled by the platform
+**A person is asked about three things only:** the standing token budget;
+their own originals (deleting or overwriting one, and, at a collection's first
+addition from outside, keeping a copy of each or pointing to it, Track AZ4);
+and where a new collection is kept (Track AZ1). Everything else is settled by the platform
 or the caller, and every code says who settles it.
 
 **Read only unless the owner says otherwise.** A governed caller reads by
@@ -2163,8 +2189,9 @@ follow.
 2. In your AI program, say "help me start with second brain"; open the example
    and follow its tour, so you have seen a working instance.
 3. Make your own collection from the conversation (`create_collection`; over
-   HTTP `POST /collections`). Name a folder in full if you want it somewhere
-   other than where the install keeps collections. A workspace registered by
+   HTTP `POST /collections`). You are asked where it goes: the folder your
+   AI program works in, a folder you name in full, or where the install keeps
+   collections. A workspace registered by
    a script (`POST /ops/workspaces`) gets no access policy, nightly tidy or
    approval setting until you turn them on.
 4. Ask for `check_setup`: confirm the AI program that does the work is ready

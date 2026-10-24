@@ -9,7 +9,7 @@ product_version: "0.1.0"
 doc_kind: "contract"
 audience: "people and agents using or changing second brain"
 doc_path: "docs/plain_language_rules_v1.md"
-doc_sha256: "e3954f6b245fc871b8efb179d0d051c8a35ab053f003780a6554d0fef5e0e636"
+doc_sha256: "eb62c77d4472f991cb7e768d8f2db045e6a44e96ef8d228abc78dacbbe07f6c7"
 ---
 
 # Plain-language rules (v1)
@@ -109,6 +109,32 @@ kinds of link) are declared internal with a reason, never made options.
 **Rule 9. Costs in words.** A cost is time, disk and tokens of the user's
 subscription, never a share of their plan (no agent program reports one) and
 never a price. Starting with a few documents is always offered.
+
+## The voice of the first minutes (Track BA6)
+
+The welcome and the tour are what a person meets right after installing, when
+they are most curious and most willing, so they speak warmly: short hook
+lines, vivid words, the person addressed as "you" and the caller agent as "I".
+They keep every rule above. Their own rule, and only theirs:
+
+- **A few emojis, from a fixed set.** `EMOJIS` in `second_brain/plain_words.py`
+  (wave, brain, eyes, compass, folder, page, memo, magnifier, link, bulb, moon,
+  sparkles, party), each one code point shown as an emoji by default. An emoji
+  outside the set fails the plain-words rule in every text, so the rule is
+  tightened, never loosened. An emoji is not counted as a word.
+- **At most two in one message** (`MAX_EMOJIS_PER_MESSAGE`): everything one
+  reply asks the agent to relay, together (a step's title, its `say`, what to
+  do, its question back, its offer and the words beside its places). Each tour
+  step's title carries one.
+- **Only there.** No option entry, code text, collection-tool text or guide
+  passage holds one: a test reads every text of the catalogue for it.
+- **Every step does something.** A tour step says what to do and asks back
+  ("found it? what do you see?"), or offers its exercise; reading alone is
+  never a step.
+
+Checked by `tests/integration/test_tour_you_do.py` (the set, the cap per
+message over a whole walk of the welcome and the tour, the texts that may hold
+one) and by the catalogue test above (every text, the plain-words rule).
 
 ## Binding on the catalogue (S5, S6, S9)
 

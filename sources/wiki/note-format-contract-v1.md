@@ -9,7 +9,7 @@ product_version: "0.1.0"
 doc_kind: "contract"
 audience: "people and agents using or changing second brain"
 doc_path: "docs/note_format_contract_v1.md"
-doc_sha256: "82cff5209fbb95239b05a1f13e81c60015b7c85450f1274b283a88fdcb3c9853"
+doc_sha256: "9d67cf630edbaaa4a22660e36613edd2fa4b917a4bcc4999d81f58ea50508ec9"
 ---
 
 # L3 Note Format Contract v1
@@ -694,6 +694,25 @@ replacement history.
 
 ## File names (Track AK1)
 
+**A note made from a document (Track AZ2)** has one naming rule,
+`ascii_names.note_name`: its clean title, ASCII by the rules below, cut after
+the last whole word that fits in **80 characters** (`NOTE_NAME_MAX`; a word
+is what spaces separate, so `Multi-task` is kept or left whole; a first word
+longer than that is cut at a joint inside it, else at 80); else the
+document's own file stem; else a name from the source's hash. No ending of a
+layer is part of it: the templated draft is `<name>__templated.md` (the
+ending ties the draft to its note), and the wiki note is `<name>.md`.
+`LAYER_SUFFIXES` lists the endings a layer gives its own file. 80 keeps a
+whole title of ordinary length and leaves room under the 260 characters a
+Windows path may have by default. Two documents whose names meet are kept
+apart as before (the second takes its own file stem, then a short hash).
+Notes named before keep their names until `POST /rename/clean_names` renames
+them ([[renames-v1|renames_v1.md]]). Example:
+`Seen and unseen: embedded orchard monitoring awareness for low-power
+irrigation controllers in remote mountain valleys` was
+`seen-and-unseen-embedded-orchard-monitoring-awareness-for-lo__templated.md`
+and is now `seen-and-unseen-embedded-orchard-monitoring-awareness-for-low-power-irrigation.md`.
+
 A name the platform gives a file is plain ASCII, spelled the way people write
 it, so it is easy to use in code, on a command line and in a link. This covers
 a templated draft and its wiki note, a converted copy, a book's chapter files
@@ -1219,11 +1238,24 @@ built-in labels:
 `<workspace>/sources/wiki/maps/<note-stem>.canvas`, and the Obsidian vault to
 open is **`sources/wiki/`**. It holds the maps and every note they link, and
 nothing that competes with them. Do not open the workspace root as the vault.
-There, each pipeline note shares its file name with its templated draft under
-`sources/templated_markdown/`, so a click could open the draft, and the
-concept-history snapshots and converted sources would crowd its search and
-graph. Note scans read `*.md`, so the `.canvas` files in the wiki are invisible
-to them. `scripts/note_maps.py` owns the location (`maps_dir()`).
+There, a note made before Track AZ2 shares its file name with its templated
+draft under `sources/templated_markdown/`, so a click could open the draft,
+and the concept-history snapshots and converted sources would crowd its
+search and graph. Note scans read `*.md`, so the `.canvas` files in the wiki
+are invisible to them. `scripts/note_maps.py` owns the location (`maps_dir()`).
+
+**Every document gets its map, in any process (Track AZ3).** The map builder
+lives in the checkout's `scripts/`, not in the package. The pipeline imported
+it as `from scripts.note_maps import ...`, which worked only where the checkout
+was on the import path (under pytest, or a server started in the checkout);
+in the MCP server an agent program starts from the person's project it failed,
+and on Windows another distribution's `scripts` folder (pywin32's) was found
+first. The failure was read as "no map builder", so no map was drawn and
+nothing said so. The package now imports every such script through
+`second_brain.checkout_scripts.load(name)` (the checkout from
+`paths.repo_root()`, a foreign namespace package of that name giving way, a
+foreign regular package refused loudly), and an ingest that still cannot load
+the builder reports `note_map: {built: false, reason}` instead of nothing.
 
 Maps were written to `data/exports/maps/` before 2026-10-09. Mapping a note
 removes its copy there, and a full build of a workspace's maps (`note_maps.py
@@ -1572,9 +1604,13 @@ in that workspace's own `config/maintenance.json`, next to its vocabulary:
 ```
 
 `ai_tokens_per_night` (Track AG5, D10) is the most the nightly steps that call
-the AI program may use in one night; `0` holds them until the owner sets one,
-and the free steps run whatever it is. A schedule without the key (written
-before it existed) has no limit and its steps run as they did.
+the AI program may use in one night; `0` is off, and the free steps run
+whatever it is. Track AX: it is chosen as a level in plain words (off, light,
+medium, heavy, each a most; the numbers are the option catalogue's
+`nightly_ai_limit.levels`), kept beside it as `ai_level`, and asked once per
+install in the welcome. A schedule without the key (written before it existed)
+is read as medium (`level_when_unset`), computed on read and never rewritten.
+The example collection never uses the AI at night.
 `equations_minutes` is the time the night may spend reading unread equations
 on this computer (`0` for none). A collection made through `create_collection`
 is written with `enabled: true`, `machine` this computer, `ai_tokens_per_night: 0`

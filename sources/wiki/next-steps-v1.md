@@ -9,7 +9,7 @@ product_version: "0.1.0"
 doc_kind: "contract"
 audience: "people and agents using or changing second brain"
 doc_path: "docs/next_steps_v1.md"
-doc_sha256: "62b889d6e515e8f9b383b95ad9e3d746654d062f2ec669687817e0114c776192"
+doc_sha256: "8f20f5ddc96446996406533713274e64408a7d11079bb53e31c32eba2e170dd2"
 ---
 
 # Next steps v1: warnings and refusals that say what to do (Track AC)
@@ -98,7 +98,7 @@ FastAPI's validation `detail` and gains `error.code: invalid_request`.
 | action | what the caller does |
 |---|---|
 | `run` | makes the call itself: a read, a retry, a choice the system recommends, or a spend within the standing budget |
-| `ask_user` | puts the response's `question` to the user, word for word, and makes the calls its answer names. Only two things are ever asked (the owner's rule, 2026-10-20): the standing token budget (`asks: budget`) and deleting or overwriting the user's own originals (`asks: originals`); a test fails on any other |
+| `ask_user` | puts the response's `question` to the user, word for word, and makes the calls its answer names. Only these are ever asked (the owner's rule, 2026-10-20, and Track AZ): the standing token budget (`asks: budget`), the user's own originals (`asks: originals`: deleting or overwriting one, and keeping a copy of each or pointing to it), and where a new collection is kept (`asks: place`); a test fails on any other |
 | `tell_user` | tells the owner: the remedy is theirs (a setting, an install, a missing source) |
 | `wait` | the work is under way: waits on `fix.verify` (one waiting call, never polling) |
 | `retry` | a passing failure: tries again later |
@@ -144,6 +144,7 @@ returned with `action: report` rather than costing the response.
 | `adding_kind_unknown` | The kind of these files could not be chosen: the request names none, no default kind is set, and the collection holds no notes to go by. | **run**: Plan again with `kind`: the kind most of these files are, chosen by you from the files and the plan's `kinds` (never a question for the user); each file whose own look says otherwise still gets its own. | `POST /sources/add` (paths: {paths}, kind: {kind}) |  |
 | `adding_nothing_named` | The request names no file, folder or link. | **run**: Send `paths` (files or folders, relative to the collection or `root:path`) or `urls`. |  |  |
 | `adding_nothing_to_add` | Nothing named needs adding: everything is already in, or was skipped with its reason (see the report). | **none**: Nothing to do; relay the report. |  |  |
+| `adding_originals_choice` | Some files are outside the collection and it has not decided yet whether it keeps a copy of each original or points to it where it lies (see `asks`, about `originals`). | **ask_user**: Put the question to the person word for word, recommended answer first; their answer is the plan made again with `originals` (keep or point), as `on` names. A person who already said "keep copies" has answered: send `originals: keep`. |  |  |
 | `adding_over_agent_limit` | The run's approval allows more than this agent may be approved for: its per-run cap, or what its day's cap leaves (see `detail`). | **tell_user**: Plan again (the new plan stays within the cap); more is the owner's to allow, through an agent that may grant (set_access). | `POST /sources/add` (paths: {paths}) |  |
 | `adding_path_not_found` | Some names given are no file or folder of this collection (see `detail`); the rest were planned. | **run**: Check those names: relative to the collection, or `root:path` for a declared source root. |  |  |
 | `adding_plan_changed` | The files, their kinds or the budget changed since the plan was made, so its approval no longer matches. | **run**: Plan again and run with the new approval; ask the user only if the new plan asks. | `POST /sources/add` (paths: {paths}) |  |
@@ -188,11 +189,15 @@ returned with `action: report` rather than costing the response.
 | `collection_empty` | The collection holds no notes yet. | **tell_user**: Say it is empty and offer to add documents: ask which files or folder, plan the addition (`plan_adding` over MCP, a dry run of adding over HTTP), show the plan, and run it on the yes. |  | `GET /agent/knowledge/overview` |
 | `collection_empty_read_only` | The collection holds no notes yet, and this agent may only read it. | **tell_user**: Say it is empty and that this agent only reads it: an agent the owner lets add documents adds them. |  | `GET /agent/knowledge/overview` |
 | `collection_exists_there` | The folder already holds a collection. | **run**: Open it instead of making a new one there. | `POST /collections/open` (folder: {folder}) |  |
+| `collection_folder_in_program` | The folder is inside the program's own folder (the checkout), where an update or a move of the program puts a collection at risk. | **tell_user**: Say so in its words, and ask for another folder or the default place. |  |  |
+| `collection_folder_missing` | The answer was a folder the person names, but `folder` was not sent. | **run**: Send `folder`: the full path of the folder the person named or dragged into the chat. |  |  |
 | `collection_folder_not_a_collection` | The folder holds no collection. | **tell_user**: Say so; to make a new collection there, make one with that folder. |  |  |
 | `collection_folder_not_absolute` | The folder given is not a full path (see `detail`). | **run**: Send the folder in full, as the person dragged or named it. |  |  |
 | `collection_folder_overlaps` | The folder is inside another collection, or holds one. | **tell_user**: Say so; a collection cannot sit inside another. Keep the default place or another folder. |  |  |
 | `collection_folder_refused` | The folder cannot hold a collection (see `detail`). | **tell_user**: Say why in its words, and ask for another folder or keep the default place. |  |  |
 | `collection_name_missing` | A collection is made with a name. | **run**: Send `name`: a few words the person calls it. |  |  |
+| `collection_place_choice` | Nothing was made yet: where the collection goes is the person's answer (see `ask`): the folder the AI program works in, a folder they name, or the default place. | **ask_user**: Put `ask.text` to the person word for word, recommended answer first, each answer with the folder `ask.folders` names for it; on their answer, make the call `ask.on` names for it (for a folder they name, fill `folder`). Never answer it for them. |  |  |
+| `collection_working_folder_missing` | The answer was the working folder, but `working_folder` was not sent or is not a folder on this computer. | **run**: Send `working_folder`: the full path of the folder you, the AI program, work in; never ask the person to type it. |  |  |
 | `concept_layer_behind` | The concept notes lag their sources: some sources' concepts are not in them yet. | **run**: Bring the concept notes up to date. | `POST /concepts/sync` (wait: False) | `GET /concepts` |
 | `config_or_field_problems` | The note's fields or its kind's settings have problems (see `problems`). | **tell_user**: Say which; the owner corrects the note or the setting. |  |  |
 | `confirm_code_invalid` | The `confirm` sent is not a code a preview of this change gave. | **run**: Make the call again without `confirm`, show its sentence, then send the code it returns. |  |  |
@@ -263,6 +268,8 @@ returned with `action: report` rather than costing the response.
 | `mcp_config_invalid` | A value in the workspace's agent-connection settings could not be taken as written (see `detail`); the safe default is used in its place. | **tell_user**: Tell the owner which value `detail` names; correcting it is theirs. |  | `GET /agent/knowledge/capabilities` |
 | `model_runtime_config_*` | The model runtime settings file is missing or not valid JSON. | **tell_user**: Say so; the owner fixes it. |  | `GET /ops/status` |
 | `model_runtime_config_exception` | The model runtime settings could not be read. | **tell_user**: Report it. |  | `GET /ops/status` |
+| `nightly_ai_answer_unknown` | The answer sent names no choice of the nightly AI question (see `detail`). | **run**: Send `answer` as one of: yes, no, light, medium, heavy. |  |  |
+| `nightly_ai_choice` | The nightly tidy may also use the AI: whether it does, and how much at most a night, is the person's answer (see `ask`). | **ask_user**: Put `ask.text` to the person word for word, recommended answer first; on their answer, make the call `ask.on` names for it. Never answer it for them; unanswered, nothing uses the AI at night. |  |  |
 | `no_bridge_signals` | No link between separate parts of the collection lies near this question. | **none**: Nothing to do. |  |  |
 | `no_chapter_structure_detected` | No chapter structure was found in the book. | **run**: Look at the split in a dry run (it reads, and spends nothing). Without a confident split the document is read whole, in parts (adding documents does this by itself); a split the user names is sent as `chapters`, never asked for. | `POST /sources/process_book` (path: {path}, dry_run: True) |  |
 | `no_gap_signals` | No known gap lies near this question. | **none**: Nothing to do. |  |  |
@@ -311,6 +318,7 @@ returned with `action: report` rather than costing the response.
 | `program_not_found` | That agent program is not installed on this computer. | **tell_user**: Say so; once it is installed, connect it again. |  |  |
 | `program_not_started` | The agent program could not be started to add the connection (see `detail`). | **tell_user**: Say so in its words: check that the program is installed and starts; then connect again. |  |  |
 | `program_settings_unreadable` | The agent program's settings file cannot be read; it was left as it is. | **tell_user**: Say so; its owner repairs that file, then connect again. |  |  |
+| `program_timed_out` | The agent program was still adding the connection when the wait ran out (see `detail`). | **tell_user**: Say so in its words; ask again: a connection already added is said so. |  |  |
 | `program_unknown` | The agent program named is not one a connection can be added to (see `detail`). | **run**: Send one of the programs `detail` lists. |  |  |
 | `proposal_already_accepted` | The same statement was accepted before: it is a note of the collection. | **none**: Nothing to do; recall finds it like any note. |  |  |
 | `proposal_already_dismissed` | The owner dismissed the same proposal before; it is not raised again. | **tell_user**: Say the owner decided against it; do not file it again. |  |  |
@@ -387,6 +395,7 @@ returned with `action: report` rather than costing the response.
 | `semantic_search_unavailable` | Meaning-based search did not contribute: the answer drew on words alone. | **tell_user**: Say recall may be narrower; `semantic_search.how_to_enable` names the setting and steps (the owner's to change). |  | `GET /ops/embeddings` |
 | `semantic_search_unknown` | Semantic search did not contribute, for a reason not reported. | **tell_user**: Say recall may be narrower; `semantic_search.how_to_enable` has the steps. |  | `GET /ops/embeddings` |
 | `server_error` | The server failed on this request. | **report**: Report it with the request; try once more only if it was not a write. |  | `GET /health` |
+| `setting_example_no_ai` | The example collection never uses the AI at night, so it has no nightly AI level to change. | **tell_user**: Say so; the level is chosen in a collection of the person's own. |  |  |
 | `setting_needs_program` | That choice needs a program installed on this computer first (see `detail`). | **tell_user**: Say so; install the program the plan named (its `install`), then change the choice again. | `GET /collections/setup` |  |
 | `setting_not_changed_here` | That choice is not changed by this call (see `detail` for how it is). | **tell_user**: Say how it is changed, as `detail` says. |  |  |
 | `setting_unknown` | No choice of the catalogue has that name (see `detail`: the closest names, and every choice this call changes). | **run**: Send the choice by one of the names `detail` gives; `check_setup` lists them too (`choices`). |  |  |

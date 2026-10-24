@@ -9,7 +9,7 @@ product_version: "0.1.0"
 doc_kind: "guide"
 audience: "a person setting up or using second brain"
 doc_path: "docs/user_guide_v1.md"
-doc_sha256: "be006124574ebfd2c6abfb3e69a7daeedaab06ba2e16ac94f33658bbf0c545ef"
+doc_sha256: "176deb52618ec0fcddd0c33eabee18b81c56c3410e2ad757bdab4af25433e0ae"
 ---
 
 # User guide v1
@@ -31,8 +31,10 @@ your computer, and to Claude Code as a plugin, which also brings its skills.
 Say "help me start with second brain" to your AI program. It first shows second brain on a small example collection.
 That takes about a minute and uses no tokens. You never type a command for it.
 
-Then it offers a short tour of what happens to a document you add. You can stop at any step.
-In the tour you add one waiting page yourself and watch its note, its map and its links appear.
+Then it offers a short tour of what happens to a document you add: eight short steps, each with something to try. You can stop at any step.
+The tour first shows how to look at a collection: in Obsidian, a free program for notes, in a text editor, or in the chat.
+You find one document at every stop of its way. You keep one small note as a copy, point to another, and run a practice night for free.
+At the end you add one waiting page yourself and watch its note, its map and its links appear.
 The example and its tour are for a first start, before you have a collection of your own.
 
 - The example collection: a few short pages about second brain, ready to ask, with one page waiting for you to add.
@@ -59,8 +61,12 @@ Your own originals are never deleted or overwritten without asking you first.
 
 ## Your own collection
 
-To make one, tell your AI program in a few words what it will hold. It is kept where second brain keeps collections,
-unless you name another folder. From then on that conversation uses it.
+To make one, tell your AI program in a few words what it will hold. You are then asked where it goes:
+the folder you work in now, a folder you name, or the default place. The default place is inside
+second brain's own folder, where an update or a move of the program can put a collection at risk.
+From then on that conversation uses it.
+
+- Where your collection is kept: the folder you work in now, one you name, or the default place, asked once.
 
 To open a collection you already have, for example a copy from another computer, say which folder it is in.
 If some folders it points to are not on this computer, you are told which, and you say where they are here.
@@ -91,6 +97,9 @@ even after trying again, and what it used. If something needs you, the last line
 - Other versions of one document: a draft and its final form are kept and linked, so nothing is lost.
 - Splitting long documents: a book is cut into parts by its own contents, and it is read whole if the parts are unclear.
 - Keeping copies of your originals: second brain keeps its own copy of each file, or only points to where it lies.
+  The first plan that brings files from outside the collection asks you once. Keeping copies is recommended,
+  so the collection holds everything and can be moved or backed up as one folder.
+- Clean names for notes you already have: notes added before names were made clean get their title as their name, once.
 - Named folders for your originals: a short name for a folder you keep elsewhere, so notes survive a move.
 - Kind of note when none is clear: what a document is taken to be when nothing in it says.
 
@@ -101,7 +110,26 @@ A book or another long document is added the same way, and second brain cuts it 
 First you see the plan, with what it will cost. Nothing is added until you say yes, or until it fits the limit you set.
 The plan also says what your files need, such as the better PDF reader. A choice that cannot wait is asked before anything is added.
 Adding goes on in the background, so the conversation carries on. At the end you get the short report.
+Each note is named after its document's title, cut after a whole word, and each document gets its map.
 Files you already added, even under another name, are skipped.
+
+## Adding your own notes from a conversation
+
+You can keep text from the conversation as a note of your collection: something you wrote, pasted or said.
+Ask your AI program to add it as a note, and give it a short title.
+First you see what will be added. On your yes, the note is kept in your collection word for word, in any language.
+A note you write costs no tokens to take in, because it is read without the AI. Questions can find it at once.
+To add your documents and notes, the AI program needs to be allowed to add to that collection.
+
+## Only the first tools after making a collection
+
+When you create or open a collection, the conversation gets its tools for asking, adding documents and adding notes.
+Your AI program is told the moment the collection is ready. Some AI programs only look again in a new conversation.
+The first tools are the welcome, help, getting the manual, trying the example, the tour, creating or opening a collection, and checking the setup.
+If your AI program still has only these after you created a collection, start a new conversation.
+That is also why, right after creating a collection, you may not be able to add documents yet.
+The new conversation opens your collection by itself, with all its tools for adding your documents and notes.
+Nothing is lost, and nothing has to be set up again.
 
 ## Reading your documents
 
@@ -200,10 +228,15 @@ Ask your AI program to add them, and it shows you the change before it applies.
 
 Every collection you make tidies itself each night, at no cost, on the computer that made it. Nothing needs to be left running.
 It adds new label words, fixes notes after a rename, fills in missing search entries, puts back lost letters and reads equations left unread.
-On a folder shared between computers, one computer does the tidying. Some steps use the AI, and they wait until you set a token limit.
+On a folder shared between computers, one computer does the tidying.
+Some steps use the AI: they keep concept pages up to date, merge look-alike concepts, judge new label words and label notes that have none.
+When you first make a collection, you are asked once whether they may run, and how much they may use.
 
 - Nightly tidy: on or off, and at what time. A collection that already existed is not turned on for you: ask for the check of your setup, and turn it on.
-- Token limit for the nightly AI steps: the most tokens those steps may use in one night. Until you set it, they use none.
+- Nightly AI level: off, light, medium or heavy. Each level is a most for one night, such as Medium (up to 150,000 tokens a night).
+  It is used only when there is work to do, not spent every night. Say a level at any time to change it.
+  A collection set up before the levels existed is at medium until you choose.
+- The example collection never tidies itself at night. The first time you open it, it says how to switch this on or off.
 - Nightly reading of equations: how many minutes a night your computer may spend on unread equations. It uses no tokens.
 - Renamed or moved originals: an exact match is fixed by itself, and a likely match is always offered to you first.
 
@@ -245,7 +278,7 @@ Doing nothing never uses tokens, and nothing is added without a plan you saw.
 - Merging look-alike concepts: a little at night, once for each pair.
 - Hints about your collection for the AI: at most about 700 tokens added to each AI job.
 - Suggestions of what to read next: tokens for each topic you name, up to a limit for each run.
-- Token limit for the nightly AI steps: the steps of the nightly tidy that use the AI, never more than the limit in one night.
+- Nightly AI level: the steps of the nightly tidy that use the AI, never more than the level's most in one night.
 - The AI program that does the work: a larger model setting uses more tokens for each job.
 - Adding documents without the AI: this one saves tokens instead.
 

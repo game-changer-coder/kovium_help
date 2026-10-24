@@ -9,7 +9,7 @@ product_version: "0.1.0"
 doc_kind: "contract"
 audience: "people and agents using or changing second brain"
 doc_path: "docs/collections_v1.md"
-doc_sha256: "15280f3b9e9e126bf77d221c6bf47e967c12af090be44003a6fc61dffb4dd2f9"
+doc_sha256: "4ddd7c3a70d06adb8f914ff29828487c068eac6546734a19cabd8c14dc0243e2"
 ---
 
 # Collections and who may do what (v1)
@@ -70,15 +70,41 @@ names, which needed a workspace itself before this track.
   R5): relative to the install folder, or to the home folder as `~/...`
   (`relative_to` says which), else as written; settings files keep the real
   path.
-- `folder`: only when the person names one, in full (a relative path is
-  refused, `collection_folder_not_absolute`). An empty or new folder is used
-  as it is; one that already holds other files gets a folder of its own inside
-  it, so the person's files are never mixed in (`kept: inside`); one that
-  already holds a collection is refused with the call that opens it
+- **Where it goes is asked first (Track AZ1).** With no `folder` and no
+  `place`, nothing is made: the answer is `{how: asked, created: false, say,
+  ask}` with the code `collection_place_choice` (`ask_user`, settled by the
+  user, `asks: place`). `ask.answers`, recommended first:
+  - `working`: the folder the caller's AI program works in now (the project
+    the person has open). The caller sends it as `working_folder` on every
+    call, and the question offers it only when it is a folder on this
+    computer outside the program's own folder (the checkout and the install
+    root); recommended when offered;
+  - `folder`: a folder the person names (recommended when there is no
+    working folder); its call has `fill: [folder]`;
+  - `default`: where the registry keeps collections (`sandboxes/` under the
+    instance root). When that is inside the program's own folder the answer
+    says so, and `say` adds one line why another place is safer: an update or
+    a move of the program can put a collection there at risk.
+  `ask.folders` holds the folder each answer means, shown as below, for the
+  caller to show beside it (a path is never written into a sentence given
+  word for word); `ask.on` holds each answer's call (`place` set, the name,
+  `holds`, and the caller's own `agent_id`, `workspace_id` and `program`).
+  The welcome's offer of a first collection makes the same call, with
+  `working_folder` to fill, so the first collection goes through the same
+  question.
+- `place`: the person's answer. `working` needs `working_folder`
+  (`collection_working_folder_missing`; one inside the program's own folder
+  is refused, `collection_folder_in_program`); `folder` needs `folder`
+  (`collection_folder_missing`); `default` keeps the registry's place.
+- `folder`: the person's named folder, in full (a relative path is refused,
+  `collection_folder_not_absolute`); given, it is used whatever `place` says.
+  An empty or new folder is used as it is; one that already holds other files
+  gets a folder of its own inside it, so the person's files are never mixed
+  in (`kept: inside`; the working folder too); one that already holds a
+  collection is refused with the call that opens it
   (`collection_exists_there`); one inside another collection, or holding one,
-  is refused (`collection_folder_overlaps`). Omitted: where the registry keeps
-  collections (`sandboxes/` under the instance root); `collection.folder` is
-  then relative to the install folder.
+  is refused (`collection_folder_overlaps`). In the default place,
+  `collection.folder` is relative to the install folder.
 - The collection's `config/mcp.json` gets `collection_id`, `display_name`,
   `description` and its policy naming the caller `manage` with every ability
   and no limit (D4a).
@@ -153,7 +179,10 @@ Cursor, when its settings folder exists; otherwise `program_not_found`. An
 entry of that name that starts something else is left alone
 (`program_entry_differs`); the same entry again is `already`. A program
 whose command cannot be started is refused `program_not_started`, in words
-saying to check it is installed, never an error's name (fix round R4). A command runs
+saying to check it is installed, never an error's name (fix round R4); one that
+started and was still running when the wait (`TIMEOUT_SECONDS`, 60) ran out is
+refused `program_timed_out`, saying it may have finished and to ask again
+(Track AY2). A command runs
 with every metered credential removed from its environment and calls no model.
 
 ## Who may do what (D4a)
@@ -238,10 +267,11 @@ be read back by its own loader:
 | Numbers written as words | `add` as `word: number`, `remove` by word | `books.json` `ordinal_words` (laid over the install's) |
 | Words for measured quantities | `add` as `word: unit`, `remove` by word | `reading_fidelity.json` `quantities` (written whole: it replaces the install's) |
 | Named folders for your originals | `add` as `name: full path` (a folder that exists here), `remove` by name | `sources.json` `source_roots` |
+| Keeping copies of your originals | `value` `keep` or `point`; also the answer to an addition's question (Track AZ4, [[adding-documents-v1|adding_documents_v1.md]]) | `sources.json` `source_retention` (`copy`, `reference`; a collection made from the conversation starts at `ask`, read as `copy`) |
 | Better PDF reader | `value` on or off; on only once its program is installed here (`setting_needs_program` otherwise): the yes to a plan's need (Track AG3) | `conversion.json` `pdf_converter` (`docling`, or null) |
 | Asking before anything is spent | `value` on or off | `intake.json` `approval_required` (Track AG3) |
-| Nightly tidy | `value` on or off. On means on **here**: the schedule names this computer, this computer's scheduler is asked to start it, and a collection that never decided keeps its AI steps waiting for a limit. Turning it on at a computer other than the one named moves it, and the preview says so first | `maintenance.json` `enabled`, `machine`, `time` (Track AG5) |
-| Token limit for the nightly AI steps | `value` a count of tokens: `200000`, `200k`, `200 thousand`, `1.5 million`; `0` or `none` makes the steps wait | `maintenance.json` `ai_tokens_per_night` (Track AG5) |
+| Nightly tidy | `value` on or off. On means on **here**: the schedule names this computer, this computer's scheduler is asked to start it, and a collection that never decided keeps its AI steps off until a level is chosen. Turning it on at a computer other than the one named moves it, and the preview says so first | `maintenance.json` `enabled`, `machine`, `time` (Track AG5) |
+| Nightly AI level | `value` a level: `light`, `medium`, `heavy` or `off` (`none`, `no`, `0`); or a count of tokens: `200000`, `200k`, `200 thousand`, `1.5 million`, which is that level when it is a level's most and `custom` otherwise. Refused in the example (`setting_example_no_ai`) | `maintenance.json` `ai_tokens_per_night` and `ai_level` (Tracks AG5, AX) |
 | Nightly reading of equations | `value` minutes a night, `0` for none (at most 1,440) | `maintenance.json` `equations_minutes` (Track AG5) |
 | Simple or technical answers | `value` `simple` or `technical` | `style.json` `level` (Track AG4) |
 | Short or detailed answers | `value` `short` or `detailed` | `style.json` `length` |
@@ -308,7 +338,7 @@ without a token cost fails it.
 | feature | how it ships | tokens |
 |---|---|---|
 | nightly tidy (label words by count, renamed originals, repairs of notes, search entries caught up, lost letters, equations) | **on in every collection made now**, on this computer only (`config/maintenance.json`: `enabled`, `machine`) | none |
-| the nightly steps that use the AI (judging label words, merging concept pages, faceting, hints, reading suggestions) | **asked**: `ai_tokens_per_night: 0`, which holds them; `check_setup` offers the limit with its cost | yes |
+| the nightly steps that use the AI (judging label words, merging concept pages, faceting, hints, reading suggestions) | **asked once per install, by level** (Track AX): off until answered (`ai_tokens_per_night: 0`); a collection made after the answer starts at it; `check_setup` shows the level with its most in brackets | yes |
 | better PDF reader (docling) | `pdf_converter: "auto"`: **on whenever installed** | none |
 | text recognition for scans | `ocr: "auto"`: **on for the files whose pages hold no text**, when docling and a text-recognition program are installed | none |
 | equations | read at night on this computer, `equations_minutes: 60` | none |
@@ -320,18 +350,55 @@ A collection made before this is **reported, not switched on**: with no
 `config/maintenance.json` that says `enabled`, `check_setup` lists the nightly
 tidy as off ("because nobody turned it on"), and the owner turns it on with
 `change_setting`. A schedule written before the limit existed has no
-`ai_tokens_per_night`; its AI steps run as they did and the check says they
-have no limit. `SECOND_BRAIN_NO_AUTO_READERS` (set for the whole test suite)
+`ai_tokens_per_night`; since Track AX it is read as the catalogue's
+`level_when_unset` (medium), computed on read and never written, and the check
+says "Medium (up to 150,000 tokens a night), set automatically. Say a different
+level to change it." The night enforces it. `SECOND_BRAIN_NO_AUTO_READERS` (set for the whole test suite)
 makes `auto` mean off in one process, the way `SECOND_BRAIN_EMBEDDINGS_DISABLED`
 does for search by meaning.
 
 **A collection made now** (`POST /collections`) gets the schedule written and
 this computer's scheduler asked to hold the job (cron where `crontab` exists,
 the Windows task scheduler where `schtasks` does; `second_brain/maintenance/os_job.py`).
-The answer carries `nightly` `{enabled, time, machine, job}` and a sentence.
+The answer carries `nightly` `{enabled, time, machine, job, ai, ai_asked_before}` and a sentence; when this
+install never answered the nightly AI question, it also carries that question as `ask` (code
+`nightly_ai_choice`), and when it did, a sentence naming the level the collection starts at.
 The job runs the nightly script **in process** (`--in-process`): no service
 need be left running. A computer with neither scheduler leaves the schedule
 saved and says the job is not started by itself yet.
+
+**Said plainly (Track BA, fix round R2).** A job added to this computer is
+real system state, so the answer says it: "It will tidy itself every night at
+02:00 on this computer, at no cost." "For that, a job was added to this
+computer's task scheduler, under the name shown below. Each night it runs
+second brain's free tidy for this collection, and nothing else." (or "list of
+timed jobs, called cron"); while no AI level is chosen, "The steps that use the
+AI stay off unless you choose a level for them."; and "To stop it, say "turn the
+nightly tidy off", which also takes the job off this computer." The name and
+what it runs are beside the words (`nightly.job.name`, the task
+`second-brain-maintenance-<id>` or the cron line's marker
+`second-brain-maintenance:<id>`; `nightly.job.runs`, the nightly script for this
+collection), since a collection's id may hold characters a sentence a person
+reads may not. Switching it off (`change_setting` "Nightly tidy" off) removes
+the task (`schtasks /Delete`) or makes cron match the schedules again; a
+removal the scheduler refuses while the task is still there is said as such
+("...could not be changed. Its job may still start at night, and it then finds
+the tidy off and does nothing."), never as done. The welcome's offer of a first
+collection says it in its yes: "a collection is made once you say where it is
+kept, and a free nightly tidy is added to this computer's scheduler". The cron
+script is loaded through the checkout loader (Track AZ3), so the MCP server,
+whose working folder is the person's project, reaches it too.
+
+**The nightly AI level** (Track AX). A person chooses a level in plain words,
+never a token count: off, light, medium or heavy, each shown with its most in
+brackets, "Medium (up to 150,000 tokens a night)". The numbers are the option
+catalogue's (`nightly_ai_limit.levels`, one place; an install changes them
+there), and `second_brain/maintenance/nightly_levels.py` reads them. The
+collection keeps `ai_tokens_per_night` (the number the night obeys) and
+`ai_level` (the name, shown back); a number that matches no level is shown as
+"Custom (up to N tokens a night)". The example collection never uses the AI at
+night, whatever its file says. The question is asked once per install, in the
+welcome (see [[welcome-v1|welcome_v1.md]]).
 
 **The nightly token limit.** `ai_tokens_per_night`: the steps that use the AI
 run only while the tokens they have reported tonight are below it. A step
@@ -382,10 +449,22 @@ whatever it is. The night's report says what was held or used, in words.
 | `plan_adding` | `POST /sources/add` (a plan) | bound | `manage` that may `add` |
 | `start_adding` | `POST /sources/add` (the run) | bound | `manage` that may `add` |
 | `adding_status` | `GET /sources/add/status` | bound | `manage` that may `add` |
+| `add_note` | `POST /sources/note` | bound | `manage` that may `add` |
 
 The three adding tools are Track AG3's doors on AR's one request
 ([[adding-documents-v1|adding_documents_v1.md]]): the plan is free, the run
 spends only with the plan's approval, within its budget and the agent's caps.
+`add_note` (Track AY4) keeps text from the conversation as a note, shown first
+and written on the person's `confirm`; it needs the same grant and is free.
+
+**The binding and the tool list** (Track AY3). A connection with no collection
+declares that its tool list can change, and a binding tells the program so
+(`notifications/tools/list_changed`): the collection's tools are there in the
+same conversation. The binding's answer ends with `collection.tools_follow`,
+which tells the person to start a new conversation where the tools do not
+show; the new conversation starts bound. The binding is this computer's state
+(`config/mcp_connections.json`): ignored by git, and declared in the option
+catalogue as not a choice (Track AY6).
 
 - **The `manage` grant** is held only over a local transport (standard input
   and output, or the tests' in-process one), never a remote one

@@ -1,7 +1,7 @@
 ---
 type: "documentation"
 title: "The install step, the Claude Code plugin and the caller agent v1"
-description: "The contract for Track AG4 of docs/first_run_experience_plan_v1.md: the one install step (D1), the Claude Code plugin this checkout is (D1), the caller agent added to a person's project and the answer style kept per collection (D9). Code..."
+description: "The contract for Track AG4 of docs/first_run_experience_plan_v1.md: the one install step (D1), the Claude Code plugin this checkout ships (D1; its own folder since Track AY1), the caller agent added to a person's project and the answer..."
 status: "stable"
 reading_status: "read"
 product: "second brain"
@@ -9,16 +9,18 @@ product_version: "0.1.0"
 doc_kind: "contract"
 audience: "people and agents using or changing second brain"
 doc_path: "docs/install_and_caller_agent_v1.md"
-doc_sha256: "5e69f7b25e54b1511d2754b5803e4f449b7d4f32e35a397ce5c3907f3f605ffe"
+doc_sha256: "5ab105da8bb7cbd5d21a2c5b96b36573b9082d1495bd91dd6d29ddd4b7749206"
 ---
 
 # The install step, the Claude Code plugin and the caller agent v1
 
 The contract for Track AG4 of `docs/first_run_experience_plan_v1.md`: the one
-install step (D1), the Claude Code plugin this checkout is (D1), the caller
-agent added to a person's project and the answer style kept per collection
-(D9). Code: `scripts/setup.py`, `second_brain/install/`, `scripts/mcp_launch.py`,
-`.claude-plugin/`, `plugin/commands/`, `second_brain/caller_agent/`.
+install step (D1), the Claude Code plugin this checkout ships (D1; its own
+folder since Track AY1), the caller agent added to a person's project and the
+answer style kept per collection (D9). Code: `scripts/setup.py`,
+`second_brain/install/`, `skills/claude-code/` (the plugin: its manifest, skills,
+start command and `scripts/mcp_launch.py`), `.claude-plugin/marketplace.json`,
+`second_brain/caller_agent/`.
 
 **State.** Built 2026-10-23 for Claude Code; Track AG7 (the same day) brought
 Codex and OpenClaw to the same flow: their install step is a connection of the
@@ -73,7 +75,17 @@ supports (`requires-python` in `pyproject.toml`). In order:
      the plugin's start command cannot run here, by a plain connection named
      `second-brain` (`claude mcp add --transport stdio --scope user`); the
      others the way `connect_agent` adds theirs (`docs/collections_v1.md`),
-     named `second-brain`, with `--agent <program> --root <checkout>`.
+     named `second-brain`, with `--agent <program> --root <checkout>`;
+   - **never two connections in Claude Code** (Track AY1): with the plugin
+     connected, `claude mcp get second-brain` is asked; a plain connection that
+     is exactly what `--no-plugin` adds (user scope, the same program and
+     arguments) is removed with `claude mcp remove second-brain -s user` and
+     said (`install.plain_removed`); any other of that name is left as it is
+     and named, with what to do (`install.plain_kept`), since it may be another
+     install's or someone else's. With `--no-plugin` while the plugin is
+     installed (`claude plugin list --json`), that is said
+     (`install.plugin_beside_plain`); nothing is removed then: a plain
+     connection was asked for.
 4. **What to do next**, in words: open the program and say "help me start
    with second brain"; start a new conversation if it was open.
 
@@ -97,55 +109,110 @@ the same command connects it once the service is stopped.
 Every sentence it prints is a catalogue text (`setup_v1.json`, `install.*`),
 held to the plain-words rule.
 
+**Out of time is not "did not start"** (Track AY2). A program command that
+started and was still running when the wait ran out is said as such, with the
+wait (`install.why_timed_out`: "it was still working after 600 seconds, so this
+step stopped waiting. Run this again: what was already done is kept."); only
+one that could not start at all is `install.why_not_started`. The waits are
+stated in code: `COMMAND_SECONDS` (120) for a program's own command,
+`PLUGIN_INSTALL_SECONDS` (600) for `claude plugin install`, which copies the
+plugin's folder (measured at a few seconds for the plugin as it now is). The
+same split holds for a collection's connection (`connect_agent`): a command
+that times out is refused `program_timed_out`, not `program_not_started`.
+
 ## The Claude Code plugin
 
-The checkout's root is a plugin and a marketplace that lists it:
+The plugin is a small folder of its own, `skills/claude-code/`, and the
+checkout's root is a marketplace that lists it (Track AY1):
 
 | file | holds |
 | --- | --- |
-| `.claude-plugin/plugin.json` | `name: second-brain`, `version` (the package's), `skills: ./skills/claude-code/`, `commands: [./plugin/commands/]`, and `mcpServers.second-brain` |
-| `.claude-plugin/marketplace.json` | `name: second-brain`, `owner`, one plugin with `source: ./` |
-| `plugin/commands/start.md` | the start command, `/second-brain:start` (a plugin's commands are named after it): call `welcome` and follow it; `help` for how second brain works |
-| `scripts/mcp_launch.py` | what the connection starts |
+| `skills/claude-code/.claude-plugin/plugin.json` | `name: second-brain`, `version` (the package's), `skills: ./` (the four caller skills at the plugin's root), `commands: [./commands/]`, and `mcpServers.second-brain` |
+| `.claude-plugin/marketplace.json` | `name: second-brain`, `owner`, one plugin with `source: ./skills/claude-code` |
+| `skills/claude-code/commands/start.md` | the start command, `/second-brain:start` (a plugin's commands are named after it): call `welcome` and follow it; `help` for how second brain works |
+| `skills/claude-code/scripts/mcp_launch.py` | what the connection starts |
+| `skills/claude-code/checkout.json` | written by the install step, ignored by git: where this computer's checkout is and which program its server is |
 
-The install step adds it with Claude Code's own commands:
+The install step records the checkout for the launcher, then adds the plugin
+with Claude Code's own commands:
 
 ```bash
 claude plugin marketplace add <checkout>
 claude plugin install second-brain@second-brain --scope user
 ```
 
-A marketplace added from a local folder is loaded **in place**, not copied,
-so `${CLAUDE_PLUGIN_ROOT}` is the checkout, its `.venv` is the one the step
-made, and collections kept in the checkout stay there when the plugin is
-updated.
+**What Claude Code does with it, measured** (Track AY1, the real `claude`
+2.1.240 in a scratch home: `HOME`, `USERPROFILE`, `APPDATA`, `LOCALAPPDATA` and
+`CLAUDE_CONFIG_DIR` all under a scratch folder; `marketplace add` and
+`plugin install` need no sign-in):
+
+- `claude plugin marketplace add <folder>` copies nothing: the marketplace's
+  `installLocation` is the folder itself (under a second).
+- `claude plugin install` **copies the plugin's source folder** into
+  `~/.claude/plugins/cache/<marketplace>/<plugin>/<version>/`, through a
+  staging folder `cache/temp_local_<n>_<id>/`. It leaves out `.git` and
+  copies everything else, a private environment included. A source of `./`
+  (the whole checkout, as before AY1) with 100 MB in 2,000 files took 4.1 s;
+  the owner's checkout holds a 1.6 GB environment in about 47 thousand files,
+  which is why the install step's wait ran out (that size was read off the
+  folder; copying it was not timed).
+- A session then runs the plugin **in place** from the marketplace's folder:
+  `claude mcp list` shows the connection as `python
+  <checkout>/skills/claude-code/scripts/mcp_launch.py --agent claude-code`,
+  not the cached copy. This is what Claude Code's documentation says of a
+  relative-path plugin in a marketplace added from a local path; the copy at
+  install is made anyway. The marketplace's file is read afresh: moving a
+  plugin's `source` to a subfolder took effect at once, with no update or
+  reinstall (the stale cached copy stays until the plugin is uninstalled).
+- With the plugin as it now is, the whole install step took 4.9 s, the cached
+  copy is 25 files and 222 kB, and `claude mcp list` reports the connection
+  "Connected".
+
+So the plugin holds only what a plugin is, and the launcher finds the
+checkout through the record the install step writes before it installs the
+plugin, never through where the plugin sits: should a later Claude Code run
+the cached copy, the record travels with it.
 
 **What it ships** (checked against Claude Code's plugin documentation on
 2026-10-23, pinned by `tests/contracts/test_claude_code_plugin.py`, and
-validated by `claude plugin validate` 2.1.240 in a scratch home):
+validated by `claude plugin validate` 2.1.240 in a scratch home: "Validation
+passed" for the plugin and for the marketplace):
 
-- the four caller skills (`skills/claude-code/*`); a custom `skills` path adds
-  to the default `skills/` folder, which holds none at its top;
+- the four caller skills (`skills/claude-code/second-brain-*`), at the
+  plugin's root; the plugin has no default `skills/` folder of its own, so
+  nothing is loaded twice;
 - the start command;
 - the connection, `python ${CLAUDE_PLUGIN_ROOT}/scripts/mcp_launch.py --agent
   claude-code`, in welcome mode; its tools are named
   `mcp__plugin_second-brain_second-brain__<tool>`. Once `create_collection` or
   `open_collection` binds it (`docs/collections_v1.md`), the same entry starts
-  bound to that collection.
+  bound to that collection, and in the same conversation the server tells the
+  program its tool list changed (`docs/mcp_server_v1.md`, Track AY3).
 
 It ships no agent: the caller agent belongs to one collection and is added to
-the person's own project (below). `claude plugin validate --strict` reports
-one warning, that the checkout's `CLAUDE.md` at the plugin's root is not
-loaded as plugin context; that file is for people working on the checkout.
+the person's own project (below). The contract test holds the folder to
+plugin files only (no environment, collection, data or package) and under
+2 MB.
 
-**The launcher.** A plugin cannot name the server inside a private
-environment the same way on every system (`.venv/bin/second-brain-mcp` or
-`.venv/Scripts/second-brain-mcp.exe`), so `scripts/mcp_launch.py` (standard
-library only) finds it, appends `--root <checkout>` unless given, and runs it
-with the plugin's standard input and output passed through; it writes nothing
-to standard output. With no environment yet it says so on standard error, in
-the catalogue's words (`install.not_set_up`), exit status 2. `SECOND_BRAIN_VENV`
-names another environment (the tests use it).
+**The launcher.** `skills/claude-code/scripts/mcp_launch.py` (standard
+library only, importing nothing of second brain: until it reads the record it
+does not know where that is) reads `checkout.json` in the plugin's folder,
+appends `--root <checkout>` unless given, and runs the recorded server with
+the plugin's standard input and output passed through; it writes nothing to
+standard output. With no record it says so on standard error
+(`install.not_set_up`); with a record whose checkout or server is gone, that
+the checkout moved and the setup is to be run again from where it is now
+(`install.moved`); exit status 2 either way. The two sentences are copies of
+the catalogue's, held equal by a test. `SECOND_BRAIN_PLUGIN_RECORD` names
+another record file (the suite points it outside the checkout).
+
+**Moving from the earlier plugin.** An install made before AY1 has the plugin
+with the whole checkout as its source. After updating the checkout, run
+`python scripts/setup.py` once: it writes the record, finds the marketplace
+and plugin already there (Claude Code reads the marketplace's new source on
+its own), and removes a plain connection the step made earlier with
+`--no-plugin`. The old, large cached copy can be dropped with `claude plugin
+uninstall second-brain@second-brain` followed by the step again.
 
 ## The caller agent (`POST /collections/agent`, `make_agent`)
 
@@ -294,7 +361,8 @@ with no style adds nothing, so the default listing does not grow.
   the checkout's files, a scratch home (`HOME`, `USERPROFILE`, `APPDATA`,
   `LOCALAPPDATA`), stand-in agent programs alone on `PATH`, an empty pip
   cache, a base Python 3.13; `python scripts/setup.py --no-probe`, then the
-  plugin's connection started as Claude Code starts it, `welcome`,
+  plugin's connection started as Claude Code starts it (since Track AY1,
+  `skills/claude-code/scripts/mcp_launch.py`, through the record), `welcome`,
   `try_example` and a suggested question answered with its source: **1.58
   minutes** (78.4 s for the step, the environment made and its packages
   downloaded; 16.7 s from the connection's start to the answer, the example
@@ -339,10 +407,14 @@ installed here and the real home is never used), a person, Linux.
 
 ## Limitations
 
-- The plugin is installed from the checkout (a local marketplace, loaded in
-  place). Installed from a copied marketplace (a published repository) it
-  would live in a versioned cache, with its environment and collections
-  inside it: not supported, and nothing is published.
+- The plugin is installed from the checkout (a local marketplace). Claude Code
+  2.1.240 copies the plugin's folder into its cache at install and runs it in
+  place from the checkout (measured, Track AY1); the launcher works from either,
+  through the record. A marketplace published elsewhere is not supported, and
+  nothing is published. The copy's behaviour was measured on Windows only.
+- The record (`skills/claude-code/checkout.json`) holds this computer's
+  absolute paths: a moved checkout needs the step run again from its new
+  place (the launcher says so).
 - The plugin's connection starts with `python` from `PATH`. Where that is not
   a Python new enough (only `python3`, or a stub that opens a store), the step
   connects Claude Code by a plain connection instead, without the plugin's

@@ -9,7 +9,7 @@ product_version: "0.1.0"
 doc_kind: "contract"
 audience: "people and agents using or changing second brain"
 doc_path: "docs/renames_v1.md"
-doc_sha256: "16bc1f79f5f675e2a8cac4d75d8b5b89efa37c30918392a426e8631e22a94854"
+doc_sha256: "7f312627cbdc62104dc6f1058da0d14a96f03d257a96854e5833b16a05e6ad39"
 ---
 
 # Renaming anything, and every reference follows
@@ -153,9 +153,27 @@ then applies them in one step:
 **Names.** A new name is taken as given, in any script, once a file system on
 every host would take it (no `< > : " / \ | ? *`, no reserved Windows name,
 no trailing dot or space, at most 150 characters): `rename_name_invalid`
-otherwise. A note made by the pipeline keeps the `__templated` ending: it is
-what ties the note to its draft, and processing the original again finds the
-note by it. A concept's new name is made a key (`concept_key`).
+otherwise. Since Track AZ2 a note made by the pipeline is named without its
+draft's `__templated` ending, and its draft keeps it: a rename of such a note
+names the note as given (an ending sent is dropped) and its draft the same
+name with the ending, which is what ties the two and what processing the
+original again finds them by. A note renamed by hand keeps the name the
+person gave it, with or without the ending. A concept's new name is made a
+key (`concept_key`).
+
+**Notes named the old way** (Track AZ2): `POST /rename/clean_names` `{dry_run:
+true, access_mode, limit}` renames, in one pass and one snapshot, every
+pipeline note whose name carries the `__templated` ending or was cut from its
+title at 60 characters inside a word, to the note's rule
+([[note-format-contract-v1|note_format_contract_v1.md]], "File names"):
+`<title-cut-mid-phrase>__templated.md` becomes `<title cut after a whole word
+at 80 characters>.md`, its draft `<that name>__templated.md`. Links, keys,
+vectors and maps follow as in any rename; `POST /rename/rollback` undoes it.
+Left: notes written by hand, notes the owner maintains, parts of a document
+(Track AL8's names), and names chosen any other way (a name kept apart from
+another document's, one the person gave). The answer's `say` is the
+catalogue's (`clean_names.*`); the catalogue's "Clean names for notes you
+already have" is this one-time step. No model call.
 
 **A note and its draft** are paired by one rule, `notes/draft_pairing.py`,
 which the ASCII report uses too: the note's own source line
@@ -277,8 +295,8 @@ Also found: **a draft renamed alone** (its note follows it), **a converted
 copy renamed alone** (exact when its bytes are the original's, as for a
 Markdown original; otherwise the only unrecorded copy in its folder is
 proposed), and **a map renamed alone** (drawn again under its note's name,
-the stray copy removed). A platform note's name keeps its `__templated`
-ending: a hand rename that dropped it is carried through with it put back.
+the stray copy removed). A platform note renamed by hand keeps the name the
+person gave it; its draft follows with the `__templated` ending (Track AZ2).
 
 A proposal is a review item `name-rename:<id>` (`kind: name_rename`,
 `object`, `match`, `why_proposed`, `from`, `to`, `candidates`, `evidence`).

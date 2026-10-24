@@ -9,7 +9,7 @@ product_version: "0.1.0"
 doc_kind: "reference"
 audience: "someone choosing what second brain does"
 doc_path: "second_brain/catalogue/options_v1.json"
-doc_sha256: "af4f88d7fea53146b49e9e563bd951e91d26808f76d68c73f76bdb883b024e18"
+doc_sha256: "130f0f6b65a9a539dcfe5cdedc7573ff504b63ff5819e8ab03ef36309a8b5275"
 ---
 
 # The option catalogue
@@ -308,17 +308,17 @@ Every choice second brain offers, in four lines (what it is, whether you need it
 
 - What it is: A tidy-up that runs by itself each night: new label words, renamed files, missing search entries, lost letters and unread equations.
 - Do you need it: Every collection gains from it, because without it these small repairs wait until someone runs them.
-- What it costs: The free steps cost no tokens, and the steps that use the AI are a separate choice with a limit that you set.
+- What it costs: The free steps cost no tokens, and the steps that use the AI are a separate choice: a level that you pick.
 - What is recommended: Keep it on, and on a folder shared between computers let one computer run it, which you can move to another.
 - Changing it later: You can turn it on or off at any time, and a change of time applies from the next night.
 
-## Token limit for the nightly AI steps
+## Nightly AI level
 
-- What it is: The most tokens of your subscription that the AI steps of the nightly tidy may use in one night.
-- Do you need it: Those steps judge new label words, merge concept pages and keep hints up to date, and they wait until you set a limit.
-- What it costs: It costs nothing itself; the steps use tokens of your subscription, never more than this limit in one night.
-- What is recommended: Start with a small limit, and look at what the morning report says was used before you raise it.
-- Changing it later: You can raise or lower the limit at any time, and the free steps of the night run either way.
+- What it is: How much of your subscription the nightly tidy may use for its AI steps: off, light, medium or heavy, each a most for one night.
+- Do you need it: Those steps keep concept pages up to date, merge look-alike concepts, judge new label words and label notes that have none.
+- What it costs: It costs nothing itself; the steps use extra tokens of your subscription, never more than the level's most in one night.
+- What is recommended: Medium suits most collections; it is a most, used only when there is work to do, and the morning report says what was used.
+- Changing it later: You can choose another level at any time, and the free steps of the night run either way.
 
 ## Nightly reading of equations
 
@@ -423,6 +423,22 @@ Every choice second brain offers, in four lines (what it is, whether you need it
 - What it costs: It is free, it uses no tokens, and it takes a backup before it changes a note.
 - What is recommended: Run it once, after it has told you how many notes it would change.
 - Changing it later: You can run it again at any time. A note that already has the section is never touched.
+
+## Where your collection is kept
+
+- What it is: The folder a new collection goes in: the one you work in now, one you name, or the default place.
+- Do you need it: You choose it once, when the collection is made, and you are asked.
+- What it costs: It costs nothing in tokens, and the collection uses the same disk wherever it is.
+- What is recommended: Keep it outside second brain's own folder, so an update or a move of the program never puts it at risk.
+- Changing it later: You can move the folder later and open it again from its new place.
+
+## Clean names for notes you already have
+
+- What it is: A one-time step that renames notes named the old way after their title, without the ending the system added.
+- Do you need it: You need it only if your notes were added before names were made clean.
+- What it costs: It is free, it uses no tokens, and it can be undone in one step.
+- What is recommended: Run it once, after it has told you which notes it would rename.
+- Changing it later: You can run it again at any time, and a note with a clean name is left as it is.
 
 ## The name of your own words section
 

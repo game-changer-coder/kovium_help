@@ -9,7 +9,7 @@ product_version: "0.1.0"
 doc_kind: "contract"
 audience: "people and agents using or changing second brain"
 doc_path: "docs/api_spec_v1.md"
-doc_sha256: "c37ae83ae57dac69f2ca888fd8a105463976d771c97edccdfcbb6205010ef8cc"
+doc_sha256: "d78572048a698ffe5a696e02d7e582cc8eafeb90047d76575d8e7a275f14799d"
 ---
 
 # API Specification V1
@@ -436,8 +436,9 @@ See `docs/source_renames_v1.md`. No route here calls a model.
 See `docs/renames_v1.md`. No route here calls a model or the embedding server;
 every one reports `billed_tokens: 0`, `agent_calls: 0`, `embedding_calls: 0`.
 - `POST /rename` `{kind, target, new_name, dry_run: true, access_mode,
-  overwrite: false}` — rename an `original`, a `note` (with its draft; a
-  pipeline note keeps its `__templated` ending), a `concept` (a redirect stub
+  overwrite: false}` — rename an `original`, a `note` (with its draft; the
+  draft keeps its `__templated` ending, the note's name does not carry it,
+  Track AZ2), a `concept` (a redirect stub
   left at the old key) or a `converted` copy, and move everything that records
   the old name in one step: links in other notes, node and edge ids, passage
   vectors (never re-embedded), access history, the change log (one `renamed`
@@ -958,10 +959,14 @@ catalogue (`second_brain/catalogue/welcome_v1.json`) or the user guide.
   `{text, source: {note, section, lines, file, original}}`, no model call),
   `found: false` when the answer carries `question_not_covered`. Refused
   `example_not_found` (404) when the install holds no example. Free.
-- `POST /welcome/tour` `{step?, add?, approval?, reset?, wait?, agent_id?}` —
-  `step` (`map`, `files`, `notes`, `links`, `concepts`, `obsidian`, `add`,
-  or a number; none: the first): `{step, number, of, title, say, look,
-  next_step, next}`; unknown: `tour_step_unknown` (422). At `add`: `add: free`
+- `POST /welcome/tour` `{step?, try_it?, add?, approval?, reset?, wait?, agent_id?}` —
+  `step` (`look`, `journey`, `files`, `notes`, `map`, `links`, `concepts`,
+  `add`, or a number; none: the first): `{step, number, of, title, say, do,
+  check_in, look, next_step, next}` (`look.files`: each place to look at, its
+  full `place` on this computer given at run time; a step with an exercise has
+  `ask`, its offer, beside its own `do` and `check_in`); unknown:
+  `tour_step_unknown` (422). `try_it` (`both_ways`, `practice_night`; Track BA)
+  runs a step's exercise, free: `{tried, ran, say, look, check_in, next}`. At `add`: `add: free`
   adds the waiting page by code (`added`, `note`, `map`, `links`,
   `concept_pages`, `ask_with`); `add: ai` without `approval` is the plan
   (`estimated_tokens`, `estimated_range`, `limit`, `approval`, `ask`), with
@@ -970,7 +975,22 @@ catalogue (`second_brain/catalogue/welcome_v1.json`) or the user guide.
   `adding_approval_expired`); a page already added: `tour_sample_added` (409).
   `reset: true` puts the example back as it was. Spends only on `add: ai`
   with an approval. The free add also names `then`, the welcome again, whose
-  question is then a collection of the person's own (Track AG2).
+  question is then a collection of the person's own (Track AG2). Track AX:
+  the first reply from the example in an install (from this route or
+  `/welcome/example`) also says what happens at night, adds four sentences to
+  `say` and offers to try the switch (`ask`, also as `nightly_ask`).
+- `POST /welcome/nightly` `{answer, example?, workspace_id?, agent_id?}`
+  (Track AX) — the person's answer to the nightly AI question: `yes` returns
+  the second question (`ask`: light, medium, heavy, each with its most in
+  brackets; `answered: false`); `no` or a level writes the collection's
+  `ai_tokens_per_night` and `ai_level` through the settings path
+  (`answered`, `level`, `tokens`, `shown`, `say`, `next`) and keeps it as the
+  install's answer, which collections made later start at; without
+  `workspace_id` only the install's answer is kept. Needs a manage entry that
+  may change settings. With `example: true`, `on` or `off` only shows the
+  switch in the example (nothing written, no AI). Refused
+  `nightly_ai_answer_unknown` (422), `access_not_granted`. Free. Contract:
+  [[welcome-v1|welcome_v1.md]].
 
 ### 6g. Collections and who may do what (Track AG2)
 The setup tools' routes; the contract is [[collections-v1|collections_v1.md]].
@@ -1010,11 +1030,12 @@ the collection's own access policy (the `agents` table of its
   `confirm_code_invalid`, `confirm_code_stale`.
 - `POST /collections/settings` `{option, value?, add?, remove?, text?,
   confirm?}` — one choice by its plain name, its id or a setting it holds
-  (`value` may be a number: the nightly token limit, the minutes of equations
-  at night): `option`, `name`, `would_change`, `say`, `confirm`; with `confirm`:
+  (`value` may be a number: the nightly AI level, which also takes `light`,
+  `medium`, `heavy` or `off` (Track AX), the minutes of equations at night): `option`, `name`, `would_change`, `say`, `confirm`; with `confirm`:
   `changed`, `applied`, `file`. An unknown name: `setting_unknown`, its `detail` naming
   the closest choices and all of them. Refused:
-  `setting_unknown`, `setting_not_changed_here`, `setting_value_invalid`.
+  `setting_unknown`, `setting_not_changed_here`, `setting_value_invalid`,
+  `setting_example_no_ai` (a nightly AI level in the example).
 - `POST /collections/agent` `{project, program?, level?, length?, tone?, extra?,
   confirm?}` — Track AG4: this collection's caller agent added to the person's
   project beside its own agents. Without `confirm`: `file` (relative to the
@@ -1031,8 +1052,9 @@ the collection's own access policy (the `agents` table of its
   collection `budget_tokens_per_run` and `access`; `choices` (what
   `/collections/settings` takes). Track AG5: every feature that spends tokens
   and ships off is an `off` item whose `say` carries its cost; the nightly tidy,
-  the nightly token limit for the AI steps and the nightly reading of equations
-  are items of a collection; `versions` (`{kind, ...}`: `schema_newer`,
+  the nightly AI level (Track AX: `level`, `tokens`, `shown`, and `automatic`
+  for a schedule from before the levels, read as medium) and the nightly
+  reading of equations are items of a collection; `versions` (`{kind, ...}`: `schema_newer`,
   `schema_older`, `platform_newer`, `platform_older`, `search_program`,
   `search_model`, `search_mixed`) and `versions_say` say what differs from the
   versions that wrote the collection. Read only.

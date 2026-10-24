@@ -7,8 +7,8 @@
   },
   "built_with": "no AI and no tokens: each document is a note written by hand, read by code",
   "notes": 46,
-  "size_bytes": 4359025,
-  "size_mb": 4.2,
+  "size_bytes": 4418761,
+  "size_mb": 4.3,
   "sources": {
     "README.md": {
       "sha256": "3a306a820f076515152ef517bbddca07cfdc6151a34af2173e0d53d37a7fc2a5",
@@ -16,7 +16,7 @@
       "doc_kind": "overview"
     },
     "docs/README.md": {
-      "sha256": "ea463bd49b36ceb8de449d512eac1ad9061f2247863e92945e1ae78a49323b0c",
+      "sha256": "995039e60579254c2ac28a4c0c5ad23f7a63ffedd88ebb59b2c724998db3c2d9",
       "note": "sources/wiki/which-documents-are-current.md",
       "doc_kind": "overview"
     },
@@ -26,7 +26,7 @@
       "doc_kind": "guide"
     },
     "docs/adding_documents_v1.md": {
-      "sha256": "24c4fb97a618d5d06e4bff13d3a653454a02f5400077b615cdfa33938d20d01e",
+      "sha256": "e292fc723c29d900c0eb50c6c26861316851998767c07c64d427cd6fdfe822b8",
       "note": "sources/wiki/adding-documents-v1.md",
       "doc_kind": "contract"
     },
@@ -41,12 +41,12 @@
       "doc_kind": "contract"
     },
     "docs/api_spec_v1.md": {
-      "sha256": "c37ae83ae57dac69f2ca888fd8a105463976d771c97edccdfcbb6205010ef8cc",
+      "sha256": "d78572048a698ffe5a696e02d7e582cc8eafeb90047d76575d8e7a275f14799d",
       "note": "sources/wiki/api-spec-v1.md",
       "doc_kind": "contract"
     },
     "docs/collections_v1.md": {
-      "sha256": "15280f3b9e9e126bf77d221c6bf47e967c12af090be44003a6fc61dffb4dd2f9",
+      "sha256": "4ddd7c3a70d06adb8f914ff29828487c068eac6546734a19cabd8c14dc0243e2",
       "note": "sources/wiki/collections-v1.md",
       "doc_kind": "contract"
     },
@@ -101,7 +101,7 @@
       "doc_kind": "contract"
     },
     "docs/install_and_caller_agent_v1.md": {
-      "sha256": "5e69f7b25e54b1511d2754b5803e4f449b7d4f32e35a397ce5c3907f3f605ffe",
+      "sha256": "5ab105da8bb7cbd5d21a2c5b96b36573b9082d1495bd91dd6d29ddd4b7749206",
       "note": "sources/wiki/install-and-caller-agent-v1.md",
       "doc_kind": "contract"
     },
@@ -111,17 +111,17 @@
       "doc_kind": "contract"
     },
     "docs/mcp_server_v1.md": {
-      "sha256": "bf5dc3366b093aadf6b1a2a9946ca4691eb81e22a85394183f03e9c8b9166379",
+      "sha256": "57b5450d29ac02f9bbe3659b3e7c8fa73ad4f5adcc3f6c3e52147132b98a0534",
       "note": "sources/wiki/mcp-server-v1.md",
       "doc_kind": "contract"
     },
     "docs/next_steps_v1.md": {
-      "sha256": "62b889d6e515e8f9b383b95ad9e3d746654d062f2ec669687817e0114c776192",
+      "sha256": "8f20f5ddc96446996406533713274e64408a7d11079bb53e31c32eba2e170dd2",
       "note": "sources/wiki/next-steps-v1.md",
       "doc_kind": "contract"
     },
     "docs/note_format_contract_v1.md": {
-      "sha256": "82cff5209fbb95239b05a1f13e81c60015b7c85450f1274b283a88fdcb3c9853",
+      "sha256": "9d67cf630edbaaa4a22660e36613edd2fa4b917a4bcc4999d81f58ea50508ec9",
       "note": "sources/wiki/note-format-contract-v1.md",
       "doc_kind": "contract"
     },
@@ -131,7 +131,7 @@
       "doc_kind": "contract"
     },
     "docs/plain_language_rules_v1.md": {
-      "sha256": "e3954f6b245fc871b8efb179d0d051c8a35ab053f003780a6554d0fef5e0e636",
+      "sha256": "eb62c77d4472f991cb7e768d8f2db045e6a44e96ef8d228abc78dacbbe07f6c7",
       "note": "sources/wiki/plain-language-rules-v1.md",
       "doc_kind": "contract"
     },
@@ -151,7 +151,7 @@
       "doc_kind": "contract"
     },
     "docs/renames_v1.md": {
-      "sha256": "16bc1f79f5f675e2a8cac4d75d8b5b89efa37c30918392a426e8631e22a94854",
+      "sha256": "7f312627cbdc62104dc6f1058da0d14a96f03d257a96854e5833b16a05e6ad39",
       "note": "sources/wiki/renames-v1.md",
       "doc_kind": "contract"
     },
@@ -166,7 +166,7 @@
       "doc_kind": "contract"
     },
     "docs/source_roots_and_portable_provenance_v1.md": {
-      "sha256": "6be605dade898fe0ba4e19e89edf1ef512778b71b6a6486e4103642bba5261aa",
+      "sha256": "d0a37ca8afda96cd938970fac3cec89037ec45d595f2dcf6f19bbfe3052b8abd",
       "note": "sources/wiki/source-roots-and-portable-provenance-v1.md",
       "doc_kind": "contract"
     },
@@ -176,7 +176,7 @@
       "doc_kind": "contract"
     },
     "docs/user_guide_v1.md": {
-      "sha256": "be006124574ebfd2c6abfb3e69a7daeedaab06ba2e16ac94f33658bbf0c545ef",
+      "sha256": "176deb52618ec0fcddd0c33eabee18b81c56c3410e2ad757bdab4af25433e0ae",
       "note": "sources/wiki/user-guide-v1.md",
       "doc_kind": "guide"
     },
@@ -186,7 +186,7 @@
       "doc_kind": "contract"
     },
     "docs/welcome_v1.md": {
-      "sha256": "6a326af86e5213a01182d605ebfb4e4c03501ee1975480abdfb5a56fa7a90b71",
+      "sha256": "228440530567accad7dcb9a8a5c6bdec983d6db6df6b1603eec46da863550df2",
       "note": "sources/wiki/welcome-v1.md",
       "doc_kind": "contract"
     },
@@ -206,7 +206,7 @@
       "doc_kind": "contract"
     },
     "second_brain/catalogue/options_v1.json": {
-      "sha256": "af4f88d7fea53146b49e9e563bd951e91d26808f76d68c73f76bdb883b024e18",
+      "sha256": "130f0f6b65a9a539dcfe5cdedc7573ff504b63ff5819e8ab03ef36309a8b5275",
       "note": "sources/wiki/the-option-catalogue.md",
       "doc_kind": "reference"
     },
@@ -236,7 +236,7 @@
       "doc_kind": "skill"
     },
     "specifications.md": {
-      "sha256": "909c0b399836ca9567e46cf6c3c60040618b9a93de962ee11acd620b79c57a83",
+      "sha256": "d0152b5f084bc3f64cdd8f68f9494d4c018c0724facee7c76fb1031f91c93367",
       "note": "sources/wiki/specifications.md",
       "doc_kind": "specification"
     }

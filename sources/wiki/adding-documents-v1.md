@@ -9,7 +9,7 @@ product_version: "0.1.0"
 doc_kind: "contract"
 audience: "people and agents using or changing second brain"
 doc_path: "docs/adding_documents_v1.md"
-doc_sha256: "24c4fb97a618d5d06e4bff13d3a653454a02f5400077b615cdfa33938d20d01e"
+doc_sha256: "e292fc723c29d900c0eb50c6c26861316851998767c07c64d427cd6fdfe822b8"
 ---
 
 # Adding documents in one request (v1)
@@ -32,12 +32,14 @@ every route that spends ("The approval on every spending route", below).
 
 The caller agent and the knowledge brain system settle the work between
 themselves. Whatever the system recommends, the caller carries out; whatever
-failed is tried again by the system before anyone is told. A user is asked two
-things only: the collection's standing token budget, set once and raised only
-by them, and deleting or overwriting their own originals (no route of this
-version deletes or overwrites an original, so in practice only the budget is
-asked). Every other code is settled by the system or the caller
-([[next-steps-v1|next_steps_v1.md]], `settled_by`).
+failed is tried again by the system before anyone is told. A user is asked
+about two things only: the collection's standing token budget, set once and
+raised only by them, and their own originals: deleting or overwriting one (no
+route of this version does either) and, since Track AZ4, whether a copy of
+each original from outside the collection is kept in it or the original is
+pointed to where it lies (asked once, below). Every other code is settled by
+the system or the caller ([[next-steps-v1|next_steps_v1.md]],
+`settled_by`).
 
 ## The flow
 
@@ -69,6 +71,7 @@ asked). Every other code is settled by the system or the caller
 | `approval` | the code a plan gave: `<issued>.<budget>.<digest>`. It binds the files (their bytes), their actions and kinds, the request and the budget, and is valid for `adding_approval_valid_hours` |
 | `token_budget` | a one-time budget the user said yes to (a plan's question, or "add the rest" after a run stopped), used in place of the standing one for this plan |
 | `versions` | what becomes of another version of a work already known (Track AJ): `link` (the default) takes it in and links the two; `separate` takes it in unlinked; `skip` holds it back. A request option the caller sends, never a question; it is part of what the approval binds |
+| `originals` | Track AZ4: `keep` (a copy of each original from outside the collection goes into its folder for originals, `sources/raw/`) or `point` (each stays where it is and is recorded through a named folder); the person's answer to the plan's question, or what they said before ("keep copies"). It becomes the collection's way (`sources.json` `source_retention`, written at the run through the settings path) and is part of what the approval binds |
 | `wait` | run in the request rather than as a background job |
 | `keep_as_limit` | Track AG3: the person's yes to the budget question also keeps the approved budget as the standing one (what `POST /ops/budget` sets), written and audited in the same call; only with a valid `approval` |
 | `access_mode` | `manage` when the call comes from the adding tools over MCP: the agent must hold a manage entry that may `add` ([[collections-v1|collections_v1.md]]) |
@@ -98,7 +101,8 @@ the caller: plan again.
 | `warnings` | `adding_budget_needed`, `adding_kind_unknown`, `adding_path_not_found`, `adding_nothing_to_add` |
 | `say` | Track AG3: the plan in plain lines a person is shown: the summary, each need that is only said, and this agent's cap when it limits the run (`adding.agent_limit`) |
 | `needs` | Track AG3, D5: what the files need that is not there yet, each `{signal, option, name, files, files_total, said, lines, later, asked}` (below) |
-| `asks` | the questions, in the order they are put, one at a time, recommended answer first: each need that cannot wait (`about: need`), then the budget question (`about: budget`). Each is `{about, text, recommended, answers, on}`; on yes the caller takes `on.yes`, on no the next question. A need's `on.yes` is `{install, switch_on, then}`: how the agent gets the program (for the agent, never shown), the choice to switch on (`change_setting`), and the plan to make again. The budget's `on.yes` is the run with `approval` (and `keep_as_limit` when no budget was set); its `on.no`, when there is one, the run with `approval_within_limit` |
+| `originals` | Track AZ4: `{way, outside, counts, folders_to_name, asked}`: `keep`, `point` or null (not decided), how many files come from outside the collection, how many are `copied`, `pointed` or already `in_collection`, the folders the run names, and whether the question is asked. Each row of `files` says its own `original`, and a pointed one its `named_folder` |
+| `asks` | the questions, in the order they are put, one at a time, recommended answer first: the originals question (`about: originals`, below), each need that cannot wait (`about: need`), then the budget question (`about: budget`). Each is `{about, text, recommended, answers, on}`; on yes the caller takes `on.yes`, on no the next question. A need's `on.yes` is `{install, switch_on, then}`: how the agent gets the program (for the agent, never shown), the choice to switch on (`change_setting`), and the plan to make again. The budget's `on.yes` is the run with `approval` (and `keep_as_limit` when no budget was set); its `on.no`, when there is one, the run with `approval_within_limit` |
 | `start` | the run, when nothing is left to ask (the same call as `next`, in the call-hint form `{route, body}` every tool result takes) |
 | `kinds` | with `adding_kind_unknown`: every kind a file can be given, `{kind, title, what}`, so the caller settles it (AR3) with no other call |
 | `agent_limit` | `{tokens}` when the agent's cap (below) is under what the plan would spend: the run stops there cleanly |
@@ -117,6 +121,70 @@ the summary says it could pass the limit and what happens then. Each row's
 `estimated_range` is `{low, expected, high, basis, group, concept}`; see
 [[folder-intake-v1|folder_intake_v1.md]], "Estimates that learn from this
 install".
+
+**A first guess, said so; a short note, offered free (Track BA, fix round
+R5).** A newcomer's first plan for a five-line file said "about 70 thousand
+tokens" from the stated default, with nothing saying it was a guess. Now:
+
+- When every document's estimate stands on the stated default (no measured
+  run in this collection, `estimate_groups` all `default`), `say` adds, second:
+  "This figure is a first guess, since nothing has been measured in this
+  collection yet. The real cost can be much lower or higher."
+- A plain text file (`.md`, `.markdown`, `.txt`) of at most
+  `adding_short_note_chars` characters (`config/intake.json`, 3000 by default; 0
+  offers none) is offered the free way too: `say` adds "1 of these is a short
+  note in plain text. You can add it as a note you wrote instead, read by code
+  word for word, with no AI and no tokens." and `free_way` lists, for each, `{file,
+  title, call}`, the call being `POST /sources/note` (`add_note`) with its title
+  (the header's, else its first heading, else its name) and its text (its header
+  left out). That route shows its own plan with a `confirm` code first and writes
+  only on the person's yes. The paid plan is unchanged beside it.
+- Not done here: the default's fixed part per document (`tokens_per_document`,
+  30,000, plus the concept upkeep default, 40,000) is what a short file mostly
+  pays in the estimate. It stands for the real overhead of a reading (prompts,
+  two passes), measured at 23,310 tokens for the example's one short page, so
+  scaling it down for small files is a change to the estimator's model (Track
+  AM), left for its own decision.
+
+### Keep a copy of each original, or point to it (Track AZ4)
+
+What becomes of an original added from outside the collection is the
+collection's choice, the catalogue's "Keeping copies of your originals":
+
+- **keep** (`source_retention: copy`, recommended): a copy goes into the
+  collection's folder for originals, so the collection holds everything and
+  can be moved or backed up as one folder;
+- **point** (`reference`): the original stays where it is. Its folder is
+  recorded as a named folder (the catalogue's "Named folders for your
+  originals", `sources.json` `source_roots`): one already named is used, and
+  a folder not named yet is named at the run after its own name in ASCII
+  (`Field Notes 2024` is `field-notes-2024`, `-2` when taken). A note then
+  records `field-notes-2024:meadow.md`, never a path naming the user.
+
+A collection made from the conversation starts undecided (`source_retention:
+ask`, which every other reader takes as `copy`). Its first plan that brings
+files from outside asks once, for the whole batch, first among `asks`:
+"2 files are outside the collection. Keep a copy of each in the collection,
+or leave them where they are and point to them? Keeping copies is
+recommended: the collection then holds everything, so it can be moved or
+backed up as one folder." with the answers `keep` and `point`, each the plan
+made again with `originals`. While it waits the plan has no `approval`, no
+`start` and no budget question (`adding_originals_choice`, `ask_user`,
+settled by the user). The run with `originals` writes the answer as the
+collection's way through `change_setting`'s path (its preview, then its
+apply), names the folders to point to the same way, and only then adds; the
+result's `originals` says what it wrote. Later plans ask nothing and say
+which way it goes ("2 originals from outside are copied into the
+collection's folder for originals."). A collection made before keeps its
+behaviour: it is never asked, and copies as it did. Files already inside the
+collection ask nothing either.
+
+Decided per collection, never per file: a collection where some notes can be
+refreshed and others not, with nothing recording which, is worse than either
+uniform answer (`retention.py`). A caller sends `originals` again to change
+the way for later additions; files already added keep the way they were
+saved. Under `point`, a file outside every named folder is no longer refused
+at plan time (`not_recordable`) on this route: its folder is named at the run.
 
 ### What the files need (Track AG3, D5)
 
@@ -271,6 +339,31 @@ takes `job_id` (omitted: the latest addition of this collection) and `wait`
 Refusals: `adding_job_not_found` (404) for a job that is no addition of this
 collection. Free and read only.
 
+## A note from the conversation: `POST /sources/note`, `add_note` (Track AY4)
+
+Text the person gives in the conversation (something they wrote, pasted or
+said) is kept as a note, not added as a document: `title` and `text` as they
+gave them, in any language, `kind` only when they name one. Without `confirm`
+the answer is the plan, free and writing nothing: `say` (what will be added,
+how many words, and that taking it in uses no tokens), `note.file` (the file
+name, the title in ASCII per Track AK, or `note-<hash>` for a title with no
+Latin spelling, unique across the collection's notes) and a `confirm` code
+bound to the title, the text, the kind and that name. With the code, the note
+is written as a new file in the collection's notes folder (never over another
+file), word for word under the title as a heading, with `title`, `type` (the
+kind's note type, when one was named), `created`, `added_from: conversation`
+and `added_by` in its frontmatter and none of the fields the source pipeline
+writes, so it is a note written by hand (`second_brain/notes/native.py`): it is
+ingested by code (its headings, its concepts by the free extractive reading,
+its links), `tokens: 0`. A code for other text, or whose name was taken since,
+is refused `confirm_code_stale`; an empty title or text `request_refused`.
+
+Why not the plan of an addition: a note the person wrote is its own original,
+and Markdown is the source of truth. This request's pipeline would convert it
+(nothing to convert) and have the brain keeper agent rewrite it into a
+template, spending tokens to change the person's own words.
+`second_brain/source_pipeline/note_from_text.py`.
+
 ## Over MCP: `plan_adding`, `start_adding`, `adding_status` (Track AG3)
 
 | tool | route | does |
@@ -396,6 +489,7 @@ policy states).
 | `adding_budget_headroom` | 1.25 | the proposed budget is the estimate times this, rounded up |
 | `adding_approval_valid_hours` | 24 | how long a plan's approval stays valid |
 | `adding_retry_backoff_seconds` | 2.0 | the wait before a failed document is tried again |
+| `adding_short_note_chars` | 3000 | a plain text file up to this many characters is offered the free way too, as a note the person wrote (Track BA R5); 0 offers none |
 | `approval_required` | false | Track AG3: a real run of any spending route needs the approval its dry run gave; a collection made from the conversation writes it true |
 
 The triage thresholds (`long_document_pages`, `identifier_patterns`, and the

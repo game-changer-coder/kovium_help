@@ -9,7 +9,7 @@ product_version: "0.1.0"
 doc_kind: "contract"
 audience: "people and agents using or changing second brain"
 doc_path: "docs/mcp_server_v1.md"
-doc_sha256: "bf5dc3366b093aadf6b1a2a9946ca4691eb81e22a85394183f03e9c8b9166379"
+doc_sha256: "57b5450d29ac02f9bbe3659b3e7c8fa73ad4f5adcc3f6c3e52147132b98a0534"
 ---
 
 # MCP server v1
@@ -38,11 +38,15 @@ may do what" and `docs/collections_v1.md`). Track AG3 added adding documents
 from the conversation, behind the same grant: `plan_adding`, `start_adding`
 and `adding_status`, the doors on `POST /sources/add`, with the approval of a
 plan enforced (see `docs/adding_documents_v1.md`). Track AG4 added the one install step
-(`python scripts/setup.py`), the Claude Code plugin this checkout is (its
-connection `second-brain`, started in welcome mode by `scripts/mcp_launch.py`,
-tools named `mcp__plugin_second-brain_second-brain__<tool>`), `make_agent`
-behind the same grant, and the collection's answer style in a bound
-connection's instructions (see `docs/install_and_caller_agent_v1.md`).
+(`python scripts/setup.py`), the Claude Code plugin this checkout ships (its
+connection `second-brain`, started in welcome mode by
+`skills/claude-code/scripts/mcp_launch.py`, tools named
+`mcp__plugin_second-brain_second-brain__<tool>`), `make_agent` behind the same
+grant, and the collection's answer style in a bound connection's instructions
+(see `docs/install_and_caller_agent_v1.md`). Track AY3 made a connection with
+no collection declare `tools.listChanged`, so a binding's new tools appear in
+the same conversation, and Track AY4 added `add_note`, text from the
+conversation kept as a note, free, behind the adding grant.
 
 **At a glance**, for whoever wires a harness:
 
@@ -577,7 +581,7 @@ lists:
 | tool | over | exposes | always sends | notes |
 | --- | --- | --- | --- | --- |
 | `try_example` | `POST /welcome/example` | `question` | | opens the example collection (built by code) and suggests three questions; with `question`, answers it from the example with sources; free; not read-only (it builds the example's derived files) |
-| `tour` | `POST /welcome/tour` | `step`, `add`, `approval`, `reset`, `wait` | | the tour's steps; at `add`, the waiting page added `free`, or by the AI (`ai`: a plan with its estimate and `approval` first, run only with that approval); `reset`; cost `model` only for `add: ai` with an approval |
+| `tour` | `POST /welcome/tour` | `step`, `try_it`, `add`, `approval`, `reset`, `wait` | | the tour's steps, each relayed with its places and its question back (Track BA); `try_it` a step's free exercise; at `add`, the waiting page added `free`, or by the AI (`ai`: a plan with its estimate and `approval` first, run only with that approval); `reset`; cost `model` only for `add: ai` with an approval |
 
 The setup tools (Track AG2) are on the default surface and listed only with
 the `manage` grant (see "Setup and who may do what"); `check_setup` is listed
@@ -585,16 +589,18 @@ on every connection:
 
 | tool | over | exposes | notes |
 | --- | --- | --- | --- |
-| `create_collection` | `POST /collections` | `name` (required), `holds`, `folder`, `program` | a new collection; binds a connection with no collection to it |
+| `create_collection` | `POST /collections` | `name` (required), `holds`, `working_folder`, `place`, `folder`, `program` | a new collection; without `folder` or `place` it first returns where it goes as `ask` (Track AZ1); binds a connection with no collection to it once made |
 | `open_collection` | `POST /collections/open` | `folder` (required), `program` | an existing collection's folder, with what did not travel; binds as above |
 | `connect_agent` | `POST /collections/connect` | `program` (required), `agent` | this collection's own connection added to another agent program, reading only |
 | `set_access` | `POST /collections/access` | `agent`, `level` (required), `may`, `per_run_tokens`, `per_day_tokens`, `confirm` | what an agent may do: the sentence and a `confirm` code, then applied with it |
 | `change_setting` | `POST /collections/settings` | `option` (required), `value`, `add`, `remove`, `text`, `confirm` | one choice by its plain name, previewed then applied |
 | `make_agent` | `POST /collections/agent` | `project` (required), `program`, `level`, `length`, `tone`, `extra`, `confirm` | Track AG4: this collection's caller agent added to the person's project beside its own agents, in the style they choose (`asks`: the offer, three questions and a free line) and the program's own format (Track AG7: Claude Code, Codex or OpenClaw; `program` omitted names the connection's own agent id); a preview, then applied with its `confirm`; needs `manage` with `settings`; see `docs/install_and_caller_agent_v1.md` |
+| `nightly_ai` | `POST /welcome/nightly` | `answer` (required), `example` | Track AX (`manage` grant, on every connection): the person's own answer to the nightly AI question an `ask` put to them (code `nightly_ai_choice`, settled by the user): `yes` returns the levels, `no` or `light`, `medium`, `heavy` sets it; with `example`, `on` or `off` only shows the switch in the example; free |
 | `check_setup` | `GET /collections/setup` | (`probe` hidden: always probes) | what works here, what is off or missing, who may do what; read only |
 | `plan_adding` | `POST /sources/add` (`dry_run: true` always sent) | `paths`, `urls`, `kind`, `versions`, `token_budget` | Track AG3: the plan read from the files, with `say`, `needs`, `asks` (one question at a time, recommended answer first) and `start`; free, read-only |
 | `start_adding` | `POST /sources/add` (`dry_run: false` always sent) | `approval` (required), `paths`, `urls`, `kind`, `versions`, `token_budget`, `keep_as_limit` | Track AG3: the run, only with the plan's approval, in the background; cost `model` |
 | `adding_status` | `GET /sources/add/status` | `job_id`, `wait` | Track AG3: progress, and at the end the report word for word; read-only, free |
+| `add_note` | `POST /sources/note` | `title` (required), `text` (required), `kind`, `confirm` | Track AY4: text from the conversation kept as a note of the collection, in any language. Without `confirm`: the plan (`say`: what will be added and how long it is, and that taking it in uses no tokens; `note.file`, the ASCII file name; a `confirm` code bound to the title, the text, the kind and the name); nothing written. With the code: written word for word as a new note in the collection's notes folder (a note written by hand: no field the source pipeline writes; `added_from: conversation`, `added_by`), taken in by code, `tokens: 0`. A code for other text, or one whose name was taken since, is refused `confirm_code_stale`. Needs `manage` with `add`, as the adding tools; free |
 
 Each setup tool is free (but `start_adding`, which spends with an approval),
 not read-only (but `plan_adding` and `adding_status`, which only read), and
@@ -1126,10 +1132,23 @@ every refusal (`details.tool_surface` names the tool's surface):
 A tool whose surface is not a known name is never offered.
 
 **`notifications/tools/list_changed`.** When `request_tools` changes what the
-session lists, the server sends the notification before the result, and the
-initialize response declares `tools.listChanged: true` only where the list
-can change (two reachable surfaces listing different tools); on a connection
-capped at `default` it is false and never sent. Checked: the SDK's own client
+session lists, or `create_collection` / `open_collection` binds a connection
+with no collection, the server sends the notification before the result, and
+the initialize response declares `tools.listChanged: true` only where the list
+can change: two reachable surfaces listing different tools, or (Track AY3) a
+connection started with no collection, which a binding in the same session
+changes. Before AY3 a welcome-mode connection declared it false (all its
+surfaces list the same welcome tools) though the binding sent the
+notification; the owner's Claude Code then kept the welcome tools after
+`create_collection`, and its caller agent spent many calls looking for a way
+around before asking for a restart. Claude Code's documentation
+(`https://code.claude.com/docs/en/mcp`, "Dynamic tool updates", read
+2026-10-23) says that on a `list_changed` notification an interactive session
+fetches the server's new list, without reconnecting; it does not say whether
+it requires the declared capability. `resources.listChanged` is declared on a
+welcome-mode connection too, since a binding brings the capabilities resource.
+On a connection capped at `default` and bound from its start it is false and
+never sent. Checked: the SDK's own client
 (`mcp==2.3.0`, handshake era `2025-11-25`) receives it over stdio and in
 process, and its next `tools/list` returns the new set (its response cache
 does not hold the old one). On the `2026-07-28` per-request era the SDK
@@ -1480,7 +1499,12 @@ Track AG2 (D2, D4, D4a of the first-run plan); the contract is
   its tool list changed, `data.connection` says `{bound, collection, tools}`,
   and the binding is recorded so the next session starts bound (above). The
   instructions the client read at the start are not sent again; the tool's
-  `say` and the welcome's state carry what changed. A bound connection is
+  `say` and the welcome's state carry what changed. Its last `say` line
+  (Track AY3, `collection.tools_follow`) tells the person that the tools are
+  now in the conversation and, where they do not show, to start a new
+  conversation, which opens the collection by itself; the welcome-mode
+  instructions tell the caller agent the same, and not to look for files,
+  folders or ports to work around it. A bound connection is
   never rebound: a further collection gets a connection of its own in the
   agent program (`program`).
 - **The `manage` grant** is held only over a local transport (`stdio`, and the

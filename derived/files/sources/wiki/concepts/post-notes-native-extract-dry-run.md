@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 2
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:22:59.544391+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:40.441690+00:00}"
 ---
 
 # POST /notes/native/extract {dry_run
@@ -48,8 +48,8 @@ None recorded.
 - **POST /notes/native/extract {dry_run**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[api-spec-v1]] — rebuilt from its sources without an agent
-- 2026-10-23 · hierarchy — broader: [[dry-run-default]], [[notes]]
+- 2026-10-27 · assembled · [[api-spec-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · hierarchy — broader: [[dry-run-default]], [[notes]]
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

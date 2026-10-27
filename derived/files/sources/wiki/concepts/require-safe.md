@@ -7,7 +7,7 @@ description:
 status: draft
 synthesis: deterministic
 definition_basis: sources
-sources: [second-brain-onboarding, first-instance-lifecycle-guide-v1]
+sources: [kovium-onboarding, first-instance-lifecycle-guide-v1]
 concepts: [require-safe]
 broader: []
 narrower: []
@@ -15,9 +15,9 @@ source_count: 2
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: {by: process:concept-assembly, at: 2026-10-23T19:23:03.861455+00:00}
+created: 2026-10-27
+updated: 2026-10-27
+generated: {by: process:concept-assembly, at: 2026-10-27T20:04:41.010704+00:00}
 ---
 
 # Require safe
@@ -39,7 +39,7 @@ None recorded.
 - Narrower: none
 
 ## Sources
-- undated · [[second-brain-onboarding|Second Brain Onboarding (Claude Code)]] — Names this concept.
+- undated · [[kovium-onboarding|Kovium Onboarding (Claude Code)]] — Names this concept.
 - undated · [[first-instance-lifecycle-guide-v1|Your first instance, end to end]] — Names this concept.
 
 ## Concepts
@@ -49,7 +49,7 @@ None recorded.
 - **Require safe**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[second-brain-onboarding]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[kovium-onboarding]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

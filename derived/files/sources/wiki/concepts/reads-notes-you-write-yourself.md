@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 2
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:04.863145+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:40.884393+00:00}"
 ---
 
 # Reads notes you write yourself
@@ -39,7 +39,7 @@ None recorded.
 - Narrower: none
 
 ## Sources
-- undated · [[readme|second_brain]] — Names this concept.
+- undated · [[readme|Kovium]] — Names this concept.
 
 ## Concepts
 - [[reads-notes-you-write-yourself|Reads notes you write yourself]]
@@ -48,8 +48,8 @@ None recorded.
 - **Reads notes you write yourself**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[readme]] — rebuilt from its sources without an agent
-- 2026-10-23 · hierarchy — broader: [[notes]]
+- 2026-10-27 · assembled · [[readme]] — rebuilt from its sources without an agent
+- 2026-10-27 · hierarchy — broader: [[notes]]
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

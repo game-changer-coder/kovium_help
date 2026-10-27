@@ -1,21 +1,21 @@
 ---
 type: "documentation"
 title: "Prompt System V1"
-description: "All system prompts used by second_brain should live in <repo>/prompts/."
+description: "All system prompts used by Kovium should live in <repo>/prompts/."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/prompt_system_v1.md"
-doc_sha256: "8ed12d8fc7f0d527106293ffaf85e2e9f9863fd06cacb736463965fd8fc3c77c"
+doc_sha256: "a621d835fc62876d8f67f4c9adcc0ed5856e9248d231cc05369c76c0fbba0138"
 ---
 
 # Prompt System V1
 
 ## Prompt folder
-All system prompts used by second_brain should live in `<repo>/prompts/`.
+All system prompts used by Kovium should live in `<repo>/prompts/`.
 
 ## Current prompts
 - `prompts/prompt_normalize_note.md`

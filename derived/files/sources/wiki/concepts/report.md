@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:22:59.127534+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:40.389168+00:00}"
 ---
 
 # Report
@@ -34,9 +34,6 @@ _Not synthesized yet: this note was assembled without an agent. The next agent s
 ## Divergences
 None recorded.
 
-## Open problems
-- What is recommended: Start with a small limit, and look at what the morning report says was used before you raise it. — [[the-option-catalogue|The option catalogue]]
-
 ## Hierarchy
 - Broader: none
 - Narrower: [[3-the-report|3. The report]]
@@ -51,7 +48,7 @@ None recorded.
 - **Report**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[adding-documents-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[adding-documents-v1]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

@@ -4,12 +4,12 @@ title: "Equations read where the caller needs them v1 (Track N)"
 description: "How an equation a converter found and could not read is kept, how a caller gets exactly the ones its question needs read (by the local formula model or by vision), and how an answer says which equations and figures its evidence could not..."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/equations_v1.md"
-doc_sha256: "64b1b322f46ee6f713a8376a1e3d23d151a946b3db847cf0285189bfd5617c20"
+doc_sha256: "4c1fc5178e3a046830ce199d7c3991b928f365d1e23e83d9c5405e7f5f813a4a"
 ---
 
 # Equations read where the caller needs them v1 (Track N)
@@ -398,7 +398,7 @@ pick regions itself.
 
 ## N4. The operator skills
 
-`skills/*/second-brain-research-answering` (and the operations skills) teach
+`skills/*/kovium-research-answering` (and the operations skills) teach
 the loop: answer; see `unread_regions`; decide whether the question needs
 them; dry-run the `recover` body; ask the user with the estimate (local:
 minutes, free; vision: tokens); send `run_body`; answer again; say that an

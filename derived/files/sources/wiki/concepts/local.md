@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:00.807346+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:40.565254+00:00}"
 ---
 
 # local
@@ -36,7 +36,7 @@ None recorded.
 
 ## Open problems
 - No local speech-to-text: a video without captions has only its — [[video-intake-v1|Video intake v1: videos taken in from their link (Track W)]]
-- The plugin is installed from the checkout (a local marketplace, loaded in — [[install-and-caller-agent-v1|The install step, the Claude Code plugin and the caller agent v1]]
+- The plugin is installed from the checkout (a local marketplace). Claude Code — [[install-and-caller-agent-v1|The install step, the Claude Code plugin and the caller agent v1]]
 - The local formula model reads every formula on the selected pages, and its — [[equations-v1|Equations read where the caller needs them v1 (Track N)]]
 
 ## Hierarchy
@@ -53,7 +53,7 @@ None recorded.
 - **local**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[equations-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[equations-v1]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

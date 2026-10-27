@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 2
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:06.174254+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:42.181132+00:00}"
 ---
 
 # What is recommended
@@ -36,7 +36,6 @@ None recorded.
 
 ## Open problems
 - What is recommended: Say yes to the figure shown with your first plan, or start with a few documents to see the real cost. — [[the-option-catalogue|The option catalogue]]
-- What is recommended: Start with a small limit, and look at what the morning report says was used before you raise it. — [[the-option-catalogue|The option catalogue]]
 
 ## Hierarchy
 - Broader: [[what-it-is|What it is]]
@@ -52,8 +51,8 @@ None recorded.
 - **What is recommended**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[the-option-catalogue]] — rebuilt from its sources without an agent
-- 2026-10-23 · hierarchy — broader: [[what-it-is]]
+- 2026-10-27 · assembled · [[the-option-catalogue]] — rebuilt from its sources without an agent
+- 2026-10-27 · hierarchy — broader: [[what-it-is]]
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

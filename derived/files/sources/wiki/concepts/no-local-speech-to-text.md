@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 2
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:07.185609+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:42.680311+00:00}"
 ---
 
 # No local speech-to-text
@@ -51,8 +51,8 @@ None recorded.
 - **No local speech-to-text**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[video-intake-v1]] — rebuilt from its sources without an agent
-- 2026-10-23 · hierarchy — broader: [[local]]
+- 2026-10-27 · assembled · [[video-intake-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · hierarchy — broader: [[local]]
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

@@ -10,14 +10,14 @@ definition_basis: sources
 sources: [reference-lists-v1]
 concepts: [one]
 broader: []
-narrower: [correct-one-statement, one-caption-track, other-versions-of-one-document, three-files-one-style]
+narrower: [at-most-two-in-one-message, correct-one-statement, one-caption-track, then-remove-the-old-one, three-files-one-style]
 source_count: 1
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:03.020598+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:41.690845+00:00}"
 ---
 
 # one
@@ -43,16 +43,17 @@ None recorded.
 - help is word matching over one language's texts: a question worded far — [[welcome-v1|The welcome, the example, the tour and help (v1)]]
 - Languages are taken from what notes declare; two languages in one script are — [[instance-tails-v1|Instance tails v1: one shared head, a tail per instance (Track R)]]
 - Making a collection of one's own from the conversation is built since AG2 — [[welcome-v1|The welcome, the example, the tour and help (v1)]]
+- OpenClaw's mcp.servers is one list for every agent: once connected, every — [[install-and-caller-agent-v1|The install step, the Claude Code plugin and the caller agent v1]]
 - The caller agent is one more model context per answer; its cost is measured — [[install-and-caller-agent-v1|The install step, the Claude Code plugin and the caller agent v1]]
 - The directive and injection checks are English. Structure (one line, no — [[instance-tails-v1|Instance tails v1: one shared head, a tail per instance (Track R)]]
 - The estimate scales with length only. A dense document and a sparse one of — [[folder-intake-v1|Folder intake v1]]
 - The manual is fetched with git, not downloaded as an archive; with no git it says so. It is a copy of one — [[welcome-v1|The welcome, the example, the tour and help (v1)]]
-- The tour's last offer is the full manual (AG6), one question that "no" ends; while this install's — [[welcome-v1|The welcome, the example, the tour and help (v1)]]
-- What it is: The most tokens of your subscription that the AI steps of the nightly tidy may use in one night. — [[the-option-catalogue|The option catalogue]]
+- The notes step's reply (BD7) is written in advance for its one question; the — [[welcome-v1|The welcome, the example, the tour and help (v1)]]
+- The tour's last offer is the full manual (AG6), one question that "no" ends; when this install's — [[welcome-v1|The welcome, the example, the tour and help (v1)]]
 
 ## Hierarchy
 - Broader: none
-- Narrower: [[correct-one-statement|correct_one_statement]], [[one-caption-track|one caption track]], [[other-versions-of-one-document|Other versions of one document]], [[three-files-one-style|Three files, one style]]
+- Narrower: [[at-most-two-in-one-message|At most two in one message]], [[correct-one-statement|correct_one_statement]], [[one-caption-track|one caption track]], [[then-remove-the-old-one|Then remove the old one]], [[three-files-one-style|Three files, one style]]
 
 ## Sources
 - undated · [[reference-lists-v1|Reference lists v1: glossaries and lookup lists kept term by term (Track AE)]] — Names this concept.
@@ -64,7 +65,7 @@ None recorded.
 - **one**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[reference-lists-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[reference-lists-v1]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

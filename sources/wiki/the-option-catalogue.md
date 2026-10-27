@@ -1,20 +1,20 @@
 ---
 type: "documentation"
 title: "The option catalogue"
-description: "Every choice second brain offers, in four lines (what it is, whether you need it, what it costs, what is recommended) and what changing it later costs."
+description: "Every choice Kovium offers, in four lines (what it is, whether you need it, what it costs, what is recommended) and what changing it later costs."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "reference"
-audience: "someone choosing what second brain does"
+audience: "someone choosing what Kovium does"
 doc_path: "second_brain/catalogue/options_v1.json"
-doc_sha256: "130f0f6b65a9a539dcfe5cdedc7573ff504b63ff5819e8ab03ef36309a8b5275"
+doc_sha256: "5f4916a16305ebe3acef9151f43fd24cb0708ae79c605e11f8f63c732c1bba3e"
 ---
 
 # The option catalogue
 
-Every choice second brain offers, in four lines (what it is, whether you need it, what it costs, what is recommended) and what changing it later costs.
+Every choice Kovium offers, in four lines (what it is, whether you need it, what it costs, what is recommended) and what changing it later costs.
 
 ## Token limit for adding documents
 
@@ -27,7 +27,7 @@ Every choice second brain offers, in four lines (what it is, whether you need it
 ## Asking before anything is spent
 
 - What it is: Whether anything that uses tokens needs a plan you were shown first, however the work is asked for.
-- Do you need it: Keep it on; it matters for programs that use second brain directly, since this conversation always shows the plan first.
+- Do you need it: Keep it on; it matters for programs that use Kovium directly, since this conversation always shows the plan first.
 - What it costs: It uses no tokens, and each piece of work starts with its plan, which is free.
 - What is recommended: Keep it on.
 - Changing it later: You can turn it on or off at any time, and nothing already added is affected.
@@ -42,7 +42,7 @@ Every choice second brain offers, in four lines (what it is, whether you need it
 
 ## Reader for Word files, web pages and e-books
 
-- What it is: A small program that turns Word files, web pages and e-books into text second brain can read.
+- What it is: A small program that turns Word files, web pages and e-books into text Kovium can read.
 - Do you need it: You need it only if you add those kinds of files, and the plan checks your files for them.
 - What it costs: It is a small download once, it takes a few seconds for each file, and it uses no tokens.
 - What is recommended: Install it when your files include these kinds; otherwise skip it.
@@ -83,7 +83,7 @@ Every choice second brain offers, in four lines (what it is, whether you need it
 ## Repairing lost letters
 
 - What it is: Putting back letters that a PDF reader lost, such as two joined letters that came out as a question mark.
-- Do you need it: Many PDFs have this problem, and second brain checks each document for it.
+- Do you need it: Many PDFs have this problem, and Kovium checks each document for it.
 - What it costs: It is free: no tokens, no extra disk and only a moment for each document.
 - What is recommended: Keep it on, because it changes a word only when the same document holds the correct spelling.
 - Changing it later: You can turn it on at any time, and the nightly tidy repairs documents already added.
@@ -107,14 +107,14 @@ Every choice second brain offers, in four lines (what it is, whether you need it
 ## Other versions of one document
 
 - What it is: What happens to a second version of a document you already have: kept and linked, kept apart, or held back.
-- Do you need it: You need it if you keep drafts, editions or preprints, and second brain finds versions by their content.
+- Do you need it: You need it if you keep drafts, editions or preprints, and Kovium finds versions by their content.
 - What it costs: Finding versions is free, and keeping one costs the same tokens as adding any other document.
 - What is recommended: Keep versions and link them, so that nothing is lost and answers can name both.
 - Changing it later: You can remove a version, or only its link, at any time through review.
 
 ## Keeping copies of your originals
 
-- What it is: Whether second brain keeps its own copy of each original file, or only points to where the file already lies.
+- What it is: Whether Kovium keeps its own copy of each original file, or only points to where the file already lies.
 - Do you need it: Keep copies unless your files are a large library you do not want twice, and the plan checks where your files are.
 - What it costs: Copies use as much disk as your originals, pointing uses none but needs the files to stay put, and neither uses tokens.
 - What is recommended: Keep copies, so that the collection can be moved or backed up as one thing.
@@ -139,7 +139,7 @@ Every choice second brain offers, in four lines (what it is, whether you need it
 ## Renamed or moved originals
 
 - What it is: What happens when you rename or move an original: the notes are fixed by themselves, or each fix is first offered to you.
-- Do you need it: Anyone who reorganises files needs it, and second brain recognises a moved file by its content.
+- Do you need it: Anyone who reorganises files needs it, and Kovium recognises a moved file by its content.
 - What it costs: It is free, with no tokens and only a few seconds each night.
 - What is recommended: Keep fixing exact matches by themselves; likely matches are always offered to you first.
 - Changing it later: You can change it at any time, and every fix can be undone.
@@ -248,6 +248,14 @@ Every choice second brain offers, in four lines (what it is, whether you need it
 - What is recommended: Keep it to reading only, and widen it for one program when you decide to.
 - Changing it later: You can widen it or narrow it at any time, and a narrower setting acts at the next call.
 
+## Access keys for AI programs
+
+- What it is: Whether each AI program must show its own key before it may use this collection.
+- Do you need it: You need it when several assistants share this computer, or when one reaches your collection from another computer.
+- What it costs: It uses no tokens, and each assistant keeps its key in a small file in its own folder.
+- What is recommended: Keep it off until each of your assistants has its key, then turn it on.
+- Changing it later: You can turn it on or off at any time, and nothing in your collection changes. An assistant without its key is turned away while it is on.
+
 ## Name of your collection
 
 - What it is: A short name and one sentence about what the collection holds, shown to every AI program that connects.
@@ -298,7 +306,7 @@ Every choice second brain offers, in four lines (what it is, whether you need it
 
 ## Letters with marks in file names
 
-- What it is: How letters with marks are spelled in the names of files second brain makes, so that the names work on every computer.
+- What it is: How letters with marks are spelled in the names of files Kovium makes, so that the names work on every computer.
 - Do you need it: You need it if your documents use marked letters, and unmarked names need nothing.
 - What it costs: It costs nothing; it is a short list used once when a name is made.
 - What is recommended: Keep the shipped list, and add a line only for letters you want spelled differently.
@@ -331,7 +339,7 @@ Every choice second brain offers, in four lines (what it is, whether you need it
 ## The AI program that does the work
 
 - What it is: Which AI program does the reading and writing, always through your own subscription and never a pay-per-use account.
-- Do you need it: Everyone needs one, and second brain looks for the programs installed and signed in on your computer.
+- Do you need it: Everyone needs one, and Kovium looks for the programs installed and signed in on your computer.
 - What it costs: There is no extra charge, but a larger model setting uses more tokens of your subscription for each job.
 - What is recommended: Keep the first program found that is signed in, and the balanced model setting.
 - Changing it later: You can change it at any time, and the next job uses the new choice.
@@ -386,7 +394,7 @@ Every choice second brain offers, in four lines (what it is, whether you need it
 
 ## Your originals stay safe
 
-- What it is: Second brain never deletes or overwrites one of your original files without asking you first.
+- What it is: Kovium never deletes or overwrites one of your original files without asking you first.
 - Do you need it: Every collection needs this, so there is nothing for you to decide beforehand.
 - What it costs: It costs nothing, and the only price is that you may be asked a question.
 - What is recommended: Answer such a question with care, since the original is yours and the answer cannot be taken back.
@@ -394,15 +402,15 @@ Every choice second brain offers, in four lines (what it is, whether you need it
 
 ## The example collection
 
-- What it is: A few short pages about second brain, ready to ask, with one page waiting for you to add during the tour.
-- Do you need it: You need it only to see second brain work before you add anything of your own.
+- What it is: A few short pages about Kovium, ready to ask, with one page waiting for you to add during the tour.
+- Do you need it: You need it only to see Kovium work before you add anything of your own.
 - What it costs: Opening it is free, takes a few seconds and uses no tokens.
 - What is recommended: Nothing to decide; it is there from the first minute.
 - Changing it later: There is nothing to turn on later, because it is always there.
 
 ## Help at any time
 
-- What it is: Ask how anything in second brain works, and the answer comes from the user guide with the section it comes from.
+- What it is: Ask how anything in Kovium works, and the answer comes from the user guide with the section it comes from.
 - Do you need it: Everyone has it from the first minute, with or without a collection of their own.
 - What it costs: It is free, because it searches the guide with code and uses no tokens.
 - What is recommended: Nothing to decide; it is there from the first minute.
@@ -410,7 +418,7 @@ Every choice second brain offers, in four lines (what it is, whether you need it
 
 ## A place for your own words in each note
 
-- What it is: Every note second brain writes has a section called My notes, where you can write beside the document.
+- What it is: Every note Kovium writes has a section called My notes, where you can write beside the document.
 - Do you need it: Every collection has it, so there is nothing for you to decide.
 - What it costs: It is free, with no tokens and one short line in each note.
 - What is recommended: Nothing to decide; it happens by itself.
@@ -429,7 +437,7 @@ Every choice second brain offers, in four lines (what it is, whether you need it
 - What it is: The folder a new collection goes in: the one you work in now, one you name, or the default place.
 - Do you need it: You choose it once, when the collection is made, and you are asked.
 - What it costs: It costs nothing in tokens, and the collection uses the same disk wherever it is.
-- What is recommended: Keep it outside second brain's own folder, so an update or a move of the program never puts it at risk.
+- What is recommended: Keep it outside Kovium's own folder, so an update or a move of the program never puts it at risk.
 - Changing it later: You can move the folder later and open it again from its new place.
 
 ## Clean names for notes you already have
@@ -445,13 +453,21 @@ Every choice second brain offers, in four lines (what it is, whether you need it
 - What it is: The title of the section where you write beside a document, which you can choose in your own words.
 - Do you need it: You need it only if you want that title in the language you write in.
 - What it costs: It is free and uses no tokens.
-- What is recommended: Keep the title second brain gives it, unless you want another one.
+- What is recommended: Keep the title Kovium gives it, unless you want another one.
 - Changing it later: You can change the title at any time. Words you wrote under the old title are still kept.
 
 ## The full manual
 
-- What it is: Second brain's own documents as a collection you can ask, with the document each answer comes from.
-- Do you need it: You need it only if you want answers about second brain that go further than this guide.
+- What it is: Kovium's own documents as a collection you can ask, with the document each answer comes from.
+- Do you need it: You need it only if you want answers about Kovium that go further than this guide.
 - What it costs: It is a small download that is free to fetch and uses no tokens, and asking it uses none either.
 - What is recommended: Say yes when the tour or help offers it, since fetching it is quick and changes nothing else.
 - Changing it later: You can ask for it at any time, and ask again for the matching one when it describes another version.
+
+## A tidy view in Obsidian
+
+- What it is: Settings for Obsidian that hide the files Kovium keeps for itself and give each kind of note its own colour.
+- Do you need it: You need it only if you open your collection in Obsidian, a free program for reading folders of notes.
+- What it costs: It is free, it uses no tokens, and it changes only how Obsidian shows your notes, never the notes.
+- What is recommended: Keep it on, so that Obsidian shows your notes and not the files kept for upkeep.
+- Changing it later: You can turn it off at any time, and what was already set stays. A colour or a filter you set in Obsidian yourself is kept.

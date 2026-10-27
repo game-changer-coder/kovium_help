@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 2
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:22:59.810899+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:40.473355+00:00}"
 ---
 
 # an agent that only reads
@@ -48,8 +48,8 @@ None recorded.
 - **an agent that only reads**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[collections-v1]] — rebuilt from its sources without an agent
-- 2026-10-23 · hierarchy — broader: [[agent]]
+- 2026-10-27 · assembled · [[collections-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · hierarchy — broader: [[agent]]
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

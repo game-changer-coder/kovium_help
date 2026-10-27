@@ -7,17 +7,17 @@ description:
 status: draft
 synthesis: deterministic
 definition_basis: sources
-sources: [owner-work-v1]
+sources: [owner-work-v1, welcome-v1]
 concepts: [title]
 broader: []
 narrower: []
-source_count: 1
+source_count: 2
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:06.378797+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:42.257211+00:00}"
 ---
 
 # title
@@ -44,6 +44,7 @@ None recorded.
 
 ## Sources
 - undated · [[owner-work-v1|The owner's own work v1 (Track K)]] — Names this concept.
+- undated · [[welcome-v1|The welcome, the example, the tour and help (v1)]] — Names this concept.
 
 ## Concepts
 - [[title|title]]
@@ -52,7 +53,7 @@ None recorded.
 - **title**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[owner-work-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[owner-work-v1]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

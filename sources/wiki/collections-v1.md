@@ -4,12 +4,12 @@ title: "Collections and who may do what (v1)"
 description: "Track AG2 of first_run_experience_plan_v1.md (D2, D4, D4a, D6). The contract for making a collection, opening one from another computer, connecting another agent program to it, saying what each agent may do, changing a choice, and checking..."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/collections_v1.md"
-doc_sha256: "4ddd7c3a70d06adb8f914ff29828487c068eac6546734a19cabd8c14dc0243e2"
+doc_sha256: "0118718b3a1c6d5365567f3ee09e49e7b9635d1afaea86d17993bc849dec6b48"
 ---
 
 # Collections and who may do what (v1)
@@ -45,7 +45,10 @@ caller is already bound to; a caller with no collection omits it.
 | route | does | needs |
 |---|---|---|
 | `POST /collections` `{name, holds?, folder?, program?}` | makes a new, empty collection, registered; its maker is named its manager | from a bound caller: that collection's manage entry |
-| `POST /collections/open` `{folder, program?}` | opens an existing collection's folder (D6) | from a bound caller: that collection's manage entry |
+| `GET /collections` | the collections registered on this computer, by name, with what each holds, how many notes and where (Track BC1) | nothing; read only (over MCP, the local `manage` grant) |
+| `POST /collections/open` `{folder \| collection, program?}` | opens an existing collection's folder (D6), or one already registered here by its name or id (Track BC1) | from a bound caller: that collection's manage entry |
+| `POST /collections/join` `{collection \| folder, program?, agent?, project, read_only?, level?, length?, tone?, extra?, confirm?}` | this agent joins a collection under its own id, with a connection of its own in the narrowest place its program offers and its caller agent's text, in one plan the person approves (Track BC2 to BC4) | from a bound caller: that collection's manage entry |
+| `POST /collections/leave` `{collection, program?, agent?, project}` | this agent's own connection, its caller agent's text and their record taken out; the collection stays (Track BC4) | from a bound caller: that collection's manage entry |
 | `POST /collections/connect` `{program, agent?}` | adds this collection's own connection to another agent program | a manage entry that may `grant` |
 | `POST /collections/access` `{agent, level, may?, per_run_tokens?, per_day_tokens?, confirm?}` | what one agent may do here: a preview, then applied with its `confirm` | see "Who may do what" |
 | `POST /collections/settings` `{option, value?, add?, remove?, text?, confirm?}` | one choice of the catalogue, by its plain name: a preview, then applied | a manage entry that may change `settings` |
@@ -114,8 +117,13 @@ names, which needed a workspace itself before this track.
 
 ### `POST /collections/open`
 
-- `folder` (required, in full): a folder holding a collection (its `config/`
+- `folder` (in full): a folder holding a collection (its `config/`
   and its notes or its database); otherwise `collection_folder_not_a_collection`.
+  Or `collection` (Track BC1): one already registered here, by its name or id in
+  the person's words, found as `GET /collections` finds it below
+  (`collection_name_unknown`, `collection_name_ambiguous`). One of the two is
+  needed (`collection_name_missing`). Opening binds a welcome connection that
+  other agents may share; `POST /collections/join` connects one agent alone.
 - Registered here unless a registered collection already lives there; its id
   is the `collection_id` it records when free, else one made from its name.
 - This agent is registered for it, at the access the collection gives it: an
@@ -163,7 +171,7 @@ managing agent.
 (`codex`); the caller's own id is refused (`connect_same_agent`), since the
 new connection would share its access. The agent is registered and named in
 the policy at `read`, unless the policy already names it (a grant made before
-the folder travelled is kept). The entry, named `second-brain-<collection id>`,
+the folder travelled is kept). The entry, named `kovium-<collection id>`,
 starts this install's server with `--workspace`, `--agent`, `--root` and
 `--allow-proposals` (only the launch's half of proposals; the policy decides):
 
@@ -232,11 +240,22 @@ the sentence was made and shown, not that a person read it. The rules:
   (`access_not_granted`, naming who may);
 - a manage entry with no `may` gets `add` and `settings`, never `grant`.
 
-**What it cannot do, said plainly.** The platform has no authentication. Over
-MCP the connection says which agent it is, and the policy binds it. Over HTTP
-any program on the computer can claim any agent's name: the routes apply the
-same rules to the agent a call names, which binds only an honest caller; the
-guard over HTTP is the approval of each plan (Track AR, AG3).
+**What it cannot do, said plainly.** While a collection's access tokens are
+off (the default for every collection), the platform has no authentication
+there. Over MCP the connection says which agent it is, and the policy binds
+it. Over HTTP any program on the computer can claim any agent's name: the
+routes apply the same rules to the agent a call names, which binds only an
+honest caller; the guard over HTTP is the approval of each plan (Track AR,
+AG3). **With tokens on** (Track BB, `require_token`, the catalogue's
+`access_keys`; [[access-tokens-v1|`access_tokens_v1.md`]]), a caller proves
+its agent by holding that agent's token for this collection, over MCP
+(`sign_in`) and over HTTP (`Authorization: Bearer`), and the policy binds the
+token's agent: a token at `read` cannot propose, and an entry lowered acts at
+the holder's next call. Tokens are issued by `scripts/access_token.py`, by a
+manage entry that may grant (`issue_token`, shown as one sentence with a
+`confirm` code like `set_access`), and by a join. The honest limit stays: on
+one computer under one login, an agent that can read any file can read
+another agent's key file.
 
 ## `change_setting` (S6)
 
@@ -273,6 +292,7 @@ be read back by its own loader:
 | Nightly tidy | `value` on or off. On means on **here**: the schedule names this computer, this computer's scheduler is asked to start it, and a collection that never decided keeps its AI steps off until a level is chosen. Turning it on at a computer other than the one named moves it, and the preview says so first | `maintenance.json` `enabled`, `machine`, `time` (Track AG5) |
 | Nightly AI level | `value` a level: `light`, `medium`, `heavy` or `off` (`none`, `no`, `0`); or a count of tokens: `200000`, `200k`, `200 thousand`, `1.5 million`, which is that level when it is a level's most and `custom` otherwise. Refused in the example (`setting_example_no_ai`) | `maintenance.json` `ai_tokens_per_night` and `ai_level` (Tracks AG5, AX) |
 | Nightly reading of equations | `value` minutes a night, `0` for none (at most 1,440) | `maintenance.json` `equations_minutes` (Track AG5) |
+| A tidy view in Obsidian | `value` on or off; turned on again, the view is written at once ([[obsidian-view-v1|obsidian_view_v1.md]]) | `obsidian_view.json` `enabled` (Track BE) |
 | Simple or technical answers | `value` `simple` or `technical` | `style.json` `level` (Track AG4) |
 | Short or detailed answers | `value` `short` or `detailed` | `style.json` `length` |
 | Tone and language of answers | `value` a line in the person's words; empty clears it | `style.json` `tone` |
@@ -353,8 +373,8 @@ tidy as off ("because nobody turned it on"), and the owner turns it on with
 `ai_tokens_per_night`; since Track AX it is read as the catalogue's
 `level_when_unset` (medium), computed on read and never written, and the check
 says "Medium (up to 150,000 tokens a night), set automatically. Say a different
-level to change it." The night enforces it. `SECOND_BRAIN_NO_AUTO_READERS` (set for the whole test suite)
-makes `auto` mean off in one process, the way `SECOND_BRAIN_EMBEDDINGS_DISABLED`
+level to change it." The night enforces it. `KOVIUM_NO_AUTO_READERS` (set for the whole test suite)
+makes `auto` mean off in one process, the way `KOVIUM_EMBEDDINGS_DISABLED`
 does for search by meaning.
 
 **A collection made now** (`POST /collections`) gets the schedule written and
@@ -371,13 +391,13 @@ saved and says the job is not started by itself yet.
 real system state, so the answer says it: "It will tidy itself every night at
 02:00 on this computer, at no cost." "For that, a job was added to this
 computer's task scheduler, under the name shown below. Each night it runs
-second brain's free tidy for this collection, and nothing else." (or "list of
+Kovium's free tidy for this collection, and nothing else." (or "list of
 timed jobs, called cron"); while no AI level is chosen, "The steps that use the
 AI stay off unless you choose a level for them."; and "To stop it, say "turn the
 nightly tidy off", which also takes the job off this computer." The name and
 what it runs are beside the words (`nightly.job.name`, the task
-`second-brain-maintenance-<id>` or the cron line's marker
-`second-brain-maintenance:<id>`; `nightly.job.runs`, the nightly script for this
+`kovium-maintenance-<id>` or the cron line's marker
+`kovium-maintenance:<id>`; `nightly.job.runs`, the nightly script for this
 collection), since a collection's id may hold characters a sentence a person
 reads may not. Switching it off (`change_setting` "Nightly tidy" off) removes
 the task (`schtasks /Delete`) or makes cron match the schedules again; a
@@ -388,6 +408,16 @@ collection says it in its yes: "a collection is made once you say where it is
 kept, and a free nightly tidy is added to this computer's scheduler". The cron
 script is loaded through the checkout loader (Track AZ3), so the MCP server,
 whose working folder is the person's project, reaches it too.
+
+**One crontab, several installs.** A user's crontab is shared by every install
+on the computer (a second checkout, a test copy). Each install owns only the
+marked lines that start **its own** runner (`'<checkout>/scripts/nightly_maintenance.sh'`,
+quoted as `cron_line` writes it): `sync` removes and rewrites only those, and
+`status` and `os_job.installed` count only those (`schedule.existing_markers` and
+`strip_markers` take `runner=`). Before this, a sync removed every install's
+marked lines and re-added only its own, so making a collection in one checkout
+ended another checkout's nightly tasks (found in the live OpenClaw test,
+2026-10-24).
 
 **The nightly AI level** (Track AX). A person chooses a level in plain words,
 never a token count: off, light, medium or heavy, each shown with its most in
@@ -513,6 +543,149 @@ at Codex's next call, 0.034 minutes into its session; commands 0, questions 0
 beyond the owner's own request. Not measured: the install step, a clean
 machine, a person, a real second program started by its own harness.
 
+## An agent joins a collection in one conversation (Track BC)
+
+Started by a sentence like "connect yourself to my thesis collection", the same
+for every program. Code: `second_brain/collection_setup/join.py`, the scoped
+places in `programs.py`, the caller agent's text in `second_brain/caller_agent/`.
+
+### `GET /collections` (BC1)
+
+The collections registered on this computer, sorted by name: `id`, `name` and
+`holds` (from the collection's own `config/mcp.json`), `notes` (its own notes,
+not concept pages, the owner's work or ideas, counted from its database opened
+read only; `null` when it cannot be read), where it is (`folder`,
+`relative_to`, as for `POST /collections`) and `joined` (whether the calling
+agent is registered for it). The example, its working copy and the manual are
+the platform's own and are not listed. Nothing is opened or registered, and
+nothing is audited (it names no collection). Until Track BB, any caller with a
+local connection sees the names; the MCP tool `list_collections` needs the
+local `manage` grant, so a remote transport never does.
+
+**Finding one by name** (`find`, also behind `open` and `join`): the person's
+words are folded to letters and digits in any script (marks dropped, case
+folded). A whole match of an id or a name wins; otherwise each word of theirs
+found inside a collection's name or id counts, and the one collection that
+counts most is it. None: `collection_name_unknown`, with the names there are.
+Several equally: `collection_name_ambiguous`, with which, for the caller agent
+to ask the person. No word list of any language is used.
+
+### `POST /collections/join` (BC2, BC3, BC4)
+
+- `collection` (its name or id) or `folder` (a collection's folder not on the
+  list yet; registered at apply, as `open` does).
+- `program`: the caller's own program; omitted, the one the connection's agent
+  id names (`codex`, `openclaw`), else `program_unknown`.
+- `agent`: the id the caller joins under. For OpenClaw, required: the agent's
+  own id (`join_agent_missing`). For the others, omitted means the project
+  folder's name made an id. An id a program shares among its agents (`welcome`,
+  `openclaw`, `codex`, `claude-code`, `cursor`, `system`) is refused
+  (`join_agent_shared`): one agent's grant, binding and audit are never
+  another's. The refusal names the way out: for Claude Code, Codex and
+  Cursor, leave `agent` out and join under the folder's name, which it
+  spells; for OpenClaw, send the agent's own id. The welcome instructions and
+  the tool's description say to send `agent` only from OpenClaw, since a
+  Claude Code agent in the live test first sent the id its welcome
+  connection showed.
+- `project`: the folder the caller works in (for OpenClaw, the agent's own
+  workspace folder), never asked of the person (`agent_project_not_found`).
+- **The plan, changing nothing** (no `confirm`): `say` in this order: what will
+  happen, where the connection goes, what the agent may do there, then (BC4)
+  either that nobody manages the collection so this agent will (from a caller
+  with no collection, unless `read_only`), or, for an agent that will read
+  only, who can allow more; then that its own instructions go into the project
+  beside what is there (or, for Cursor, that it gets none yet) and the style;
+  last (`join.takes_effect`), that the connection takes effect in a new
+  conversation, not this one, because the program loads its connections only
+  when one starts, so the person knows before the yes. `asks`: the style questions (`make_agent`'s three and its free line, without
+  its offer), only when the collection has no style yet and the agent will be
+  allowed to change its settings: "asked once" per collection. While `asks` is
+  there, no `confirm` is given; with the answers sent, the plan comes back with
+  its `confirm` code, which binds the collection, the agent, the program, the
+  project, the connection's name and place, the access and the agent's text.
+- **Done** (with `confirm`, on the person's yes): the folder registered if it
+  was not; the agent registered under its own id; its access written (claimed,
+  read, narrowed to read with `read_only`, or kept when the policy names it);
+  the connection added (`steps.connection`); the caller agent's text written and
+  recorded with the connection's name and place (`steps.agent_file`,
+  `config/caller_agents.json`); audited as `join_collection`. A step that cannot
+  be done (the program refuses its settings, say) is said
+  (`join.connection_failed`) and the rest still happens. The last `say` line
+  (`join.next_<program>`, only when the connection was added) says the
+  connection takes effect only in a new conversation (for Codex, once it
+  starts again), why (the program loads its connections only when one
+  starts), and what to do: start one and ask about the collection.
+- **Where the connection goes** (`connection.place`, measured on each program on
+  2026-10-24 in a scratch home): `project` for Claude Code (its local scope, the
+  command run in the project folder, taken only when `claude mcp add --help`
+  names it), for Codex (the project's own `.codex/config.toml`, only in a
+  project its user settings mark trusted, for the folder or the repository root
+  above it: Codex 0.154 silently ignores an untrusted project's connections) and
+  for Cursor (`.cursor/mcp.json`); `agent` for OpenClaw (`codex.agents` naming
+  the one agent, then `openclaw mcp reload`); `everywhere`, with `why_wider`
+  (`claude_no_local_scope`, `codex_not_trusted`, `openclaw_no_agent_list`), said
+  in words. Trusting a project is the person's own decision and is never made
+  here.
+- **Its token** (Track BB step 5, [[access-tokens-v1|`access_tokens_v1.md`]]):
+  where the collection's access tokens are on (`require_token`), the plan says
+  one more sentence before `join.takes_effect` (`join.token_kept`: its own key
+  will be kept in a small file in its folder, which its instructions name),
+  and `token_file` (`.kovium/<collection id>.token`, relative to
+  `project`). On the yes, a token is issued for the agent (`made_by: join`) and
+  written to `<project>/.kovium/<collection id>.token` (`0600` where the
+  system has permissions, `/.kovium/` added to the repository's
+  `.git/info/exclude` when the folder is in one), `steps.token` `{done, file,
+  short}`, and `join.token_done` is said; the caller agent's text tells the
+  agent to call `sign_in` with `token_file` set to that file at the start of
+  every conversation (and, over HTTP, to send it as `Authorization: Bearer`).
+  The token is never returned, and the audit records `token: {short, agent}`.
+  **The rule that keeps this safe** (fix round BB-S1, in full in
+  [[access-tokens-v1|`access_tokens_v1.md`]]): a join's `confirm` proves the
+  plan was shown, not who said yes, so where tokens are on a join (its plan
+  too) or a leave acts for an agent id only for the owner's own process, a
+  caller that shows a token of that id or of a manager that may grant (a
+  bearer token, or `sign_in` on the connection, a welcome one included; a file
+  the caller names is never read as proof, BB-T1), or, through the local MCP
+  connection alone, an id the collection does not know yet, which joins
+  reading only and never claims the collection. To leave, an agent signs in
+  with its key file first. Otherwise refused before anything changes
+  (`token_required` for a known id, `token_issue_not_allowed` for a new id
+  over plain HTTP). Opening a collection with tokens on by its name or folder
+  needs a token for it (BB-S4).
+- **Its name**: `kovium-<collection id>`; when another agent's own
+  connection to the same collection holds that name in a place both share
+  (OpenClaw's one list, a user-wide file), `kovium-<collection id>-<agent>`,
+  and the caller agent's text names whichever it is.
+- **The tools named as the program shows them** (BC3): Claude Code keeps
+  letters, digits, `-` and `_` (`mcp__kovium-<id>__recall`); Codex and
+  OpenClaw's Codex runtime keep letters, digits and `_` (`mcp__kovium_<id>__recall`,
+  seen in the OpenClaw live test's log). The text says to search the tool list
+  for the connection's spelled name where tools are deferred, and to use the
+  collection's tools first whenever the person names the collection or asks
+  about what it holds, before any memory or file search of the program's own.
+  `programs.tool_prefix` is the one place this is spelled; a test renders each
+  program's text against the name the join writes.
+
+### `POST /collections/leave` (BC4)
+
+The same `collection`, `program`, `agent` and `project` the agent joined with.
+The connection is taken out of the place the record says (else the place a
+join would choose), only when its arguments start this collection for this
+agent; the caller agent's file is deleted, or its section cut out of
+`AGENTS.md` with every other byte kept; the record row goes, unless the
+connection could not be taken out (then asking again knows its name and its
+place); a binding of this agent's to this collection goes. When the
+connection was taken out, `say` adds `leave.takes_effect`: this conversation
+may still show its tools until it ends, and a new one no longer has them. The
+agent's tokens for the collection are taken back and its key file deleted
+(`steps.token` `{revoked, file_removed}`, `leave.token_gone`; Track BB). Where
+the collection's tokens are on, leaving needs the local MCP connection, the
+owner's own process, or a caller signed in as that agent or as a manager that
+may grant (`token_required` otherwise). The
+collection
+stays, and what the agent may do there stays in its policy, so joining again
+gives the same. Audited as `leave_collection`.
+
 ## Limitations
 
 - Adding documents over MCP is Track AG3's (`plan_adding`, `start_adding`,
@@ -526,6 +699,17 @@ machine, a person, a real second program started by its own harness.
   server's version (D7, AG5); the rebuild in a copy is AG5's.
 - `connect_agent` writes the program's user-wide settings; whether each
   program picks up a new entry without a restart is the program's.
+  `join_collection` writes the narrowest place instead (Track BC).
+- OpenClaw refuses a settings write that shrinks its file sharply (seen live:
+  removing the only entry of a near-empty profile). `leave_collection` then
+  says the connection is still there and keeps its record; with any other
+  entries present it is taken out.
+- Cursor's spelling of tool names is not measured; it is taken to be Claude
+  Code's. Cursor gets no caller agent text.
+- `codex.agents` hides an OpenClaw connection from the other agents on the
+  Codex runtime only, and is no lock. With the collection's access tokens on
+  (Track BB), the identity is proved by each agent's own token, and the shared
+  `openclaw` id stops mattering; with them off, it is said, not proved.
 - Most options are still not reached by `change_setting` (`NOT_HERE`), among
   them the nightly tidy, whose switch also needs a schedule on the computer
   (AG5).

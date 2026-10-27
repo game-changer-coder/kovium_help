@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 2
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:06.381137+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:42.258688+00:00}"
 ---
 
 # Not an owner-work note
@@ -48,8 +48,8 @@ None recorded.
 - **Not an owner-work note**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[owner-work-v1]] — rebuilt from its sources without an agent
-- 2026-10-23 · hierarchy — broader: [[not]], [[owner]], [[per-note]], [[the-note]]
+- 2026-10-27 · assembled · [[owner-work-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · hierarchy — broader: [[not]], [[owner]], [[per-note]], [[the-note]]
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

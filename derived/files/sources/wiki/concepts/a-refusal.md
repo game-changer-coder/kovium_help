@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: {by: process:concept-assembly, at: 2026-10-23T19:23:02.512763+00:00}
+created: 2026-10-27
+updated: 2026-10-27
+generated: {by: process:concept-assembly, at: 2026-10-27T20:04:41.455329+00:00}
 ---
 
 # A refusal
@@ -48,7 +48,7 @@ None recorded.
 - **A refusal**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[next-steps-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[next-steps-v1]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

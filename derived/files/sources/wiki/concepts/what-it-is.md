@@ -10,14 +10,14 @@ definition_basis: sources
 sources: [the-option-catalogue]
 concepts: [what-it-is]
 broader: []
-narrower: [what-a-v1-caller-sees, what-does-not-travel, what-is-recommended, what-it-answers-per-finding, what-it-costs, what-the-run-does-by-itself, what-to-do-next]
+narrower: [record-what-was-done-per-step, what-a-v1-caller-sees, what-is-recommended, what-it-answers-per-finding, what-it-costs, what-the-run-does-by-itself, what-to-do-next-in-words]
 source_count: 1
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:06.166320+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:42.178011+00:00}"
 ---
 
 # What it is
@@ -39,7 +39,7 @@ None recorded.
 
 ## Hierarchy
 - Broader: none
-- Narrower: [[what-a-v1-caller-sees|What a v1 caller sees]], [[what-does-not-travel|What does not travel]], [[what-is-recommended|What is recommended]], [[what-it-answers-per-finding|What it answers, per finding]], [[what-it-costs|What it costs]], [[what-the-run-does-by-itself|What the run does by itself]], [[what-to-do-next|What to do next]]
+- Narrower: [[record-what-was-done-per-step|Record what was done, per step]], [[what-a-v1-caller-sees|What a v1 caller sees]], [[what-is-recommended|What is recommended]], [[what-it-answers-per-finding|What it answers, per finding]], [[what-it-costs|What it costs]], [[what-the-run-does-by-itself|What the run does by itself]], [[what-to-do-next-in-words|What to do next, in words]]
 
 ## Sources
 - undated · [[the-option-catalogue|The option catalogue]] — Names this concept.
@@ -51,7 +51,7 @@ None recorded.
 - **What it is**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[the-option-catalogue]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[the-option-catalogue]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

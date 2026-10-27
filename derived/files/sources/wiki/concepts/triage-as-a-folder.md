@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 2
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:22:59.130668+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:40.391603+00:00}"
 ---
 
 # Triage, as a folder
@@ -48,8 +48,8 @@ None recorded.
 - **Triage, as a folder**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[adding-documents-v1]] — rebuilt from its sources without an agent
-- 2026-10-23 · hierarchy — broader: [[folder]]
+- 2026-10-27 · assembled · [[adding-documents-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · hierarchy — broader: [[folder]]
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

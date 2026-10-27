@@ -4,12 +4,12 @@ title: "Agent Knowledge Contract V1"
 description: "Legacy filename note:"
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/agent_memory_contract_v1.md"
-doc_sha256: "9ef6d52514ad9927891dd267e115c9399be77fd8e2920f699fa932e6fb0e0fb7"
+doc_sha256: "5254ab6e394279a113c3e68c8d86775913869c5d4a316c4ae4de191f76593713"
 ---
 
 # Agent Knowledge Contract V1
@@ -1155,7 +1155,7 @@ Common reasons, none of which are faults:
 
 - `workspace has no vocabulary` — a new workspace has none until its first
   ingest bootstraps one. Nothing to map onto, so no call is spent.
-- `SECOND_BRAIN_BRAIN_KEEPER_DISABLED=1` — model calls are switched off.
+- `KOVIUM_BRAIN_KEEPER_DISABLED=1` — model calls are switched off.
 - `semantic expansion is disabled for this workspace` — turned off in
   `config/semantic_expansion.json`.
 

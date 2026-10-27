@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: {by: process:concept-assembly, at: 2026-10-23T19:22:59.562870+00:00}
+created: 2026-10-27
+updated: 2026-10-27
+generated: {by: process:concept-assembly, at: 2026-10-27T20:04:40.446438+00:00}
 ---
 
 # GET /sources/registry — the source registry
@@ -48,7 +48,7 @@ None recorded.
 - **GET /sources/registry — the source registry**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[api-spec-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[api-spec-v1]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

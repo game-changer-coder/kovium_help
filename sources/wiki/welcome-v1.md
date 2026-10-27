@@ -1,21 +1,21 @@
 ---
 type: "documentation"
 title: "The welcome, the example, the tour and help (v1)"
-description: "Track AG1 of first_run_experience_plan_v1.md (D2, D3, D3a, D3b, D3c). The contract for what a person new to second brain meets in their first five minutes, over HTTP and over the MCP server, with no command typed by them: a welcome that..."
+description: "Track AG1 of first_run_experience_plan_v1.md (D2, D3, D3a, D3b, D3c). The contract for what a person new to Kovium meets in their first five minutes, over HTTP and over the MCP server, with no command typed by them: a welcome that reads..."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/welcome_v1.md"
-doc_sha256: "228440530567accad7dcb9a8a5c6bdec983d6db6df6b1603eec46da863550df2"
+doc_sha256: "244055dc764ad73e320dd63d472ac248fe30a75b11c9192c4bf182a71254b92d"
 ---
 
 # The welcome, the example, the tour and help (v1)
 
 Track AG1 of first_run_experience_plan_v1.md
-(D2, D3, D3a, D3b, D3c). The contract for what a person new to second brain
+(D2, D3, D3a, D3b, D3c). The contract for what a person new to Kovium
 meets in their first five minutes, over HTTP and over the MCP server, with no
 command typed by them: a welcome that reads the install's state, a small
 example collection that answers with its sources, a tour of what happens to a
@@ -35,7 +35,7 @@ None needs a collection of the caller's: they answer an install that has none.
 | route | does | spends |
 |---|---|---|
 | `GET /welcome` `{agent_id?, workspace_id?}` | the next step for this install (no `workspace_id`) or for the collection a connection is bound to | nothing |
-| `GET /help` `{question}` | a question about second brain itself, answered from the full manual when it is fetched and describes this version (Track AG6), else from the user guide and the option catalogue | nothing |
+| `GET /help` `{question}` | a question about Kovium itself, answered from the full manual when it is fetched and describes this version (Track AG6), else from the user guide and the option catalogue | nothing |
 | `POST /welcome/manual` `{update?}` | fetches the full manual (the help collection) onto this computer, on the person's yes; `update` replaces a copy of another version (Track AG6) | nothing |
 | `POST /welcome/example` `{question?, agent_id?}` | opens the example collection (registered on first use, built by code), suggests three questions; with `question`, answers it from the example with sources | nothing |
 | `POST /welcome/tour` `{step?, try_it?, add?, approval?, reset?, wait?, agent_id?}` | one step of the tour; `try_it` runs a step's exercise (`both_ways`, `practice_night`, Track BA); at step `add`, adds the waiting page; `reset` puts the example back | only `add: ai` with an `approval` |
@@ -48,7 +48,7 @@ resumes where the first left.
 
 | `state` | when | `say` | `ask` |
 |---|---|---|---|
-| `new` | no `workspace_id`, the example not opened yet | what second brain does, and what tokens are, where the word first comes ("Tokens are how your AI subscription counts the work its AI does: reading and writing use them, while asking your own collection here uses none.", fix round R6 of Track BA) | see the example first? (`yes` recommended; `on.yes` is `POST /welcome/example`) |
+| `new` | no `workspace_id`, the example not opened yet | what Kovium does, and what tokens are, where the word first comes ("Tokens are how your AI subscription counts the work its AI does: reading and writing use them, while asking your own collection here uses none.", fix round R6 of Track BA) | see the example first? (`yes` recommended; `on.yes` is `POST /welcome/example`) |
 | `example_open` | the example was opened | it is open, a collection of one's own can be made or opened from the conversation, help at any time; `questions` | the tour? (`yes` recommended; `on.yes` is `POST /welcome/tour`); once the tour was started, your own collection? (`yes` recommended; `on.yes` is `POST /collections`, `name` and `holds` filled from the person's words and `working_folder` by the caller; Track AG2, [[collections-v1|collections_v1.md]]); its answer is first the question of where the collection goes (Track AZ1), the same as for any collection |
 | `collection_ready` | a bound collection that holds notes | how many notes it holds; help | none |
 | any bound state, first | the install never answered the nightly AI question, the collection is not the example, nobody chose its level, and the agent may change its settings (Track AX) | as below | the nightly AI question (`code: nightly_ai_choice`, `settled_by: user`; `warnings` carries the code, so `notices` gives the caller its next step and the person's words) |
@@ -99,7 +99,7 @@ two people edit the same note at the same time?", from the entry on other
 versions of one document). It is a fit to the set, not an independent measure.
 The guide gained the common how-tos for it: adding files, folders and books;
 capping or stopping spending; getting your notes out; removing a document;
-working without the internet; what you need to run second brain (an AI program
+working without the internet; what you need to run Kovium (an AI program
 you already use on a subscription, by kind and by name); what stays on your
 computer; what happens when two notes disagree; and that the example and its
 tour are for a first start. Ask in the catalogue's language (English); the
@@ -140,18 +140,48 @@ the earlier seven-step tour found it no better than reading the guide: each
 step was text, the files it named had no place ("Look at: <file>", one folder
 off), Obsidian came in step 6 after steps that needed it, "kept" and "pointed
 to" were not explained, the nightly tidy was called free while its AI steps
-spend tokens, and the words were flat. Now: eight steps, each with something
-to do and a question back to the person; every file given with its full place;
-two exercises; and a warmer voice.
+spend tokens, and the words were flat. Track BA made eight steps, each with
+something to do; every file given with its full place; two exercises; and a
+warmer voice.
 
-Each step is `{step, number, of, title, say, do, check_in, look, folder,
-next_step, next}`; a step with an exercise also has `ask`, its offer, an
-optional extra (fix round R3: every step has its own `do` and `check_in`, so a
-person who declines the exercise still has something to do). The first step's `say` starts with the intro.
+**A tour that always says what comes next (Track BD, 2026-10-24).** The owner's
+second run, through a real agent over a chat app, found that a step did not say
+how to go on, nor what kind of step it was or how far along; several steps
+ended with a question that led nowhere ("What catches your eye first on the
+map?"), and over a chat such a thread is hard to steer back from; the parts of
+an answer read as the answer a person gets; there was no picture of a map
+without Obsidian; and the full manual was never offered, because the tour's
+end came only when step `add` was asked for again. Now: nine steps (the night
+has its own), each titled with its place and its kind, each message ending
+with the way on, a question only where the next step needs its answer, the
+machinery followed by the reply a person receives, a picture of the map, and
+the end, with the manual, carried by the answer that adds the page.
 
-- `title`, `say`, `do`: the catalogue's words, relayed word for word.
-- `check_in`: `{text, settled_by: user}`, a question back to the person ("found
-  it? what do you see?"). The caller agent puts it and waits; it never answers it.
+Each step is `{step, number, of, category, title, say, do, check_in, look,
+folder, next_step, next, way_on}`; a step with an exercise also has `ask`, its
+offer, an optional extra; the notes step also has `answer` and `reply`.
+
+- `title`: composed by code (`tour.heading`): "Step 3 of 9 · ⚙️ Configuration:
+  Where your files are kept", the counter counted from the tour's own list, the
+  kind's emoji and name (`tour_categories`, `tour.category_*`), and the step's
+  own title. The kinds (BD2):
+  - 🧭 **Getting around**: where things are, and how to look at them;
+  - 🛠️ **Machinery**: how Kovium handles your files and answers;
+  - ⚙️ **Configuration**: how to turn a feature on or off, or change a choice;
+  - 🎉 **Your turn**: you add something yourself and watch what happens.
+- `say`, `do`: the catalogue's words, relayed word for word. The first step's
+  `say` starts with the intro, then what each kind means, once (BD3: "Each step
+  says its kind in its title." and one line per kind, in the order the tour
+  meets them; no emoji, so the message keeps to two).
+- `check_in`: `{text, settled_by: user}`, a question back to the person, **only
+  where the next step needs the answer** (BD6): the first step's way to look.
+  Every other step has none; the caller agent asks nothing of its own during
+  the tour.
+- `way_on` (BD1): the line that ends the message, relayed word for word: "Say
+  “next” for step 4 of 9: Inside a note." ("Or say ..." where the step offers
+  an exercise; at step `add`, "Say “free” or “AI”, and the page goes in.").
+  When the person says next, or anything meaning go on, the caller makes the
+  `next` call.
 - `ask`: the offer of a step's exercise, `yes` recommended (`on.yes` is the same
   route with `try_it`), `no` going on to the next step (`on.no` is `next`).
 - `look.files`: each file or folder to look at, `{what, place, in_collection |
@@ -164,116 +194,139 @@ person who declines the exercise still has something to do). The first step's `s
   what is inside.
 - Every other path in a reply is relative to the collection folder that
   `folder` names, as before (fix round R2); a note is `{title, file}`. `folder`
-  comes with the first step only (fix round R6 of Track BA: it repeated in every
-  step).
+  comes with the first step only (fix round R6 of Track BA).
+
+The night's notice (Track AX) is not added to any step of the tour: the tour has
+a step for the night, and the notice's question would lead away from the next
+step (BD6). Reaching the night's step counts as the notice given, so the example
+does not say it again.
 
 The steps, as a person reads them (the intro, then each step: its title, its
-text, what to do, the places shown, the question back):
+text, what to do, the places shown, the way on):
 
-> 🧠 8 short steps, a few minutes in all, with something small to try in each.
+> 🧠 9 short steps, a few minutes in all, with something small to try in each.
 > You can stop at any step.
 
-1. **`look`** 👀 First, a way to look. "A collection is simply a folder of files
-   on this computer, so you can open it like any other folder. The nicest way
-   is Obsidian, a free program for folders of notes, which shows the maps as
-   pictures. A text editor or your file explorer works too, or I can describe
-   any file right here." Do: "To use Obsidian, download it, choose to open a
-   folder as a vault, and pick the folder shown below." Shown: the folder to
-   open as a vault (the example's `sources`, below), the example's folder, the
-   three ways (`look.ways`) and where to download Obsidian (`look.download`).
-   Check-in: "Which way suits you: Obsidian, a text editor, or me describing
-   things here?"
-2. **`journey`** 🧭 One document's journey. "Every document you add makes four
-   stops, and all four stay inside the collection's folder. First the
-   original, as you gave it. Then a plain text copy, in a simple format called
-   Markdown. Then that text sorted into the layout every document of its kind
-   gets. Last, the note the AI writes from it." And, honestly for the example:
-   "Here the originals are plain text already, so the copy is the same, and
-   the layout was filled by code." "The notes were written in advance, so
-   opening the example costs nothing." Do: "Find the same document
-   at all four stops, using the places below." Shown: the original, the plain
-   text copy, the copy sorted into the layout of its kind, the note
-   (`look.stops`, the manifest's `journey`). Check-in: "Found all four? Which
-   one would you rather read?"
-3. **`files`** 📂 Where your files live. "Your originals are kept in the
-   collection's folder for originals. To add PDFs or other files, put them in
-   any folder and tell me where they are. If they are outside the collection, I
-   ask you one thing first. Keep a copy inside, which stays safe even if the
-   outside file moves or is deleted. Or point to it, which uses no extra disk,
-   but its folder must then stay where it is." Shown: the folder for originals,
-   the folder the example points to (`library`), and each original with where
-   it is kept (`look.originals`, as before, now with its `place`), and the
-   settings file that keeps the short names of folders (`config/sources.json`).
-   Then (fix round R7): "A source line that starts with a short name and a
-   colon, such as library, points into a named folder. The collection keeps
-   those names in its settings file for folders, shown below." Do: "Find
-   the originals in the folder for originals and the one in the library folder.
-   Then open one note of each and look at its line called source, near the
-   top." Check-in: "What does each note's source line say about where its
-   original is?" Offer: "✨
-   Want to see the difference? I will put two small notes in a folder outside
-   the example, keep a copy of one and point to the other, for free."
-   (`try_it: both_ways`, below).
-4. **`notes`** 📝 Inside a note. "From each document the AI writes one note: a
-   short summary, the claims, the evidence, the open questions and the
-   definitions. Its header says which original it was made from. Every answer
-   you get names the note, the section and the lines it comes from, so you can
-   always check it. A note is a plain text file you can read, keep and edit."
-   Do: "Open the note below and read its short summary and its claims. Then ask
-   the example the question below, and look at where each part of the answer
-   comes from." The step carries that question (`question` in the catalogue,
-   "What does a note hold?", one of the suggested ones) as `ask_about_it` and
-   its call as `ask_with`. Check-in: "Which note, section and lines did the
-   first part of the answer come from?" (BA-R1: a note's file shows its
-   original in its header, not a place beside each claim; the place is what an
-   answer shows, so that is where the step sends the person.)
-5. **`map`** 🔍 The map of a document. "Each document also gets a map: one
-   picture of its main points, its open questions and the ideas it connects
-   to. Code draws it by itself, seconds after the document is added, with no AI
-   and no cost. In Obsidian it opens as a picture; a text editor shows it as a
-   list of boxes and lines." Do: "Open the map of the same document and find
-   its title, then its main points around it." Shown: the map and its note,
-   and the map as plain text (`look.map_outline`, fix round R7: `{title, parts:
-   [{heading, points}], points, ideas, more}`, made by code from the canvas by
-   `canvas.note_map.outline`, its groups' cards in reading order, the ideas its
-   link cards name, at most twelve points), so "describe it" has something to
-   relay without Obsidian.
-   Check-in: "What catches your eye first on the map?"
-6. **`links`** 🔗 Links between notes. "Notes are linked through the ideas they
-   share, so a question about one thing also finds the notes about a related
-   one. The links sit at the bottom of each note, and each says what it
-   connects to and how." Do: "Scroll to the bottom of the same note and follow
-   one of its links." Shown: the note, and its `## Links` lines as titles
-   (`look.links`). Check-in: "Where did the link take you?"
-7. **`concepts`** 💡 Concept pages, and the night. "Each idea that several
+1. **`look`**, Step 1 of 9 · 🧭 Getting around: A way to look. "A collection is
+   simply a folder of files on this computer, so you can open it like any other
+   folder. The nicest way is Obsidian, a free program for folders of notes,
+   which shows the maps as pictures. A text editor or your file explorer works
+   too, or I can describe any file right here." Do: "To use Obsidian, download
+   it, choose to open a folder as a vault, and pick the folder shown below."
+   Shown: the folder to open as a vault (the example's `sources`, below), the
+   example's folder, the three ways (`look.ways`) and where to download
+   Obsidian (`look.download`). The one question of the tour: "Which way suits
+   you: Obsidian, a text editor, or me describing things here?"
+2. **`journey`**, 🛠️ Machinery: One document's journey. "Every document you add
+   makes four stops, and all four stay inside the collection's folder. First
+   the original, as you gave it. Then a plain text copy, in a simple format
+   called Markdown. Then that text sorted into the layout every document of its
+   kind gets. Last, the note the AI writes from it." And, honestly for the
+   example: "Here the originals are plain text already, so the copy is the
+   same, and the layout was filled by code." "The notes were written in
+   advance, so opening the example costs nothing." Do: "Find the same document
+   at all four stops, using the places below." Shown: the four stops
+   (`look.stops`, the manifest's `journey`).
+3. **`files`**, ⚙️ Configuration: Where your files are kept. "Your originals are
+   kept in the collection's folder for originals. To add PDFs or other files,
+   put them in any folder and tell me where they are. If they are outside the
+   collection, I ask you one thing first. Keep a copy inside, which stays safe
+   even if the outside file moves or is deleted. Or point to it, which uses no
+   extra disk, but its folder must then stay where it is." Then (fix round R7):
+   "A source line that starts with a short name and a colon, such as library,
+   points into a named folder. The collection keeps those names in its settings
+   file for folders, shown below." Shown: the folder for originals, the folder
+   the example points to (`library`), each original with where it is kept
+   (`look.originals`), and the settings file that keeps the short names of
+   folders (`config/sources.json`). Do: "Find the originals in the folder for
+   originals and the one in the library folder. Then open one note of each and
+   look at its line called source, near the top." Offer: "✨ Want to see the
+   difference? I will put two small notes in a folder outside the example, keep
+   a copy of one and point to the other, for free." (`try_it: both_ways`).
+4. **`notes`**, 🛠️ Machinery: Inside a note. "From each document the AI writes
+   one note: a short summary, the claims, the evidence, the open questions and
+   the definitions. Its header says which original it was made from. Every
+   answer you get names the note, the section and the lines it comes from, so
+   you can always check it. A note is a plain text file you can read, keep and
+   edit." Do: "Open the note below and read its short summary and its claims.
+   Then see how the example answers the question below, and where each part
+   comes from." The step carries its question (`question` in the catalogue,
+   "What does a note hold?") as `ask_about_it`, and (BD7) answers it in the
+   step itself: `answer`, the parts as `POST /welcome/example` gives them, then
+   `reply`: `machinery` ("This is the machinery: the parts an answer is built
+   from, each with the place it comes from. You will not normally see it."),
+   `intro` ("Your agent keeps the parts that answer the question, leaves the
+   rest out, and writes one reply with the sources at the end, like this:"),
+   `text`, a reply written in advance in the catalogue (`reply`), and `sources`
+   ("Sources: How a document becomes a note, section Settings and options."),
+   from the notes it rests on (`reply_sources`) with the section the answer
+   found in each. A test checks those notes are ones the answer's parts come
+   from, so the reply cannot drift from the example. Called without the answer
+   (`answer_of`), the step gives `ask_with`, the call that asks it, as before.
+5. **`map`**, 🛠️ Machinery: The map of a document. "Each document also gets a
+   map: one picture of its main points, its open questions and the ideas it
+   connects to. Code draws it by itself, seconds after the document is added,
+   with no AI and no cost. In Obsidian it opens as a picture; a text editor
+   shows it as a list of boxes and lines." Do: "Open the map of the same
+   document and find its title, then its main points around it." Shown: the map,
+   its note, the map as plain text (`look.map_outline`, fix round R7), and
+   (BD5) a picture of the map: `look.picture`, `{what, place, in_collection,
+   link, say}`, `say` being "No Obsidian? Here is a picture of the same map.".
+   The caller sends it as an image to a person who looks without Obsidian,
+   where its program can send files (a chat app through OpenClaw, for one),
+   else gives its place. The picture ships in the example's `pictures/` (below).
+6. **`links`**, 🛠️ Machinery: Links between notes. "Notes are linked through
+   the ideas they share, so a question about one thing also finds the notes
+   about a related one. The links sit at the bottom of each note, and each says
+   what it connects to and how." Do: "Scroll to the bottom of the same note and
+   follow one of its links." Shown: the note, and its `## Links` lines as titles
+   (`look.links`).
+7. **`concepts`**, 🛠️ Machinery: Concept pages. "Each idea that several
    documents share gets a page of its own, saying what each document says about
    it. Compare the two pages below. One is ready, written the way the AI writes
    it. The other is only a draft put together by code, and waits for the
-   nightly tasks." Then the costs, honestly: "Every night a collection tidies
-   itself. The free part costs nothing: new label words, renamed files, missing
-   search entries and unread equations. The part that uses the AI, such as
-   writing concept pages, uses tokens from your subscription, up to the limit
-   you choose." And: "In this example the ready page was written in advance, so
-   nothing was spent on it." Shown: the ready page and the waiting page
+   nightly tasks." And: "In this example the ready page was written in advance,
+   so nothing was spent on it." Shown: the ready page and the waiting page
    (`look.pages`, each `{title, state: ready | waiting}`). Do: "Open both pages
-   below and compare the part called Development in each." Check-in: "Which
-   page reads as if someone understood the idea?" Offer: "🌙 Want to run
-   a practice night? It fills the waiting page from an answer prepared in
+   below and compare the part called Development in each." Offer: "🌙 Want to
+   run a practice night? It fills the waiting page from an answer prepared in
    advance, so no AI runs and no tokens are used." (`try_it: practice_night`).
    Once the practice night ran (fix round R6), the step says what is there now
    and offers it no more: "Each idea that several documents share gets a page
    of its own, saying what each document says about it. Both pages below are
    ready now: one was written in advance, the other on your practice night."
-   Check-in: "Do the two pages read alike now? What did the practice night
-   add?" The places are the ready page first, then the other, named "The page
-   filled on your practice night" once it is (in the practice's reply too).
-8. **`add`** 🎉 Your turn: add a page. "One page waits in the example's inbox.
+   The places are the ready page first, then the other, named "The page filled
+   on your practice night" once it is (in the practice's reply too).
+8. **`night`**, ⚙️ Configuration: Turning the nightly tidy on or off (BD2: the
+   night had shared the concepts step). "Here is what a collection does at
+   night, and the few words that choose it." Then the costs, honestly: "Every
+   night a collection tidies itself. The free part costs nothing: new label
+   words, renamed files, missing search entries and unread equations. The part
+   that uses the AI, such as writing concept pages, uses tokens from your
+   subscription, up to the limit you choose." And the words: "For a collection
+   of your own, say "turn the nightly tidy on" or "off", and "nightly AI
+   light", "medium", "heavy" or "off"." Shown: the settings file that keeps the
+   nightly choices (`config/maintenance.json`). Do: "Open the settings file
+   below and find the line that says whether the nightly tidy is on. In this
+   example it is off."
+9. **`add`**, 🎉 Your turn: Add a page. "One page waits in the example's inbox.
    Add it now, and watch its note, its map and its links appear." Shown: the
    waiting page in the inbox. Do: "Open the waiting page in the inbox below and
-   read its first lines." Check-in: "What do you think its note will say?" The
-   offer of the two ways, as before (below);
-   after either, the check-in "Can you see its new note and its map in the
-   example's folder?" beside the question to ask about it.
+   read its first lines." The offer of the two ways, as before (below).
+
+**The tour's end (BD8).** The answer that adds the page, either way, carries the
+end itself, and so does the step once the page is in: "Once you have a
+collection of your own, you can ask for your own Kovium agent for it,
+which answers the way you like."; `ask`, the manual offer, which says what the
+manual is for ("The example holds only a few pages for this tour, while the
+manual answers any question about Kovium."); `also`, putting the example
+back; `way_on`: "That is the tour. Say “manual” to get the full manual, or ask
+me anything about Kovium."; and `tour_end: true`. Where the manual cannot
+be offered, that is said (`tour.manual_pending`, or `tour.manual_ready` when a
+copy is here), `ask` is putting the example back, and `way_on` is the tour's
+last sentence ("That is the tour. Ask the example anything, or ask how anything
+works."). Before, the end came only when the step was asked for again, and an
+agent that went on without it never offered the manual (the owner's run).
 
 **The vault folder is the collection's `sources`.** It holds every stop of a
 document's way (the originals, the two copies, the notes with their maps and
@@ -287,7 +340,8 @@ Both free: code alone, no AI program called (the tests set a tripwire on the
 brain keeper agent), written only into the example's working copy and, for the
 first, one folder beside it. A second run says it already ran
 (`tour.both_ways_already`, `tour.practice_already`); the tour's reset puts both
-back. The reply is `{tried, ran, say, look, check_in, next_step, next}`.
+back. The reply is `{tried, ran, say, look, do, next_step, next, way_on}`: something to look at, and
+the way on to the step after the exercise's own (Track BD1, BD6: no question back).
 
 - **`both_ways`** (BA5). The example's two small notes (the manifest's
   `practice.both_ways`, written by hand) are put in a folder beside the working
@@ -314,9 +368,8 @@ back. The reply is `{tried, ran, say, look, check_in, next_step, next}`.
   top, on its line called source,
   where its original is." `look.files`: the folder outside, the kept copy, its
   original still outside, its note, the original pointed to, its note;
-  `look.kept` and `look.pointed` each `{note, source}`. Check-in: "Open both
-  notes. Which one would still have its original if the outside folder were
-  deleted?"
+  `look.kept` and `look.pointed` each `{note, source}`. Do: "Open both notes
+  and compare the line called source near their top."
 - **`practice_night`** (BA4). In a collection of a person's own, the AI keeps
   concept pages up to date at night, using tokens; the example's pages are put
   together by code, to keep it free. The example ships answers prepared in
@@ -337,7 +390,8 @@ back. The reply is `{tried, ran, say, look, check_in, next_step, next}`.
   more than the level you choose.", and the levels with their most, from the
   option catalogue's numbers (Track AX): "Light allows up to 50,000 tokens a
   night, medium up to 150,000 and heavy up to 400,000." `look.pages`: both now
-  `ready`. Check-in: "Open the waiting page again. What changed?"
+  `ready`. Do: "Open the waiting page again and see what the practice night
+  wrote."
 
 A `try_it` that names no exercise is refused by the request model (422).
 
@@ -346,8 +400,9 @@ At step `add`, `ask` offers two ways, the cheaper first:
 - `add: free` (recommended): the page, written as a note by hand, is copied
   into the notes and read by code as the person's own note: into the graph, its
   concept pages, its `## Links` and its neighbours', its map. `added`, `note`,
-  `map`, `links`, `concept_pages`, `check_in`, then `ask_with`: the sample
-  question (`sample_question` of the catalogue) asked of the example.
+  `map`, `links`, `concept_pages`, `do` ("Look for its new note and its map in
+  the example's folder."), `ask_with`: the sample question (`sample_question`
+  of the catalogue) asked of the example, and the tour's end (above).
 - `add: ai`: the AI reads the page and writes a note of its own, through
   `POST /sources/add`'s planner and runner. Without `approval`: the plan,
   `estimated_tokens`, `estimated_range`, `limit` (a one-time limit for this
@@ -370,9 +425,13 @@ answer, the waiting page a draft again), the graph rebuilt.
 
 **The voice (Track BA6).** The welcome and the tour speak warmly, with short
 hook lines and a few emojis from a fixed set (`plain_words.EMOJIS`: 👋 🧠 👀 🧭
-📂 📄 📝 🔍 🔗 💡 🌙 ✨ 🎉), **at most two in one message** (a reply's title,
-`say`, `do`, `check_in`, offer and the words beside its places, together;
-`plain_words.MAX_EMOJIS_PER_MESSAGE`), one in every step's title. No other text
+📂 📄 📝 🔍 🔗 💡 🌙 ✨ 🎉, and since Track BD2 ⚙️ and 🛠️, each read with its
+variation selector as one emoji, never the bare character), **at most two in
+one message** (a reply's title, `say`, `do`, `check_in`, offer, way on and the
+words beside its places, together; `plain_words.MAX_EMOJIS_PER_MESSAGE`), one
+in every step's title: its kind's. "Configuration", the owner's name for a
+kind, is the one word allowed to begin with the forbidden "config"
+(`plain_words.ALLOWED_AFTER`). No other text
 of the catalogue holds one, and an emoji outside the set fails the plain-words
 rule in every text (the rule is tightened, never loosened); an emoji is not
 counted as a word. Rules: [[plain-language-rules-v1|plain_language_rules_v1.md]].
@@ -385,7 +444,7 @@ run used 23,310 tokens and took 41 seconds.
 ## The example collection
 
 `sandboxes/hello_brain`, improved in place for the tour, never deleted. Its
-subject is second brain itself; `example.json` (its manifest) lists:
+subject is Kovium itself; `example.json` (its manifest) lists:
 
 - `originals`: each original its notes are built from, its kind, and the
   header `fields` its note records (facts the original states, written in by
@@ -473,6 +532,18 @@ building while every note, the code and the data layout are the ones recorded
 never overwritten (the collection is built instead). Any change to the code
 makes it stale until the next `--derive`; the example then builds as before.
 `--check` reports it (`derived.current`).
+
+**A picture of the tour's map (Track BD5)**: `pictures/` holds a PNG of the
+first note's map, drawn by code from the map `derived/` holds
+(`second_brain/canvas/picture.py`: any canvas, by its geometry, its colours,
+its groups, its cards and its edges; a card longer than its box cut at a whole
+word with an ellipsis), and `pictures/pictures.json`, naming that map and its
+fingerprint when the picture was drawn. `--derive` draws it again with the
+map, and `--picture` draws it alone. Drawing needs Pillow, an optional extra
+(`pip install -e '.[pictures]'`) that only the maintainers' build uses; a
+person's install never needs it, since the picture ships made. `pictures/` is
+among what ships, so it is copied into the working copy. A test fails when the
+picture's record names a map other than the one that ships.
 `.gitattributes` keeps the example's files and the user guide at LF on every
 platform, so a fingerprint taken on one platform holds on another.
 
@@ -560,8 +631,8 @@ that is only a demonstration.
 
 ## The full manual (the help collection, Track AG6)
 
-Second brain's own current documentation, as a collection anyone can ask
-(D3a). It is **a repository of its own** (`kbrain_help`), not part of this one,
+Kovium's own current documentation, as a collection anyone can ask
+(D3a). It is **a repository of its own** (`kovium_help`), not part of this one,
 so the download stays light; it is **offered, never required**; and **nothing
 in this repository depends on it**: every test here passes without a copy.
 
@@ -583,7 +654,7 @@ build, by code in a temporary copy (`example.derive`), and kept in the
 collection's `derived/` folder, so a person's install reads them on the first
 opening instead of building them (Track AU3: measured on a copy of this
 manual, about two minutes became a few seconds); a copy whose notes or whose
-second brain code differ from what was derived is built on opening, as for
+Kovium code differ from what was derived is built on opening, as for
 the example. The build derives again only when the notes or the code changed,
 and `manifest.size_mb` counts `derived/`. A tripwire on
 the brain keeper fails the build if anything calls it (and its test installs
@@ -594,7 +665,7 @@ whether the platform version moved (exit 1 unless current). `--record` writes
 the built size into `config/help.json` (below).
 
 **The manifest** (`manifest.json` at the collection's root) records
-`describes.platform_version` (the version of second brain it was built from),
+`describes.platform_version` (the version of Kovium it was built from),
 `describes.schema_version`, each source document's `sha256` and its note, the
 note count, and the size (`size_bytes`, and `size_mb` rounded up to a tenth:
 the notes and settings, which is what fetching costs). It carries no date, so
@@ -621,10 +692,10 @@ it; asking for the manual later does the same. With no address set the tour
 keeps its old line (`tour.manual_pending`) and `ask` stays the reset offer.
 
 **Fetching** (`POST /welcome/manual`, tool `get_manual`, free, nothing typed):
-a `git clone --depth 1` of `repository` into `sandboxes/kbrain_help` under the
+a `git clone --depth 1` of `repository` into `sandboxes/kovium_help` under the
 install's own folder for collections (never inside a tracked folder), made
 beside its place and moved in only when whole, so a failed fetch changes
-nothing. It is then registered under an agent of its own (`second-brain-help`),
+nothing. It is then registered under an agent of its own (`kovium-help`),
 never bound to the person's connection, and built by code on opening (graph,
 concept pages, maps; seconds, no tokens). A current copy is left alone
 (`fetched: false`, `manual.already`). Refusals, each with a plain sentence from
@@ -757,7 +828,7 @@ a simulated clean machine was measured by AG4
 - The tour's last offer is the full manual (AG6), one question that "no" ends; when this install's
   `config/help.json` holds the placeholder address (the shipped one is the published manual) nothing is offered and the tour keeps a line saying it is
   not ready. After it, the tour's last line says that once the person has a collection of their own they can ask
-  for their own second brain agent for it (AG4, `make_agent`): a sentence, not a question, since the agent belongs
+  for their own Kovium agent for it (AG4, `make_agent`): a sentence, not a question, since the agent belongs
   to a collection and the tour runs before there is one.
 - The manual is fetched with `git`, not downloaded as an archive; with no `git` it says so. It is a copy of one
   published state: a person gets a newer one by asking again (`update`), never by itself.
@@ -778,8 +849,21 @@ a simulated clean machine was measured by AG4
   in the same folder, by its own rule, not ours.
 - The tour's places are full paths on purpose (BA1); the caller agent is told
   to show them, and a program that cannot read files describes nothing. The
-  check-ins are questions to the person, put by the caller agent, which the
-  tour cannot enforce beyond its words and `settled_by: user`.
+  one check-in left (the way to look) is a question to the person, put by the
+  caller agent, which the tour cannot enforce beyond its words and
+  `settled_by: user`. Likewise the way on and "ask nothing of your own" are
+  instructions to the caller agent (Track BD1, BD6): the tour says them in
+  every reply and in the connection's instructions, and cannot make an agent
+  follow them.
+- The map's picture (BD5) is of the first note's map only, drawn when the
+  example is derived; a person's own collection has no pictures of its maps.
+  Whether the picture reaches the person depends on the caller's program: a
+  chat app through OpenClaw can send it, a program that cannot send files can
+  only give its place. Its text is drawn in Pillow's own font, so a script
+  outside Latin may not show in it (the example is in English).
+- The notes step's reply (BD7) is written in advance for its one question; the
+  example's answers outside the tour say their parts are the machinery and the
+  caller agent writes the reply, which the tour cannot check.
 - The practice night's answers are prepared by hand for this example's pages;
   a maintainer who rebuilds a note so that it no longer names the page's
   concept leaves the answer unused (the example then shows two drafts, and a

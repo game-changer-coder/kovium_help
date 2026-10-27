@@ -4,12 +4,12 @@ title: "Ideas v1"
 description: "Track H1 of docs/knowledge_layer_improvement_plan_v1.md, built 2026-10-09."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/ideas_v1.md"
-doc_sha256: "69a385b84b6f4b977831f81650a17d056ede8f66453d60a7280b7384d42f95e7"
+doc_sha256: "fda2ce5826bf44658ce8ff59c971acdd9604c9c9883d72c3444c05039ea8397f"
 ---
 
 # Ideas v1
@@ -68,7 +68,7 @@ Hydration alone did not explain the open crumb in the notes so far.
 A side-by-side bake comparing an overnight cold proof with a same-day proof.
 
 ## Notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->
 ```
 
 - **Frontmatter is the language-neutral contract.** `status`, `origin`,

@@ -4,12 +4,12 @@ title: "Document conversion v1: equations, tables and figures (Track M)"
 description: "How a PDF becomes the converted copy every note is built from, which program does it, what each one recovers, how figures are read by vision when the owner asks, and how a source read badly is read again. Plan..."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/document_conversion_v1.md"
-doc_sha256: "eb311375325b8e0f4b80038124601225addcdd837fc8ddc843f19bddd7beaaa9"
+doc_sha256: "fa71d465d0648ace705fc3a6b584540c0ef528adced91c62e58738857c50a2f3"
 ---
 
 # Document conversion v1: equations, tables and figures (Track M)
@@ -64,7 +64,7 @@ never handed the word `auto`: `_convert_pdf` decides it for the file. Triage
 (`folder_intake.classify`) then takes such a scan in (`scan: true` on its row,
 its length estimated from its pages) instead of refusing it as
 `no_text_layer`, and the plan names the need `scans`. It uses no tokens and is
-slow. `SECOND_BRAIN_NO_AUTO_READERS` makes both `auto` values mean off in one
+slow. `KOVIUM_NO_AUTO_READERS` makes both `auto` values mean off in one
 process (the test suite's setting, so an installed docling decides nothing).
 
 **Web pages.** An HTML source (a fetched URL or a saved page) is converted
@@ -147,7 +147,7 @@ A job that will be converted by docling (`/sources/process` on a PDF with
 docling effective, and every `/sources/reread`) runs in the brain keeper's long
 lane, beside books and folders, so it never holds a slot ordinary jobs need.
 Every result reports `pages` and `seconds_per_page`. The worker imports nothing from
-second_brain, strips its own folder from the import path, runs with the
+Kovium, strips its own folder from the import path, runs with the
 billing guard's stripped environment, and writes into a scratch folder:
 `document.md`, `fig-<n>.png` and `manifest.json` (version, options, pages,
 figures with caption, page, label and size, tables with rows and columns,

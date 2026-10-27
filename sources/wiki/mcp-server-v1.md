@@ -4,12 +4,12 @@ title: "MCP server v1"
 description: "The contract for the MCP server over the governed routes: how it is started, what it introduces itself as, which tools it lists, how scope, refusals, audit and long calls work. Plan and later phases: docs/mcp_server_plan_v1.md. Code..."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/mcp_server_v1.md"
-doc_sha256: "57b5450d29ac02f9bbe3659b3e7c8fa73ad4f5adcc3f6c3e52147132b98a0534"
+doc_sha256: "a93718d9e07fb84f200819c0faa93b52a232e75d94d093febc93645f13635739"
 ---
 
 # MCP server v1
@@ -39,9 +39,9 @@ from the conversation, behind the same grant: `plan_adding`, `start_adding`
 and `adding_status`, the doors on `POST /sources/add`, with the approval of a
 plan enforced (see `docs/adding_documents_v1.md`). Track AG4 added the one install step
 (`python scripts/setup.py`), the Claude Code plugin this checkout ships (its
-connection `second-brain`, started in welcome mode by
+connection `kovium`, started in welcome mode by
 `skills/claude-code/scripts/mcp_launch.py`, tools named
-`mcp__plugin_second-brain_second-brain__<tool>`), `make_agent` behind the same
+`mcp__plugin_kovium_kovium__<tool>`), `make_agent` behind the same
 grant, and the collection's answer style in a bound connection's instructions
 (see `docs/install_and_caller_agent_v1.md`). Track AY3 made a connection with
 no collection declare `tools.listChanged`, so a binding's new tools appear in
@@ -85,7 +85,7 @@ answer route does over HTTP.
 
 ```bash
 pip install -e '.[mcp]'        # once, in the checkout's venv: the SDK is an optional extra
-second-brain-mcp --workspace <workspace-id> --agent <agent-id> [--root <instance-root>] \n                 [--surface default|wider|write] [--max-surface default|wider|write] [--allow-proposals] \
+kovium-mcp --workspace <workspace-id> --agent <agent-id> [--root <instance-root>] \n                 [--surface default|wider|write] [--max-surface default|wider|write] [--allow-proposals] \
                  [--checkout <checkout>]
 python -m second_brain.mcp_server --workspace <workspace-id> --agent <agent-id> [--root <instance-root>]
 ```
@@ -100,7 +100,7 @@ python -m second_brain.mcp_server --workspace <workspace-id> --agent <agent-id> 
 - `--root`: the instance root, the folder holding
   `config/workspace_registry.json`, the one the HTTP service runs from.
   Default: the checkout the server is installed from, as the HTTP service
-  started by `scripts/run_second_brain.sh`. A workspace registered with an
+  started by `scripts/run_kovium.sh`. A workspace registered with an
   external `root_path` is found through that registry like any other.
 - `--checkout`: the checkout whose `prompts/`, `format-templates/` and
   `config/` the server reads, for an install outside a checkout whose
@@ -117,12 +117,12 @@ python -m second_brain.mcp_server --workspace <workspace-id> --agent <agent-id> 
   newcomer).
 
 **Editable or not.** The editable install (`pip install -e '.[mcp]'`, what
-`scripts/run_second_brain.sh` does) is the recommended one: the code runs
+`scripts/run_kovium.sh` does) is the recommended one: the code runs
 from the checkout and finds its prompts, intake templates and install
 configuration beside it. A non-editable install (`pip install '.[mcp]'`, from
 the checkout) copies the package into the environment's `site-packages`
 (every subpackage and the package's own data files since AB5; before, only
-the top package, so `second-brain-mcp` failed on its first import) but not
+the top package, so `kovium-mcp` failed on its first import) but not
 `prompts/`, `format-templates/` or `config/`, which live in the checkout and
 are the install's, not the package's. Such an install needs a checkout
 named at start: `--root <checkout>` when the instance root is the checkout
@@ -148,11 +148,11 @@ status 2, when:
 - the MCP SDK is not installed (the message gives the install command).
 
 It never creates a workspace or registers an agent at start, and it builds its
-app in strict scope whatever `SECOND_BRAIN_ALLOW_UNSCOPED` says. In a session,
+app in strict scope whatever `KOVIUM_ALLOW_UNSCOPED` says. In a session,
 registration happens only through the install's own example (`try_example`)
 and, since Track AG2, the setup tools a `manage` grant allows
-(`create_collection`, `open_collection`, `connect_agent`; "Setup and who may
-do what"). Both refusals name the way out a person can take with nothing
+(`create_collection`, `open_collection`, `connect_agent`, and since Track BC
+`join_collection`; "Setup and who may do what"). Both refusals name the way out a person can take with nothing
 typed: start the server without `--workspace` (welcome mode) and open the
 collection's folder (`open_collection`), which registers it and this agent at
 the access the collection gives; a collection's manager connects another
@@ -162,7 +162,7 @@ agent with `connect_agent`; a script calls `POST /collections/open` or
 ### Welcome mode (Track AG1, D2)
 
 ```bash
-second-brain-mcp [--agent <agent-id>] [--root <instance-root>]     # no --workspace
+kovium-mcp [--agent <agent-id>] [--root <instance-root>]     # no --workspace
 ```
 
 **Bound by an earlier session (Track AG2).** When `create_collection` or
@@ -204,7 +204,7 @@ program and its arguments; nothing else is needed. Placeholders:
 
 | placeholder | what to put there |
 | --- | --- |
-| `<venv>` | the Python environment the checkout is installed in (`pip install -e '<checkout>[mcp]'`); `scripts/run_second_brain.sh` makes it as `<checkout>/.venv` |
+| `<venv>` | the Python environment the checkout is installed in (`pip install -e '<checkout>[mcp]'`); `scripts/run_kovium.sh` makes it as `<checkout>/.venv` |
 | `<instance-root>` | the instance root (`--root`): the folder holding `config/workspace_registry.json`, usually the checkout itself |
 | `<workspace-id>` | a workspace registered in that instance |
 | `<agent-id>` | an agent registered for that workspace |
@@ -214,14 +214,14 @@ whichever folder the entry names as `--root`. An editable install runs the
 checkout it was installed from: a second checkout or worktree needs a venv of
 its own. The server says on standard error at start which code is serving and
 where its data and the workspace's ceiling file are (one line, beginning
-`second-brain-mcp: second-brain <version>, code in ...`), so a mismatch shows
+`kovium-mcp: kovium <version>, code in ...`), so a mismatch shows
 in the harness's log.
 
 **The command: the console script.**
 
 | POSIX | Windows |
 | --- | --- |
-| `<venv>/bin/second-brain-mcp` | `<venv>/Scripts/second-brain-mcp.exe` |
+| `<venv>/bin/kovium-mcp` | `<venv>/Scripts/kovium-mcp.exe` |
 
 followed by `--workspace <workspace-id> --agent <agent-id> --root
 <instance-root>`. It needs no activation and no `PYTHONPATH`. The
@@ -293,8 +293,8 @@ documentation lists it as required; Claude Code treats an entry with a
 
 **The one step (Track AG4).** `python scripts/setup.py` installs this checkout
 as a Claude Code plugin (`claude plugin marketplace add <checkout>`, then
-`claude plugin install second-brain@second-brain --scope user`): its
-connection, its skills and `/second-brain:start`, with no entry written by
+`claude plugin install kovium@kovium --scope user`): its
+connection, its skills and `/kovium:start`, with no entry written by
 hand. The entries below are for a harness wired by hand, or a further
 collection's own connection (`connect_agent`). See
 `docs/install_and_caller_agent_v1.md`.
@@ -305,7 +305,7 @@ https://code.claude.com/docs/en/env-vars and
 https://code.claude.com/docs/en/permissions. **Live-verified** with Claude
 Code 2.1.240 on Windows: the `.mcp.json` entry below, filled for a synthetic
 workspace and given with `claude -p --mcp-config <file> --strict-mcp-config
---allowedTools "mcp__second-brain"`, connected, listed the eight default tools
+--allowedTools "mcp__kovium"`, connected, listed the eight default tools
 and called them.
 
 By command (`--` separates Claude Code's own options from the server's
@@ -314,14 +314,14 @@ default, keeps it to you in this project; `user` makes it yours in every
 project). POSIX shell:
 
 ```bash
-claude mcp add --transport stdio --scope project second-brain -- \
-  <venv>/bin/second-brain-mcp --workspace <workspace-id> --agent <agent-id> --root <instance-root>
+claude mcp add --transport stdio --scope project kovium -- \
+  <venv>/bin/kovium-mcp --workspace <workspace-id> --agent <agent-id> --root <instance-root>
 ```
 
 Windows (PowerShell or cmd), on one line:
 
 ```powershell
-claude mcp add --transport stdio --scope project second-brain -- <venv>\Scripts\second-brain-mcp.exe --workspace <workspace-id> --agent <agent-id> --root <instance-root>
+claude mcp add --transport stdio --scope project kovium -- <venv>\Scripts\kovium-mcp.exe --workspace <workspace-id> --agent <agent-id> --root <instance-root>
 ```
 
 Or in the project's `.mcp.json` (or a file given with `--mcp-config`):
@@ -329,9 +329,9 @@ Or in the project's `.mcp.json` (or a file given with `--mcp-config`):
 ```json
 {
   "mcpServers": {
-    "second-brain": {
+    "kovium": {
       "type": "stdio",
-      "command": "<venv>/bin/second-brain-mcp",
+      "command": "<venv>/bin/kovium-mcp",
       "args": ["--workspace", "<workspace-id>", "--agent", "<agent-id>",
                "--root", "<instance-root>"]
     }
@@ -345,8 +345,8 @@ Or in the project's `.mcp.json` (or a file given with `--mcp-config`):
   30 s).
 - **Widening:** 2.1.240 lists the wider tools in the same session after
   `request_tools`, so `--surface wider` is optional here.
-- **Permission:** the tools are named `mcp__second-brain__<tool>`; the rule
-  `mcp__second-brain` (in `--allowedTools`, or the settings' allow list)
+- **Permission:** the tools are named `mcp__kovium__<tool>`; the rule
+  `mcp__kovium` (in `--allowedTools`, or the settings' allow list)
   allows every tool of this server. Claude Code asks once before it uses a
   server from a project's `.mcp.json`.
 - **Variables:** `.mcp.json` expands `${VAR}` and `${VAR:-default}` in
@@ -362,7 +362,7 @@ Or in the project's `.mcp.json` (or a file given with `--mcp-config`):
 Checked 2026-10-17 against https://learn.chatgpt.com/docs/extend/mcp?surface=cli
 (where https://developers.openai.com/codex/mcp redirects). **Live-verified**
 2026-10-17 with Codex 0.160.0 on Linux, signed in with ChatGPT: the keys of
-the entry below, given to `codex exec` as `-c mcp_servers.second-brain.<key>=...`
+the entry below, given to `codex exec` as `-c mcp_servers.kovium.<key>=...`
 overrides (the same keys as the table, without editing the file), connected;
 the session called `overview`, `recall` and `read` and answered from them, with
 no shell command. The `config.toml` table itself and `codex mcp add` were not
@@ -371,14 +371,14 @@ run.
 In `~/.codex/config.toml` (or a trusted project's `.codex/config.toml`):
 
 ```toml
-[mcp_servers.second-brain]
-command = "<venv>/bin/second-brain-mcp"
+[mcp_servers.kovium]
+command = "<venv>/bin/kovium-mcp"
 args = ["--workspace", "<workspace-id>", "--agent", "<agent-id>", "--root", "<instance-root>"]
 startup_timeout_sec = 30
 tool_timeout_sec = 600
 ```
 
-Or by command, `codex mcp add second-brain -- <venv>/bin/second-brain-mcp
+Or by command, `codex mcp add kovium -- <venv>/bin/kovium-mcp
 --workspace <workspace-id> --agent <agent-id> --root <instance-root>`, then
 add the two timeouts to the table it writes.
 
@@ -406,9 +406,9 @@ project):
 ```json
 {
   "mcpServers": {
-    "second-brain": {
+    "kovium": {
       "type": "stdio",
-      "command": "<venv>/bin/second-brain-mcp",
+      "command": "<venv>/bin/kovium-mcp",
       "args": ["--workspace", "<workspace-id>", "--agent", "<agent-id>",
                "--root", "<instance-root>"]
     }
@@ -424,8 +424,8 @@ project):
   and `${userHome}` are expanded in `command` and `args`. Only when Cursor's
   project is the checkout, its venv is `<checkout>/.venv` and the checkout is
   also the instance root, can the entry say
-  `${workspaceFolder}/.venv/bin/second-brain-mcp` (Windows:
-  `${workspaceFolder}/.venv/Scripts/second-brain-mcp.exe`) and `--root
+  `${workspaceFolder}/.venv/bin/kovium-mcp` (Windows:
+  `${workspaceFolder}/.venv/Scripts/kovium-mcp.exe`) and `--root
   ${workspaceFolder}`; otherwise write the paths in full.
 
 ### OpenClaw
@@ -433,13 +433,13 @@ project):
 Checked 2026-10-17 against https://docs.openclaw.ai/gateway/config-extensions,
 https://docs.openclaw.ai/cli/mcp, https://docs.openclaw.ai/cli/mcp/transports
 and https://docs.openclaw.ai/cli/mcp/registry. **Live-verified** 2026-10-17
-with OpenClaw 2026.9.5 on Linux: `openclaw mcp set second-brain '<entry>'`
+with OpenClaw 2026.9.5 on Linux: `openclaw mcp set kovium '<entry>'`
 with the entry below as JSON (plus an `env` object) saved it; `openclaw mcp
-probe second-brain` listed eight tools and the resources; after `openclaw mcp
+probe kovium` listed eight tools and the resources; after `openclaw mcp
 reload`, one turn through the running gateway (`openclaw agent --agent <id>
 --session-id <a new id> --message-file <file> --json`, the gateway's Codex
 runtime, signed in with ChatGPT) called `overview`, `recall` and `read` and
-answered from them; `openclaw mcp unset second-brain` removed it and left the
+answered from them; `openclaw mcp unset kovium` removed it and left the
 configuration file byte for byte as it was before. Where the documentation is
 only partial, that is said below.
 
@@ -449,8 +449,8 @@ In `~/.openclaw/openclaw.json` (JSON5), under `mcp.servers`:
 {
   mcp: {
     servers: {
-      "second-brain": {
-        command: "<venv>/bin/second-brain-mcp",
+      "kovium": {
+        command: "<venv>/bin/kovium-mcp",
         args: ["--workspace", "<workspace-id>", "--agent", "<agent-id>", "--root", "<instance-root>"],
         requestTimeoutMs: 600000,
       },
@@ -459,11 +459,11 @@ In `~/.openclaw/openclaw.json` (JSON5), under `mcp.servers`:
 }
 ```
 
-Or by command, with the same entry as JSON: `openclaw mcp set second-brain
-'<the entry above, as JSON>'`, or `openclaw mcp add second-brain --command
-<venv>/bin/second-brain-mcp` with one `--arg` per argument (whether `--arg`
+Or by command, with the same entry as JSON: `openclaw mcp set kovium
+'<the entry above, as JSON>'`, or `openclaw mcp add kovium --command
+<venv>/bin/kovium-mcp` with one `--arg` per argument (whether `--arg`
 passes a value starting with `-` through is not documented; check with
-`openclaw mcp show second-brain`).
+`openclaw mcp show kovium`).
 
 - **Timeout:** `requestTimeoutMs`, per server, in milliseconds (default 60 s);
   `connectionTimeoutMs` covers startup and the first listing (its default is
@@ -496,7 +496,7 @@ passes a value starting with `-` through is not documented; check with
 | the SDK's client (`mcp==2.3.0`), handshake era `2025-11-25` | hears `list_changed` over stdio and in process; its next `tools/list` is the new set | the server's tests |
 | a client on the `2026-07-28` per-request era | is sent no list change (the SDK sends one only on a `subscriptions/listen` stream, which this server does not serve); sees the new tools when it lists again | probed in process |
 | Claude Code 2.1.299 | connects from a `--mcp-config` file with `--strict-mcp-config` and no built-in tools; lists the eight default tools; calls `overview`, `read`, `entity` | a headless run (`claude -p`) on the example workspace, Linux |
-| Codex 0.160.0 | connects from `-c mcp_servers.second-brain.*` overrides to `codex exec`; calls `overview`, `recall`, `read`; no shell command | a headless run on the example workspace, Linux, ChatGPT sign-in |
+| Codex 0.160.0 | connects from `-c mcp_servers.kovium.*` overrides to `codex exec`; calls `overview`, `recall`, `read`; no shell command | a headless run on the example workspace, Linux, ChatGPT sign-in |
 | OpenClaw 2026.9.5 | `openclaw mcp probe` lists eight tools and the resources; a gateway turn on its Codex runtime calls `overview`, `recall`, `read` | the configured server, one turn through the gateway, Linux, ChatGPT sign-in |
 | Cursor | not observed | not installed where this was tested |
 
@@ -554,8 +554,8 @@ The note types a workspace declares in `config/note_types.json` are not
 listed on their own: a declared kind with notes appears in the counts, and
 one with none tells a caller nothing.
 
-`serverInfo` is `second-brain` with the installed package's version; its
-title is `second brain: <display name or workspace id>`.
+`serverInfo` is `kovium` with the installed package's version; its
+title is `Kovium: <display name or workspace id>`.
 
 ## Tools
 
@@ -571,9 +571,10 @@ The default surface (AB2), in the order listed:
 | `context_pack` | `POST /agent/knowledge/task_context` | `query`, `scope`, `conversation_id`, `refresh` | `judge_relevance: false`, `widen: cache_only` | a bundle for the start of a task or after compaction; no model call |
 | `delta` | `GET /agent/knowledge/changes` | `cursor`, `since`, `limit` | | notes added, changed, removed or renamed (with the id and path a renamed note had) since a cursor, and the next cursor; at least once, never skipping |
 | `request_tools` | the server | `surface` | | what this connection offers and what it does not, and why; with `surface`, moves the session there (see "Surfaces") |
+| `sign_in` | the server | `token_file`, `token` | | Track BB2: listed by a session whose collection asks for an access token and that has not signed in (with the collection's tools, which refuse every call until then: fix round BB-V1); served whenever called. On a connection with no collection (fix round BB-T1) it finds the collection the key belongs to and holds the key for that collection's checks, the connection staying without a collection: how an agent joins again or leaves from a shared connection. Reads the key file (preferred) or takes the token, checks it against the session's collection, and holds it for the session: every later call carries `Authorization: Bearer`, and the session's agent, grants and surface become the token's agent's. Its answer says who the session is now and at what level, with the token's short fingerprint; never the token. Refused: `token_unknown`, `token_expired`, `token_other_collection`, `token_file_unreadable`, `sign_in_no_collection`. See "Access tokens" |
 | `welcome` | `GET /welcome` | | | Track AG1: what to tell a person who is new or asks how to start (`say`, at most one `ask`, `next`); the collection's own state on a bound connection; no model call |
-| `help` | `GET /help` | `question` (required) | | Track AG1: a question about second brain itself, answered from the user guide and the catalogue with each passage's section; no model call |
-| `get_manual` | `POST /welcome/manual` | `update` | | Track AG6 (`manage` grant, listed in welcome mode and for a managing agent, never on a reading connection): on the person's yes to the offer of the manual (made by the tour and by `help`), fetches second brain's own documentation as a collection so `help` answers from it; a copy of another version is reported and `update` fetches the matching one; free, not read-only (it writes the fetched copy into the install's own folder) |
+| `help` | `GET /help` | `question` (required) | | Track AG1: a question about Kovium itself, answered from the user guide and the catalogue with each passage's section; no model call |
+| `get_manual` | `POST /welcome/manual` | `update` | | Track AG6 (`manage` grant, listed in welcome mode and for a managing agent, never on a reading connection): on the person's yes to the offer of the manual (made by the tour and by `help`), fetches Kovium's own documentation as a collection so `help` answers from it; a copy of another version is reported and `update` fetches the matching one; free, not read-only (it writes the fetched copy into the install's own folder) |
 
 Welcome mode (above) lists `welcome`, `help`, `get_manual` and two tools no bound connection
 lists:
@@ -590,7 +591,13 @@ on every connection:
 | tool | over | exposes | notes |
 | --- | --- | --- | --- |
 | `create_collection` | `POST /collections` | `name` (required), `holds`, `working_folder`, `place`, `folder`, `program` | a new collection; without `folder` or `place` it first returns where it goes as `ask` (Track AZ1); binds a connection with no collection to it once made |
-| `open_collection` | `POST /collections/open` | `folder` (required), `program` | an existing collection's folder, with what did not travel; binds as above |
+| `open_collection` | `POST /collections/open` | `folder` or `collection`, `program` | an existing collection's folder, or one already on this computer by its name (Track BC1), with what did not travel; binds as above, so every agent sharing this connection opens it |
+| `list_collections` | `GET /collections` | | Track BC1: the collections on this computer by name, with what each holds, how many notes, where, and `joined`; opens none; free |
+| `join_collection` | `POST /collections/join` | `project` (required), `collection`, `folder`, `program`, `agent`, `read_only`, `level`, `length`, `tone`, `extra`, `confirm` | Track BC2 to BC4: this agent alone joins a collection under its own id: its own connection in the narrowest place its program offers, its caller agent's text naming the tools as its program shows them; the plan first (`asks` while the style is unanswered, then a `confirm` code), done on the person's yes; never binds this connection; see `docs/collections_v1.md` |
+| `leave_collection` | `POST /collections/leave` | `collection`, `project` (required), `program`, `agent` | Track BC4: this agent's own connection and caller agent's text taken out, and (Track BB) its tokens taken back and its key file deleted; the collection stays |
+| `issue_token` | `POST /collections/tokens` | `agent`, `project` (required), `level`, `may`, `expires`, `confirm` (`to` hidden: the owner's script's) | Track BB3: an access token for one agent, needing a manage entry that may grant: the sentence and a `confirm` code, then the token written to `<project>/.kovium/<collection>.token` and never returned; an agent never raises its own access with it |
+| `list_tokens` | `GET /collections/tokens` | | Track BB3: the collection's tokens by short fingerprint, with agent, level, end date and last use; read only |
+| `revoke_token` | `POST /collections/tokens/revoke` | `fingerprint` (required) | Track BB3: one token taken back from the next call; an agent's own, or another's with grant |
 | `connect_agent` | `POST /collections/connect` | `program` (required), `agent` | this collection's own connection added to another agent program, reading only |
 | `set_access` | `POST /collections/access` | `agent`, `level` (required), `may`, `per_run_tokens`, `per_day_tokens`, `confirm` | what an agent may do: the sentence and a `confirm` code, then applied with it |
 | `change_setting` | `POST /collections/settings` | `option` (required), `value`, `add`, `remove`, `text`, `confirm` | one choice by its plain name, previewed then applied |
@@ -1199,7 +1206,7 @@ characters long). Audited like every tool, with `route: null`, `outcome`
 
 ## Resources
 
-One resource, `second-brain://capabilities` (`application/json`), the same
+One resource, `kovium://capabilities` (`application/json`), the same
 report as the `capabilities` tool's compact result, the connection's state
 included, on the same surface as the tool (`wider`): the ceiling caps both.
 Below it the resource is not listed, and a read is refused as a call to the
@@ -1526,6 +1533,43 @@ Track AG2 (D2, D4, D4a of the first-run plan); the contract is
   the setup tools are its to call on the person's word, each change shown as
   one sentence and applied with its `confirm` code.
 
+## Access tokens (Track BB)
+
+The contract is [[access-tokens-v1|`access_tokens_v1.md`]]. Where a
+collection's `require_token` is on (off for every collection until its owner
+turns it on):
+
+- **Before signing in** a session may call only `sign_in` and `help`, and lists
+  the collection's tools as well, as the launch's agent would be offered them
+  (fix round BB-V1: Claude Code and Codex list once, when a conversation
+  starts, and never again; listing only the two left them without the
+  collection's tools after signing in). This holds whether it
+  was launched with `--workspace` or is a welcome connection just bound to
+  such a collection (`open_collection` then says `connection.sign_in_first`
+  and the sentence `token.sign_in_first`). The instructions say to call
+  `sign_in` with `token_file` first, naming the usual place
+  (`<project>/.kovium/<collection>.token`), and that the launch's agent
+  id is only a hint. Any other tool called by name is refused `token_required`
+  with the `sign_in` call as its fix. `help` is asked as a connection with no
+  collection asks it, so it needs no token. `listChanged` is declared, and the
+  client is told when signing in brings the collection's tools.
+- **`sign_in`** holds the token for the whole session, in memory only. The
+  in-process caller then sends `Authorization: Bearer` on every route call, so
+  MCP and HTTP pass through the same gate, and the session's agent becomes
+  the token's (its grants and surface recomputed from the policy). A token
+  taken back during the session is refused at the next call by the route.
+  A binding to another collection drops the sign-in.
+- **The local connection's secret.** Over a local transport the in-process
+  caller also sends `X-Kovium-Local`, a secret random per process and
+  kept in memory; only a join or `issue_token` that arrives with it hands out
+  a token without a signed-in manager. An HTTP caller cannot know it.
+- **The audit** of every call after signing in carries `token: {short,
+  agent}`, the first 8 characters of the token's SHA-256 and its agent, never
+  the token; so does a refused `sign_in`, by the presented token's short
+  fingerprint.
+- Prefer `token_file`: a token passed as `token` is an argument, and some
+  programs log every tool argument (OpenClaw's Codex runtime does).
+
 ## Audit
 
 Every tool call writes one record to the workspace's governance audit, read
@@ -1630,8 +1674,10 @@ no module may import. The SDK's telemetry middleware is removed.
   the owner resolves it in review, which no tool does. MEMORY_VERBS write
   conformance is not claimed (see "Writes through review").
 - Over HTTP, `propose` is open to whatever reaches the loopback port of a
-  workspace whose owner allows proposals (no authentication, as for every
-  route; see the plan's "Later: authentication"). The owner decides as an
+  workspace whose owner allows proposals while its access tokens are off (no
+  authentication, as for every route); with them on (Track BB,
+  [[access-tokens-v1|`access_tokens_v1.md`]]) it needs a token whose agent
+  the policy names at `propose` or higher. The owner decides as an
   identity other than the proposer's; nothing checks that it is a person, so
   a caller that reaches the HTTP service can decide its own proposal under
   another `agent_id`, and the note then records `verified: human:<that id>`.

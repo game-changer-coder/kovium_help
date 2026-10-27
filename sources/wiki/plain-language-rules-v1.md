@@ -4,12 +4,12 @@ title: "Plain-language rules (v1)"
 description: "Track AG0. The contract for every text a newcomer reads: the option catalogue, the words for every warning and refusal code, the user guide, and every message an agent is told to relay. The rules are those of..."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/plain_language_rules_v1.md"
-doc_sha256: "eb62c77d4472f991cb7e768d8f2db045e6a44e96ef8d228abc78dacbbe07f6c7"
+doc_sha256: "4b345ac440c870349743095e661058e1c4e5e14d9b023a816f29f87778e5fc75"
 ---
 
 # Plain-language rules (v1)
@@ -51,7 +51,10 @@ any spelling. The words a person is given: *collection*, *add*, *ask*,
 *search by meaning*, *better PDF reader*, *reading pictures*, *your
 subscription*, *tokens*. A word that is truly needed and not on the list
 (*PDF*, *Word file*, *tokens*) is said in the same sentence, or already known
-from rule 9.
+from rule 9. One everyday word may begin with a forbidden one: *configuration*,
+the owner's name for the tour's kind of step that turns a feature on or off
+(Track BD2, `ALLOWED_AFTER` in the checker); *config* alone and *configure*
+stay forbidden.
 
 **Rule 2. Every choice is four lines**, each one sentence of at most 25 words:
 `what` (what it is), `need` (whether you need it, and the signal in the
@@ -119,18 +122,28 @@ They keep every rule above. Their own rule, and only theirs:
 
 - **A few emojis, from a fixed set.** `EMOJIS` in `second_brain/plain_words.py`
   (wave, brain, eyes, compass, folder, page, memo, magnifier, link, bulb, moon,
-  sparkles, party), each one code point shown as an emoji by default. An emoji
-  outside the set fails the plain-words rule in every text, so the rule is
-  tightened, never loosened. An emoji is not counted as a word.
+  sparkles, party), each one code point shown as an emoji by default; and, for
+  the tour's kinds of step (Track BD2), a gear and a hammer and wrench, which
+  show as emojis only with the emoji variation selector, so each is read with
+  it as one emoji and the bare character is refused. An emoji outside the set
+  fails the plain-words rule in every text, so the rule is tightened, never
+  loosened. An emoji is not counted as a word.
 - **At most two in one message** (`MAX_EMOJIS_PER_MESSAGE`): everything one
   reply asks the agent to relay, together (a step's title, its `say`, what to
-  do, its question back, its offer and the words beside its places). Each tour
-  step's title carries one.
+  do, its question back, its offer, its way on and the words beside its
+  places). Each tour step's title carries one: its kind's (Track BD2).
 - **Only there.** No option entry, code text, collection-tool text or guide
   passage holds one: a test reads every text of the catalogue for it.
-- **Every step does something.** A tour step says what to do and asks back
-  ("found it? what do you see?"), or offers its exercise; reading alone is
-  never a step.
+- **Every step does something.** A tour step says what to do, or offers its
+  exercise; reading alone is never a step.
+- **Every message says what comes next (Track BD1, BD4).** A tour message ends
+  with the way on ("Say “next” for step 4 of 9: Inside a note."), and every
+  step's title starts with where it is ("Step 3 of 9").
+- **Only questions that lead on (Track BD6).** A step asks the person something
+  only when the next step needs the answer (how they want to look); a question
+  that opens a side conversation ("What catches your eye first?") is not asked,
+  because over a chat such a thread is hard to steer back from. This replaced
+  Track BA's question back after every step, on the owner's word (2026-10-24).
 
 Checked by `tests/integration/test_tour_you_do.py` (the set, the cap per
 message over a whole walk of the welcome and the tour, the texts that may hold

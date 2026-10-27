@@ -4,12 +4,12 @@ title: "Next steps v1: warnings and refusals that say what to do (Track AC)"
 description: "Every warning a response carries, and every refusal of a governed or intake route, comes with its next step as data: what it means, what to do, the call that does it with the caller's own arguments, and the read-only call that shows it..."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/next_steps_v1.md"
-doc_sha256: "8f20f5ddc96446996406533713274e64408a7d11079bb53e31c32eba2e170dd2"
+doc_sha256: "4d0669ac49da198541938cd60fcf263ca07345b6edf5eb4e187d0a96d693040a"
 ---
 
 # Next steps v1: warnings and refusals that say what to do (Track AC)
@@ -64,8 +64,8 @@ at any depth, when there is at least one:
   Absent when no call takes the step.
 - `consent`: what the call costs or changes (it spends tokens within the
   standing budget, or beyond it); `null` otherwise.
-- `fix.next.settled_by` (Track AR3): who settles it. `system`: the knowledge
-  brain system, by its own default (nothing for the caller to do); `caller`:
+- `fix.next.settled_by` (Track AR3): who settles it. `system`: Kovium,
+  by its own default (nothing for the caller to do); `caller`:
   the caller agent, by the recommended choice, without asking the user;
   `user`: the user, told (`tell_user`, `report`) or asked (`ask_user`).
 - `fix.next.user_text` (Track AR5): for a code that can reach a person
@@ -120,7 +120,7 @@ session.
 
 A code is added in `second_brain/next_steps_codes.py` with `register(...)`;
 then `python scripts/next_steps_doc.py` rewrites the table below. The test
-suite runs with `SECOND_BRAIN_STRICT_NOTICES=1`: a response or refusal naming
+suite runs with `KOVIUM_STRICT_NOTICES=1`: a response or refusal naming
 a code the registry does not know fails the test that met it, and so does a
 warning written as prose instead of a code. In service an unknown code is
 returned with `action: report` rather than costing the response.
@@ -135,6 +135,7 @@ returned with `action: report` rather than costing the response.
 | `access_agent_invalid` | The agent named is not an agent id (see `detail`). | **run**: Send the agent by its program's name or an id of letters, digits, - and _. |  |  |
 | `access_not_granted` | This agent's access to the collection does not allow the call (see `detail`): the collection reads only for it, or its manage entry lacks that ability. | **tell_user**: Say so in its words; only another agent that may manage the collection and grant can allow more, on the owner's word. Never ask to raise your own access. |  | `GET /collections/setup` |
 | `access_self_raise` | An agent asked to give itself more access. | **tell_user**: Say so; another agent that may manage the collection and grant can, on the owner's word. |  |  |
+| `access_settings_unreadable` | A change was refused because the collection's access settings file cannot be read just now; it was not written over. | **retry**: Try again shortly; if it stays so, tell the owner: the collection's settings file needs repairing. |  |  |
 | `adding_approval_expired` | The plan's approval is older than its validity (see `detail`). | **run**: Plan again and run with the new approval. | `POST /sources/add` (paths: {paths}) |  |
 | `adding_approval_required` | A real addition needs the approval code of a plan made on the same files (a dry run first). | **run**: Plan first, then run with the `approval` the plan gives. | `POST /sources/add` (paths: {paths}) |  |
 | `adding_book_read_whole` | A long document's chapters could not be told apart with confidence by any step of the chapter-finding ladder (its outline, its contents page, its headings, and the brain keeper within the budget), so it was read as one document, in parts; each row's `split_line` says why. | **none**: Nothing to do; splitting it later is a re-read, with `chapters` if the user names them. |  |  |
@@ -152,7 +153,7 @@ returned with `action: report` rather than costing the response.
 | `adding_stopped_at_budget` | The addition stopped cleanly at its budget; what is done and what is left are in the report. | **ask_user**: Put `question.text` to the user; on yes, add the same files again and run them with the approval the new plan gives (what is in is skipped). | `POST /sources/add` (paths: {paths}) |  |
 | `adding_version_not_linked` | A document planned as another version was added, but not linked: its other version was not added, made no single note, or has no note in the graph the link could point at, so nothing was kept (see `versions`, `reason`). | **none**: Nothing to do; adding the other version again does not link them, so a link wanted later is written as `version_of` in the note. |  |  |
 | `adding_versions_linked` | Some documents are other versions of a work the collection already had, or of another document in the same addition: each was taken in and linked to it as a version (`version_of`; the evidence is in `versions`). | **none**: Nothing to do; the report says so in plain words. To hold versions back next time, send `versions: skip`; to take them in unlinked, `versions: separate`. |  |  |
-| `agent_file_taken` | The project already has an agent file of that name that second brain did not write; it was left as it is. | **tell_user**: Say so; nothing was added, and that file is the person's to keep or move. |  |  |
+| `agent_file_taken` | The project already has an agent file of that name that Kovium did not write; it was left as it is. | **tell_user**: Say so; nothing was added, and that file is the person's to keep or move. |  |  |
 | `agent_id_invalid` | The agent id is not an id (see `detail`): letters, digits, dots, underscores and hyphens only. | **run**: Send the request again with a plain agent id. |  |  |
 | `agent_program_not_ready` | The caller agent is not made for that agent program yet. | **tell_user**: Say so; its connection works without it, and the program gets the agent in a later version. |  |  |
 | `agent_project_not_found` | The project folder for the caller agent was not given, or is not a folder on this computer. | **run**: Send `project`: the full path of the folder this agent program works in (your own working folder); never ask the person to type it. |  |  |
@@ -195,7 +196,9 @@ returned with `action: report` rather than costing the response.
 | `collection_folder_not_absolute` | The folder given is not a full path (see `detail`). | **run**: Send the folder in full, as the person dragged or named it. |  |  |
 | `collection_folder_overlaps` | The folder is inside another collection, or holds one. | **tell_user**: Say so; a collection cannot sit inside another. Keep the default place or another folder. |  |  |
 | `collection_folder_refused` | The folder cannot hold a collection (see `detail`). | **tell_user**: Say why in its words, and ask for another folder or keep the default place. |  |  |
+| `collection_name_ambiguous` | The words fit several collections (see `detail`: which). | **run**: Ask the person which of the collections `detail` names they mean, then send its name. | `GET /collections` |  |
 | `collection_name_missing` | A collection is made with a name. | **run**: Send `name`: a few words the person calls it. |  |  |
+| `collection_name_unknown` | No collection on this computer has that name (see `detail`: the names there are). | **run**: Send `collection` as one of the names `detail` gives; a collection from another computer is opened by its folder. | `GET /collections` |  |
 | `collection_place_choice` | Nothing was made yet: where the collection goes is the person's answer (see `ask`): the folder the AI program works in, a folder they name, or the default place. | **ask_user**: Put `ask.text` to the person word for word, recommended answer first, each answer with the folder `ask.folders` names for it; on their answer, make the call `ask.on` names for it (for a folder they name, fill `folder`). Never answer it for them. |  |  |
 | `collection_working_folder_missing` | The answer was the working folder, but `working_folder` was not sent or is not a folder on this computer. | **run**: Send `working_folder`: the full path of the folder you, the AI program, work in; never ask the person to type it. |  |  |
 | `concept_layer_behind` | The concept notes lag their sources: some sources' concepts are not in them yet. | **run**: Bring the concept notes up to date. | `POST /concepts/sync` (wait: False) | `GET /concepts` |
@@ -231,7 +234,7 @@ returned with `action: report` rather than costing the response.
 | `facet_filter_matched_nothing` | No note carries the facet values asked for. | **run**: Ask again without `facets`, or with values the vocabulary holds. | `POST /agent/knowledge/answer` (query: {query}) | `GET /query/facets` |
 | `facet_not_declared` | A facet asked for is not declared (see `unknown`). | **run**: Check the facet names. | `GET /ops/facets` |  |
 | `facet_removal_blocked` | A facet was not removed: notes still carry it (see `blocked`). | **tell_user**: Say which notes still carry it; the owner re-facets them first. |  |  |
-| `facets_managed_by_system` | Facets and the vocabulary are managed by the knowledge brain system itself; a caller agent does not write, propose or curate them. | **none**: Leave facets to the system. To have waiting values registered now, ask it to run its own promotion (a dry run first). | `POST /maintenance/vocabulary/promote` (dry_run: True) | `GET /ops/facets` |
+| `facets_managed_by_system` | Facets and the vocabulary are managed by Kovium itself; a caller agent does not write, propose or curate them. | **none**: Leave facets to the system. To have waiting values registered now, ask it to run its own promotion (a dry run first). | `POST /maintenance/vocabulary/promote` (dry_run: True) | `GET /ops/facets` |
 | `facets_matched_nothing` | The facets matched no note. | **run**: Ask again with values the vocabulary holds. | `GET /query/facets` |  |
 | `figure_vision_enabled_but_unavailable` | Figure vision is switched on but no vision model answers. | **tell_user**: Say so; the owner checks the brain keeper. |  | `GET /ops/self_check` |
 | `folder_not_found` | No folder at that path in this workspace. | **run**: Check the path: relative to the workspace, or `root:path` for a declared source root. |  |  |
@@ -248,6 +251,9 @@ returned with `action: report` rather than costing the response.
 | `job_outcome_needs_review` | The job ran to its end, but its result holds something back for the owner to decide (see outcome_reason). | **tell_user**: Tell the owner what is held back and why; do not use the result as final. |  |  |
 | `job_status_unavailable` | The job record could not be read within the status deadline; the job itself is unaffected. | **retry**: Read its state again in a few seconds; never resubmit it. | `GET /brain_keeper/jobs/{job_id}` (wait: 30) | `GET /brain_keeper/jobs/{job_id}` (wait: 30) |
 | `job_still_running` | The job had not finished when the wait ended. | **wait**: Wait on it again; never resubmit it. | `GET /brain_keeper/jobs/{job_id}` (wait: 30) | `GET /brain_keeper/jobs/{job_id}` (wait: 30) |
+| `join_agent_missing` | The agent's own id was not sent, or is not an id (see `detail`). | **run**: Send `agent`: your own id (an OpenClaw agent's id, or a name of letters, digits, - and _ for this agent alone); never ask the person to type it. |  |  |
+| `join_agent_shared` | The id sent is the one the program shares among all its agents. | **run**: From Claude Code, Codex or Cursor, leave `agent` out: your project folder's name is used. From OpenClaw, send this agent's own id. Never the id this connection shows. |  |  |
+| `join_answers_missing` | The plan's style questions (`asks`) were not answered before its `confirm` was sent. | **run**: Put the `asks` to the person one at a time, call again with the answers, show the new plan, and send its `confirm` on their yes. |  |  |
 | `kind_or_template_required` | The request names neither a kind nor a template. | **run**: Send `kind` (or `template_id`); the next call lists the kinds. | `GET /format-templates` |  |
 | `knowledge_weak_context_rate_high` | Half or more of recent answers had weak context. | **tell_user**: Say the collection covers what is asked of it weakly. |  | `GET /ops/status` |
 | `limit_out_of_range` | The `limit` asked for is below one (see `detail`); the answer lists its own number of items. | **none**: Nothing to do; send a `limit` of 1 or more to list fewer. |  |  |
@@ -306,6 +312,7 @@ returned with `action: report` rather than costing the response.
 | `parts_overlap` | Two parts proposed share pages. | **run**: Look at the split in a dry run (it reads, and spends nothing). Without a confident split the document is read whole, in parts (adding documents does this by itself); a split the user names is sent as `chapters`, never asked for. | `POST /sources/process_book` (path: {path}, dry_run: True) |  |
 | `parts_too_few` | Fewer than two parts were proposed. | **run**: Look at the split in a dry run (it reads, and spends nothing). Without a confident split the document is read whole, in parts (adding documents does this by itself); a split the user names is sent as `chapters`, never asked for. | `POST /sources/process_book` (path: {path}, dry_run: True) |  |
 | `path_not_allowed` | The path is outside the workspace and every declared source root. | **tell_user**: Use a path inside the workspace, or ask the owner to declare a source root for it. |  |  |
+| `path_not_local` | The call names a file or folder on another computer (a network share) while a collection here asks for access keys. | **tell_user**: Say so; name it on this computer, or the owner takes it in. |  |  |
 | `path_required` | The request names no path. | **run**: Send `path`. |  |  |
 | `pdf_converter_not_supported` | The selected PDF converter is not one this version supports. | **tell_user**: Say so; the owner selects a supported one in config/conversion.json. |  | `GET /ops/self_check` |
 | `pdf_converter_unavailable` | The selected PDF converter is not installed. | **tell_user**: Say so; the owner installs it, or selects another in config/conversion.json. |  | `GET /ops/self_check` |
@@ -401,6 +408,8 @@ returned with `action: report` rather than costing the response.
 | `setting_unknown` | No choice of the catalogue has that name (see `detail`: the closest names, and every choice this call changes). | **run**: Send the choice by one of the names `detail` gives; `check_setup` lists them too (`choices`). |  |  |
 | `setting_value_invalid` | The value or words sent do not fit the choice (see `detail`). | **run**: Send them as `detail` says. |  |  |
 | `setup_needs_local_connection` | A setup call came over a connection that is not on the owner's own machine. | **tell_user**: Say so; setup is done from a connection the agent program starts on the owner's own computer. |  |  |
+| `sign_in_link_owner_only` | A sign-in link for the web page is made only for Kovium's own start script on this computer. | **tell_user**: Say so; the owner gets one from the start script, which prints it. |  |  |
+| `sign_in_no_collection` | This connection has no collection yet, so there is nothing to sign in to. | **run**: Open or join the collection first; then sign in on that collection's own connection. |  |  |
 | `source_missing` | Evidence rests on a source whose original file is gone. | **tell_user**: Say so; the owner restores the file or settles it through reconciliation. | `POST /sources/reconcile` (dry_run: True) | `POST /sources/reconcile` (dry_run: True) |
 | `source_not_found` | No file at that path in this workspace. | **run**: Check the path: relative to the workspace, or `root:path` for a declared source root. |  |  |
 | `source_not_text` | The source is not a text file. | **run**: Name its text note instead. |  |  |
@@ -420,6 +429,21 @@ returned with `action: report` rather than costing the response.
 | `title_not_found` | A part's title was not found where it is said to start. | **run**: Look at the split in a dry run (it reads, and spends nothing). Without a confident split the document is read whole, in parts (adding documents does this by itself); a split the user names is sent as `chapters`, never asked for. | `POST /sources/process_book` (path: {path}, dry_run: True) |  |
 | `toc_entries_not_found` | Entries of the table of contents were not found in the text. | **run**: Look at the split in a dry run (it reads, and spends nothing). Without a confident split the document is read whole, in parts (adding documents does this by itself); a split the user names is sent as `chapters`, never asked for. | `POST /sources/process_book` (path: {path}, dry_run: True) |  |
 | `toc_sections_without_chapter` | Sections of the table of contents fall under no chapter. | **run**: Look at the split in a dry run (it reads, and spends nothing). Without a confident split the document is read whole, in parts (adding documents does this by itself); a split the user names is sent as `chapters`, never asked for. | `POST /sources/process_book` (path: {path}, dry_run: True) |  |
+| `token_agent_mismatch` | The `agent_id` sent is not the token's own agent. | **run**: Leave `agent_id` out (the token's agent is used), or send the token's own agent. |  |  |
+| `token_copy_not_allowed` | The call names a file of a collection that asks for access keys while it is about another collection: taking it there needs the owner, or a manager's key of that collection. | **tell_user**: Say so; work on that file in its own collection, signed in with its key, or ask a manager of it or the owner. |  |  |
+| `token_end_invalid` | The end date given is not a date, or is already past (see `detail`). | **run**: Send `expires` as a future date, year-month-day. |  |  |
+| `token_expired` | The access token shown has passed its end date. | **tell_user**: Say so; ask the owner for a new token. The owner issues one with `scripts/access_token.py issue`, or an agent that manages the collection and may grant does with `issue_token`. |  |  |
+| `token_file_outside_project` | The key file must be written inside your own project or workspace folder (see `detail`). | **run**: Send `to` as a file path inside the folder you work in. |  |  |
+| `token_file_unreadable` | The key file named cannot be read (see `detail`). | **run**: Send `token_file` as the key file's full path, as your instructions name it; if there is none, tell the owner. |  |  |
+| `token_fingerprint_ambiguous` | Several tokens start with the fingerprint sent. | **run**: Send more of the fingerprint, as the listing shows it. | `GET /collections/tokens` |  |
+| `token_fingerprint_invalid` | A token is named by its short fingerprint, 8 characters of 0-9 and a-f. | **run**: Send the fingerprint as the listing of tokens shows it. | `GET /collections/tokens` |  |
+| `token_issue_not_allowed` | An access token is handed out only through the AI program's own connection on this computer, by the owner, or by a manager signed in that may grant. | **tell_user**: Say so; the owner issues one with `scripts/access_token.py issue`, or the person asks again in the AI program's own conversation on this computer. |  |  |
+| `token_not_found` | No access token of this collection has that fingerprint. | **run**: List the tokens and send one of their fingerprints. | `GET /collections/tokens` |  |
+| `token_other_collection` | The access token shown belongs to another collection on this computer. | **run**: Sign in with this collection's own key file (`sign_in`); a token works for one collection only. |  |  |
+| `token_required` | This collection asks every caller for its own access token, and this call showed none. | **run**: Over MCP, call `sign_in` with `token_file` (the key file your instructions name); over HTTP, send `Authorization: Bearer <token>` on every call. With no key yet, tell the owner. The owner issues one with `scripts/access_token.py issue`, or an agent that manages the collection and may grant does with `issue_token`. |  |  |
+| `token_settings_unreadable` | The collection's access settings file cannot be read just now, so the call is refused rather than let through. | **retry**: Try again shortly; if it stays so, tell the owner: the collection's settings file needs repairing. |  |  |
+| `token_switch_needs_key` | Switching access tokens on would lock this agent out: it holds no token for this collection yet. | **run**: Issue yourself a token first (`issue_token` for your own id, at your present level), sign in with it (`sign_in`), then change the setting again. |  |  |
+| `token_unknown` | The access token shown is not one of this collection's (never issued here, or taken back). | **tell_user**: Say so; ask the owner for a token for this collection. The owner issues one with `scripts/access_token.py issue`, or an agent that manages the collection and may grant does with `issue_token`. |  |  |
 | `tool_not_offered` | No tool by that name is offered on this connection. | **run**: List the tools and call one that is listed. |  |  |
 | `tool_outside_surface` | The tool is on a wider surface than this session is on (see `detail`); this connection may widen to it. | **run**: Widen this session with `request_tools` to the surface `detail` names, then call the tool. |  |  |
 | `topic_matched_nothing` | The topic matched no note. | **run**: Ask again with other words for the topic, or with facets. |  |  |

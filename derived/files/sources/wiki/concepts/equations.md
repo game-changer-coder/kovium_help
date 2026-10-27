@@ -7,17 +7,17 @@ description:
 status: draft
 synthesis: deterministic
 definition_basis: sources
-sources: [equations-v1, second-brain-architecture]
+sources: [equations-v1, architecture]
 concepts: [equations]
 broader: []
-narrower: [post-sources-equations, unread-equations]
+narrower: [post-sources-equations]
 source_count: 2
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:00.804720+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:40.564328+00:00}"
 ---
 
 # equations
@@ -40,11 +40,11 @@ None recorded.
 
 ## Hierarchy
 - Broader: none
-- Narrower: [[post-sources-equations|POST /sources/equations]], [[unread-equations|Unread equations]]
+- Narrower: [[post-sources-equations|POST /sources/equations]]
 
 ## Sources
 - undated · [[equations-v1|Equations read where the caller needs them v1 (Track N)]] — Names this concept.
-- undated · [[second-brain-architecture|Second Brain Architecture]] — Names this concept.
+- undated · [[architecture|Kovium Architecture]] — Names this concept.
 
 ## Concepts
 - [[equations|equations]]
@@ -53,7 +53,7 @@ None recorded.
 - **equations**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[equations-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[equations-v1]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

@@ -4,12 +4,12 @@ title: "User guide v1"
 description: "A guide for a person, not a contract. Its words follow plain_language_rules_v1.md and are checked by tests/contracts/test_option_catalogue.py. Each choice named here has its four lines in the option catalogue."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "guide"
-audience: "a person setting up or using second brain"
+audience: "a person setting up or using Kovium"
 doc_path: "docs/user_guide_v1.md"
-doc_sha256: "176deb52618ec0fcddd0c33eabee18b81c56c3410e2ad757bdab4af25433e0ae"
+doc_sha256: "71e330daa4c324b56c3092d86321ee27d1b012581c3e18326844daab1d6a32bc"
 ---
 
 # User guide v1
@@ -18,43 +18,46 @@ doc_sha256: "176deb52618ec0fcddd0c33eabee18b81c56c3410e2ad757bdab4af25433e0ae"
 A guide for a person, not a contract. Its words follow plain_language_rules_v1.md and are checked by
 tests/contracts/test_option_catalogue.py. Each choice named here has its four lines in the option catalogue.
 -->
-# Second brain: a guide for a person
+# Kovium: a guide for a person
 
-Second brain answers questions from your own documents, and shows the exact place each answer comes from. You talk to it
+Kovium answers questions from your own documents, and shows the exact place each answer comes from. You talk to it
 through the AI program you already use. This guide says what it does, what it costs, and what you can change.
 
 ## Getting started
 
-To install second brain, run its setup once from its folder. It connects second brain to the AI programs it finds on
+To install Kovium, run its setup once from its folder. It connects Kovium to the AI programs it finds on
 your computer, and to Claude Code as a plugin, which also brings its skills.
 
-Say "help me start with second brain" to your AI program. It first shows second brain on a small example collection.
+Say "help me start with Kovium" to your AI program. It first shows Kovium on a small example collection.
 That takes about a minute and uses no tokens. You never type a command for it.
 
-Then it offers a short tour of what happens to a document you add: eight short steps, each with something to try. You can stop at any step.
+Then it offers a short tour of what happens to a document you add: nine short steps, each with something to try. You can stop at any step.
+Each step says how far along you are and what kind of step it is, and ends with what to say for the next one.
 The tour first shows how to look at a collection: in Obsidian, a free program for notes, in a text editor, or in the chat.
 You find one document at every stop of its way. You keep one small note as a copy, point to another, and run a practice night for free.
 At the end you add one waiting page yourself and watch its note, its map and its links appear.
+Then it offers the full manual, which answers any question about Kovium.
 The example and its tour are for a first start, before you have a collection of your own.
+For a start step by step, with the words to type in each AI program, open the getting started guide in Kovium's folder.
 
-- The example collection: a few short pages about second brain, ready to ask, with one page waiting for you to add.
+- The example collection: a few short pages about Kovium, ready to ask, with one page waiting for you to add.
 - Help at any time: ask how anything works, and the answer comes from this guide, with the section it comes from.
 
-## What you need to run second brain
+## What you need to run Kovium
 
 You need an AI program you already use, signed in with a subscription you already pay for.
 It is the kind of AI assistant that works on your own computer, such as an AI coding assistant. Claude Code, Codex and OpenClaw work today.
-You need no pay-per-use account and no extra service. Second brain itself runs on your own computer.
+You need no pay-per-use account and no extra service. Kovium itself runs on your own computer.
 
 ## What stays on your computer
 
-Your documents, your notes and your collections stay on your computer. Second brain never shares your files with other people or puts them online.
+Your documents, your notes and your collections stay on your computer. Kovium never shares your files with other people or puts them online.
 The only text that leaves your computer is what your AI program reads to do its work, sent to the service of your subscription.
 
 ## What a collection is
 
 A collection is a set of documents you ask questions about. It lives in one folder on your computer.
-Second brain keeps your documents there, with a note for each one, and everything it learns from them.
+Kovium keeps your documents there, with a note for each one, and everything it learns from them.
 
 You can copy that folder to another computer and open it there. Nothing needs to be added again.
 Your own originals are never deleted or overwritten without asking you first.
@@ -63,7 +66,7 @@ Your own originals are never deleted or overwritten without asking you first.
 
 To make one, tell your AI program in a few words what it will hold. You are then asked where it goes:
 the folder you work in now, a folder you name, or the default place. The default place is inside
-second brain's own folder, where an update or a move of the program can put a collection at risk.
+Kovium's own folder, where an update or a move of the program can put a collection at risk.
 From then on that conversation uses it.
 
 - Where your collection is kept: the folder you work in now, one you name, or the default place, asked once.
@@ -80,9 +83,68 @@ An AI program can never give itself more than you allowed.
 
 To see what works on this computer, and what is off or missing, ask your AI program to check the setup.
 
+## Connecting one agent to a collection
+
+To connect one agent to a collection you already have, say to it "connect yourself to my thesis collection".
+It finds the collection by its name among the ones on this computer, and you can ask it which ones there are.
+First you see a plan. On your yes the agent joins under its own name, and only that agent gets the collection.
+It also gets its own instructions for that collection, which tell it to use the collection when you name it.
+Where the connection is kept depends on the AI program:
+
+- Claude Code keeps it for the one project the agent works in.
+- Codex keeps it in the project's own settings, but only in a project you trust in Codex. In any other project it goes where all your projects see it, and you are told.
+- OpenClaw shows it to that one agent only. This hides it from your other agents there, but it is not a lock.
+- Cursor keeps it in the project's own settings.
+
+The connection takes effect in a new conversation, not the one where you asked. Your agent says so, before and after.
+AI programs load their connections only when a conversation starts. So start a new conversation with that agent.
+If no AI program manages the collection yet, the agent that joins will manage it.
+Say so if it should only read. To undo it, say "disconnect from my thesis collection".
+Its connection and its instructions go, and the collection itself stays as it was.
+The conversation where you asked may still show the collection's tools until it ends; a new one does not.
+Even with access keys on, any AI program on this computer can see the names of your collections, but not their contents.
+
+## Access keys
+
+An access key is a long secret word that one assistant holds for one collection. It proves which assistant is asking.
+Each collection has a choice, Access keys for AI programs, and it is off until you turn it on.
+While it is off, everything works as before: an assistant says who it is, and Kovium believes it.
+When it is on, an assistant without its own key for that collection is turned away, and told why in plain words.
+What an assistant with a key may do is still what you allowed it: only read, also suggest changes, or more.
+
+To give your assistant its key, ask it to connect itself to the collection.
+When the keys are on, it gets its own key on your yes, kept in a small file in its own folder.
+Its instructions tell it to use that file at the start of every conversation, so you never type the key.
+You can also make a key yourself with the access key script, for one assistant and one collection, with an end date if you like.
+An assistant that manages the collection and may give access can make a key for another assistant, shown to you first as one sentence.
+
+To turn the keys on, first give each of your assistants its key, then change the choice. An assistant that has no key yet is asked to get one first.
+A key can be taken back at any time, and from the next question on it no longer works.
+You can list the keys of a collection, with the assistant each one is for and the last time it was used.
+Copying a collection's folder never copies a usable key: the folder keeps only a fingerprint of each one.
+
+Your own web page asks for a key too. When Kovium starts, it prints a link that signs your browser in.
+The link works once, for ten minutes. If you start Kovium again, use the new link it prints.
+
+What a key does not do: on one computer under one login, an assistant that can read any file can read another assistant's key file.
+Keys stop mistakes, assistants that cannot read your files, and callers from other computers.
+They do not stop a determined assistant on this computer that can run any command.
+Real separation needs a separate user account, or a container, for each assistant.
+
+## When your agent does not use your collection
+
+If your agent ignores your collection, start a new conversation first. Most AI programs only see a new connection in a new conversation.
+Some programs show an agent its connected tools only when it looks for them, so it may answer from its own memory instead.
+The instructions Kovium writes for the agent tell it to look first, whenever you name the collection.
+If your agent has no such instructions yet, ask it to connect itself to the collection, and it adds them.
+
+- Claude Code: the connection is kept for the project where the agent joined, so start Claude Code in that folder.
+- Codex: a project's own settings count only in a project you trust in Codex.
+- OpenClaw: the connection is shown to the agent that joined, so ask that agent, not another one.
+
 ## Adding documents
 
-You say what to add: files, a folder, or links. Second brain first makes a plan, and the plan costs nothing.
+You say what to add: files, a folder, or links. Kovium first makes a plan, and the plan costs nothing.
 It tells you what it found, what it will skip and why, and what it expects to use.
 
 You are asked one question about money, once: how many tokens of your subscription one addition may use without asking you again.
@@ -96,7 +158,7 @@ even after trying again, and what it used. If something needs you, the last line
 - Asking before anything is spent: nothing that uses tokens runs without a plan you were shown first.
 - Other versions of one document: a draft and its final form are kept and linked, so nothing is lost.
 - Splitting long documents: a book is cut into parts by its own contents, and it is read whole if the parts are unclear.
-- Keeping copies of your originals: second brain keeps its own copy of each file, or only points to where it lies.
+- Keeping copies of your originals: Kovium keeps its own copy of each file, or only points to where it lies.
   The first plan that brings files from outside the collection asks you once. Keeping copies is recommended,
   so the collection holds everything and can be moved or backed up as one folder.
 - Clean names for notes you already have: notes added before names were made clean get their title as their name, once.
@@ -106,7 +168,7 @@ even after trying again, and what it used. If something needs you, the last line
 ## Adding files, folders and books
 
 Tell your AI program what to add: one file, several files, a whole folder, or a link to a web page or a video.
-A book or another long document is added the same way, and second brain cuts it into its chapters for you.
+A book or another long document is added the same way, and Kovium cuts it into its chapters for you.
 First you see the plan, with what it will cost. Nothing is added until you say yes, or until it fits the limit you set.
 The plan also says what your files need, such as the better PDF reader. A choice that cannot wait is asked before anything is added.
 Adding goes on in the background, so the conversation carries on. At the end you get the short report.
@@ -133,7 +195,7 @@ Nothing is lost, and nothing has to be set up again.
 
 ## Reading your documents
 
-Most files are read at once. A few kinds need a small program on your computer, and second brain tells you which ones
+Most files are read at once. A few kinds need a small program on your computer, and Kovium tells you which ones
 your own files need. It looks at your files before it says so.
 
 Some choices cannot wait. The better PDF reader is the one. If you add PDFs with tables first and install it later,
@@ -146,7 +208,17 @@ those PDFs must be read again, at a cost in time and tokens. So it is asked befo
 - Reading pictures: the AI describes the figures in your documents. It uses tokens, so it is offered with an estimate.
 - Pictures on web pages: whether pictures on added pages are kept with the page.
 - Repairing lost letters: letters a PDF reader lost are put back when the document itself shows the right word.
-- Videos added from a link: second brain reads the captions the site shows, and never the video file.
+- Videos added from a link: Kovium reads the captions the site shows, and never the video file.
+
+## Looking at your collection in Obsidian
+
+Obsidian is a free program for reading folders of notes. Open your collection's folder in it as a vault.
+A tidy view in Obsidian is on in every collection. It hides the files Kovium keeps for upkeep, such as earlier versions of concept pages, so you see your notes.
+In the map of links, each kind of note has its own colour, and arrows show which note links to which.
+Links to notes that do not exist yet are left out of the map.
+A kind of note that nothing named before gets a colour of its own, and it keeps that colour.
+A colour, a filter or a hidden folder you set in Obsidian yourself is kept. Your zoom and your open notes are never touched.
+It is free and uses no tokens. Ask your AI program to turn it off if you prefer Obsidian as it comes; what was already set stays.
 
 ## Asking
 
@@ -166,16 +238,16 @@ Each warning also says what to do next.
 
 ## The full manual
 
-Second brain can fetch its own manual as a collection you can ask. It holds the current documents about second brain, and every answer shows the document it comes from.
+Kovium can fetch its own manual as a collection you can ask. It holds the current documents about Kovium, and every answer shows the document it comes from.
 The tour offers it at the end, and you can ask for it at any time. It is free, and nothing has to be built or paid for.
-It is kept apart from your own collections: it answers questions about second brain, and never about your documents.
-Until you have it, your questions about second brain are answered from this guide.
-If the manual you have was made for another version of second brain, you are told, and asking for it again fetches the matching one.
+It is kept apart from your own collections: it answers questions about Kovium, and never about your documents.
+Until you have it, your questions about Kovium are answered from this guide.
+If the manual you have was made for another version of Kovium, you are told, and asking for it again fetches the matching one.
 Without the internet it cannot be fetched, and everything else works as before.
 
-## Your own second brain agent
+## Your own Kovium agent
 
-If your AI program lets you add agents of your own, second brain can add one for a collection, which answers the way you like.
+If your AI program lets you add agents of your own, Kovium can add one for a collection, which answers the way you like.
 You are asked three short questions: simple or technical answers, short or detailed ones, and the tone and language.
 Then one free line about anything else, and no is fine. Each question has a recommended answer.
 The agent is added to your project beside the agents you already have, which stay exactly as they are.
@@ -199,9 +271,9 @@ When several documents share an idea, that idea gets a page of its own. It says 
 When two notes disagree, nothing is overwritten: the concept page shows what each of them says, side by side.
 These pages are kept up to date as documents arrive. Your own notes and ideas are kept apart from the evidence and never counted as evidence.
 
-Every note that second brain writes ends its content with a section called My notes, and a short hint line under its title.
+Every note that Kovium writes ends its content with a section called My notes, and a short hint line under its title.
 Write there whatever you like beside a document: a doubt, a question for a colleague, a thought for later.
-Second brain never rewrites that section. Your words stay exactly as you wrote them when the document is added again,
+Kovium never rewrites that section. Your words stay exactly as you wrote them when the document is added again,
 read again, renamed or tidied. If the document is removed, your words are kept in a separate file, and you are told where.
 Your words can help a question find the note. An answer shows them apart, as yours, and never as something the document says.
 
@@ -212,11 +284,11 @@ Your words can help a question find the note. An answer shows them apart, as you
 - The name of your own words section: the title can be set in the language you write in. Words under the old title are still kept.
 - Hints about your collection for the AI: a short description of your collection, kept off until you approve one.
 - Suggestions of what to read next: compares what your documents say about topics you name. It is off until you ask.
-- Letters with marks in file names: how such letters are spelled in the names second brain makes.
+- Letters with marks in file names: how such letters are spelled in the names Kovium makes.
 
 ## Words your own documents use
 
-Second brain finds the parts of a book and checks numbers with short lists of words.
+Kovium finds the parts of a book and checks numbers with short lists of words.
 The lists hold many common words already, and you can add the ones your own documents use.
 Ask your AI program to add them, and it shows you the change before it applies.
 
@@ -240,12 +312,12 @@ When you first make a collection, you are asked once whether they may run, and h
 - Nightly reading of equations: how many minutes a night your computer may spend on unread equations. It uses no tokens.
 - Renamed or moved originals: an exact match is fixed by itself, and a likely match is always offered to you first.
 
-The check of your setup also says, in words, when another version of second brain last used a collection, or built its search entries.
+The check of your setup also says, in words, when another version of Kovium last used a collection, or built its search entries.
 Building them again is free, and is done in a copy.
 
 ## The AI program and your subscription
 
-Second brain never uses a pay-per-use account. All its AI work goes through an AI program signed in with your subscription.
+Kovium never uses a pay-per-use account. All its AI work goes through an AI program signed in with your subscription.
 If only a pay-per-use key is available, it stops and says so.
 
 - The AI program that does the work: which program is used, and how large a model setting.
@@ -255,13 +327,13 @@ If only a pay-per-use key is available, it stops and says so.
 
 These happen in every collection, and nothing asks about them.
 
-- A place for your own words in each note: the My notes section, which second brain never rewrites.
+- A place for your own words in each note: the My notes section, which Kovium never rewrites.
 - A map of each document: drawn by code in seconds, for no tokens.
 - Duplicates found by content: a file you already have under another name is not added twice.
 - Links between notes: so a question about one thing finds notes about a related one.
 - Concept pages: one for each idea that several documents share.
 - The record of what changed: so you can see what happened and undo it.
-- Your originals stay safe: second brain asks before it deletes or overwrites one.
+- Your originals stay safe: Kovium asks before it deletes or overwrites one.
 
 ## What uses your subscription
 
@@ -284,7 +356,7 @@ Doing nothing never uses tokens, and nothing is added without a plan you saw.
 
 ## Capping or stopping spending
 
-Second brain never charges you money. You need no extra service or account: it only uses tokens of the subscription you already have.
+Kovium never charges you money. You need no extra service or account: it only uses tokens of the subscription you already have.
 Only work done by the AI uses tokens: adding documents, and a few choices that say so when you make them.
 To cap what it spends, set the token limit for adding documents. A run that reaches the limit stops before the next document.
 To stop spending altogether, say no to a plan, or ask for documents to be added without the AI, which uses no tokens.
@@ -293,9 +365,9 @@ Looking things up in your collection and reading your notes are free.
 ## Getting your notes out
 
 Your notes are plain text files in your collection's folder on your computer, and they belong to you.
-If you stop using second brain, nothing is locked in: keep the folder, or copy the notes anywhere you like.
+If you stop using Kovium, nothing is locked in: keep the folder, or copy the notes anywhere you like.
 Any text editor opens them, and so does Obsidian, a free program for reading folders of notes.
-Your original files stay where they were, or in the collection's folder if second brain kept a copy.
+Your original files stay where they were, or in the collection's folder if Kovium kept a copy.
 
 ## Removing a document
 
@@ -305,10 +377,10 @@ Your original file is never deleted or overwritten without asking you first.
 
 ## Working without the internet
 
-Second brain runs on your own computer. Asking, searching and reading your notes need no internet access.
+Kovium runs on your own computer. Asking, searching and reading your notes need no internet access.
 Adding documents with the AI needs your AI program, and that needs the internet. Adding documents without the AI does not.
 Search by meaning uses a small program on your computer, so it works offline too. Adding a web page or a video needs the internet.
 
 ## What is not simple yet
 
-Installing second brain still takes a step.
+Installing Kovium still takes a step.

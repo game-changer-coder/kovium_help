@@ -1,41 +1,34 @@
 ---
 type: "documentation"
 title: "Run Local"
-description: "From ~/second_brain:"
+description: "once and connects your AI program. No server is needed for that."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "guide"
-audience: "a person setting up or using second brain"
+audience: "a person setting up or using Kovium"
 doc_path: "docs/run_local.md"
-doc_sha256: "4b1f1c1129d281b6b725bfe35915a17b95a2ff7c34aead2f69b054dd87bbe40d"
+doc_sha256: "76f67e5111606361518522701118486cb7d148c98a4e24232d5ef36ee3473392"
 ---
 
 # Run Local
 
-## Start the API and UI locally
-From `~/second_brain`:
+**New to Kovium?** Follow the getting started guide. It installs Kovium
+once and connects your AI program. No server is needed for that.
+
+To run the web page and the HTTP routes yourself, see [[test-me-first|TEST_ME_FIRST.md]] and the
+README's "Try it in five minutes, over HTTP". In short, from the checkout:
 
 ```bash
-python3 -m venv .venv
-.venv/bin/pip install -e .[dev]
-.venv/bin/uvicorn second_brain.api.app:create_app --factory --host 127.0.0.1 --port 8000
+python scripts/run_kovium.py     # makes .venv if missing, installs, serves on http://127.0.0.1:8000
+python scripts/run_kovium.py --skip-install --background   # detached: returns once it answers
 ```
 
-Then open:
-- `http://127.0.0.1:8000/` for the UI shell
-- `http://127.0.0.1:8000/docs` for FastAPI docs
+`--background` is the form an agent's own command tool uses: the service runs on its own, its output in
+`logs/service.log`, and the command returns. Running it again while the service answers changes nothing.
+Stop it as you stop any process; stop the `uvicorn` process too, since stopping only the start script
+leaves the server running.
 
-## Seed the bundled sample corpus
-Use the API:
-
-```bash
-curl -X POST http://127.0.0.1:8000/ingest/sample -H 'Content-Type: application/json' -d '{}'
-```
-
-## Current scope
-- UI is a first simple shell
-- backend is the working MVP core
-- graph storage is still in-memory
-- restarting the service clears in-memory graph state until persistent storage is added
+Then open `http://127.0.0.1:8000/?workspace_id=<id>` for the UI and `http://127.0.0.1:8000/docs`
+for the API docs. The store is persistent (SQLite under each workspace's `data/staging/`).

@@ -4,12 +4,12 @@ title: "Ingestion Specification V1"
 description: "Markdown is the only supported source-of-truth format for V1. All future source types must first be converted into Markdown by an external pre-ingestion layer."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/ingestion_spec_v1.md"
-doc_sha256: "cc82d9147a8e3aac54b32c229e3ca45c99a2db0e6277c3be6edaf3b8aa02495e"
+doc_sha256: "c63c96d741c2506bceccb8650c6874a1ad21af097fd65e567c2650917eed1b48"
 ---
 
 # Ingestion Specification V1
@@ -920,7 +920,7 @@ What the fetcher will not do:
 - **Return an empty or error page.** A note built from a 404 reads exactly like
   a note built from the real thing, so the failure is loud instead.
 
-It sends no credentials and identifies itself as `second-brain/1.0`. This is not
+It sends no credentials and identifies itself as `kovium/1.0`. This is not
 a model call and cannot be billed; `tests/system/test_billing_safety.py` names
 the module explicitly so that stays a recorded decision rather than an accident
 of what the import scanner happens to check.
@@ -1053,6 +1053,11 @@ plus one read's deadline, whatever else the server is doing. Job records are
 written whole: a temporary file beside the record, then one atomic replace. A
 read can no longer meet a record half-written by the job (or by an MCP session
 writing the same folder) and answer `job_not_found` for a job that is running.
+On Windows a reader holding the record refuses the replace; the writer tries
+again after a growing pause (5 ms up to 100 ms) for up to 10 seconds of elapsed
+time, not a fixed number of tries (2026-10-25). Past that bound it raises
+`JobRecordNotWritten`, naming the record: the last whole version stays on disk,
+the temporary copy is removed, and the job's next save writes the new state.
 
 **Lost a job id? List the jobs (Track AI2).** `GET /brain_keeper/jobs` returns
 the workspace's most recently active jobs, newest first: `job_id`, `skill`,

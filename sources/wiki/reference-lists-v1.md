@@ -4,10 +4,10 @@ title: "Reference lists v1: glossaries and lookup lists kept term by term (Track
 description: "How a list a reader looks things up in (a glossary, an abbreviation list, a lookup list, a code table, a list of symbols) reaches its notes, the graph and an answer, whatever its subject and language. Plan..."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/reference_lists_v1.md"
 doc_sha256: "c2caceeca8d56e07ed0d5ad927ee5ca4579d4e20fcca0613d093ff5cafd3f116"
 ---

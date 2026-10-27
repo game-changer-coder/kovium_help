@@ -4,12 +4,12 @@ title: "Workstream B Governance And Routing Policy V1"
 description: "This document is the explicit closeout policy for Workstream B."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/workstream_b_governance_and_routing_policy_v1.md"
-doc_sha256: "5075bea4cf47a749a232a3b0724acefcf2f22ee76270967a6ebc7ed942683128"
+doc_sha256: "1ac42dc79b2fca9f4e86b3a664bfee3bdc4e22a8806f17912070dd8eb61394a4"
 ---
 
 # Workstream B Governance And Routing Policy V1
@@ -31,7 +31,7 @@ It defines:
 > unless they name a registered `workspace_id` (`422` when none is named, `404`
 > when it is not registered); an `agent_id` alone no longer resolves to a
 > workspace. The behaviour below survives only when an install opts out with
-> `SECOND_BRAIN_ALLOW_UNSCOPED=1`. In that mode the legacy default workspace is
+> `KOVIUM_ALLOW_UNSCOPED=1`. In that mode the legacy default workspace is
 > built the first time an unscoped call needs it; a strict install never builds
 > it at all, and asking the registry for it raises. `GET /agent/knowledge/contract`
 > needs no workspace in either mode, because it describes the API rather than

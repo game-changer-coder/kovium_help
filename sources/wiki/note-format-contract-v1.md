@@ -4,12 +4,12 @@ title: "L3 Note Format Contract v1"
 description: "The L3 note is the human-readable artifact and the canonical semantic unit. Everything else — graph nodes, maps, indexes — is derived from it and must stay rebuildable from it."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/note_format_contract_v1.md"
-doc_sha256: "9d67cf630edbaaa4a22660e36613edd2fa4b917a4bcc4999d81f58ea50508ec9"
+doc_sha256: "cba94501a130b657285f712fde71a9374f8471e4c92a322b4534517a73a9a0be"
 ---
 
 # L3 Note Format Contract v1
@@ -18,7 +18,7 @@ The L3 note is the human-readable artifact and the canonical semantic unit.
 Everything else — graph nodes, maps, indexes — is derived from it and must stay
 rebuildable from it.
 
-Three layers. The Literature vault was the design inspiration; second_brain is
+Three layers. The Literature vault was the design inspiration; Kovium is
 a separate, self-contained project and shares no files or formats with it.
 
 | layer | what | where |
@@ -30,7 +30,7 @@ a separate, self-contained project and shares no files or formats with it.
 
 ## Why sections are split into three kinds
 
-A second brain ingests more than papers — meeting notes, transcripts, blog
+A Kovium instance ingests more than papers — meeting notes, transcripts, blog
 posts. Those share very little *content* structure with a paper, but a reader
 browsing the knowledge base needs the same entry points regardless of what they
 opened. So the contract has:
@@ -108,7 +108,7 @@ entry, `- **Term**: definition` as the source writes it, each read as a
 
 ## Type-specific sections — the other built-in types
 
-second_brain is not a paper tool, and these five are first-class, not
+Kovium is not a paper tool, and these five are first-class, not
 afterthoughts. Each is defined once as a `TypeProfile` in
 `second_brain/notes/contract.py`; the template file, the pipeline's rendering
 and this table all follow from it.
@@ -443,7 +443,7 @@ warning (`not-applicable-has-value`), and so is one naming a facet the note's
 type does not carry (`not-applicable-unknown`). Who writes the mark: the brain
 keeper agent, in the answer that assigns the note's facets (at intake, as
 `not_applicable`; and in `POST /maintenance/refacet`), and the owner by hand.
-**Never a caller agent**: facets belong to second brain alone (Track AQ), and no
+**Never a caller agent**: facets belong to Kovium alone (Track AQ), and no
 route lets a caller write the key. The system only accepts a mark for a facet
 the note's type carries and the workspace has registered values for, and drops
 it when the same answer gave the facet a value. A long document read in parts
@@ -497,7 +497,7 @@ Written down once, the lint findings: `section-optional-empty`,
 `not-applicable-has-value`, `not-applicable-has-content` and
 `not-applicable-unknown` are warnings; the report adds `not_applicable`
 (`facets`, `sections`) and `cited_not_held` (`work`, `cited_by`, `count`).
-`facet-missing` now says that second brain assigns a value or marks the facet,
+`facet-missing` now says that Kovium assigns a value or marks the facet,
 and that nothing asks for a value to be invented (Track AQ6).
 
 ## Broken characters (Track AT)
@@ -532,7 +532,7 @@ keeps for itself:
 - ...
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->
 
 ## Links
 ```
@@ -759,7 +759,7 @@ owner-work note, a contribution and a concept note (`concept_notes_v1.md`).
 
 ## Frontmatter
 
-**It must be readable by a standard YAML reader**, not only by second_brain's
+**It must be readable by a standard YAML reader**, not only by Kovium's
 own parser. That parser is deliberately small — one `key: value` per line,
 `[a, b]` for lists — and it is *forgiving*: it splits on the first colon and
 keeps the rest. So the pipeline wrote `title: Chapter 2 — Agents: Identity and
@@ -1067,7 +1067,7 @@ index — and it is where an install's named parties and projects used to land
 before `about` existed.
 
 **How they get filled.** The workspace's registered vocabulary
-(`config/facet_vocabulary.json` — the only format second_brain reads) is passed
+(`config/facet_vocabulary.json` — the only format Kovium reads) is passed
 to the extraction step, which may use only values that appear in it. Anything
 else is discarded before it reaches the note, because a vocabulary that accepts
 anything is not closed and stops working as an index.
@@ -1546,7 +1546,7 @@ on the same notes; the script reads the workspace's vocabulary when given none. 
 not offered (`narrower_read`).
 
 **Which vocabulary it uses.** `config/facet_vocabulary.json`, and nothing else.
-second_brain is self-contained: it does not read, or parse the shape of, any
+Kovium is self-contained: it does not read, or parse the shape of, any
 file belonging to another project, so a vocabulary from elsewhere is converted
 into this format once rather than carried as a second runtime format forever.
 A file that exists but registers nothing counts as absent, since workspace
@@ -1562,7 +1562,7 @@ surfaced in the log and left there.
 
 ## Keeping the vocabulary healthy
 
-The idea came from the Literature vault; the implementation is second_brain's
+The idea came from the Literature vault; the implementation is Kovium's
 own, split along the project's standing line.
 
 **Deterministic** (`scripts/reindex_vocabulary.py`, `POST /maintenance/vocabulary`):
@@ -1593,7 +1593,7 @@ is no longer closed, which is precisely what makes it usable as an index.
 
 ### Running it nightly without a standing bill
 
-Maintenance is scheduled **per second-brain instance, not per machine**. Each
+Maintenance is scheduled **per Kovium instance, not per machine**. Each
 workspace has its own brain-keeper, its own corpus and its own owner, so
 whether it runs — and when, and how large a nightly batch it may take — lives
 in that workspace's own `config/maintenance.json`, next to its vocabulary:
@@ -1628,7 +1628,7 @@ scripts/maintenance_cron.py sync            # crontab := what the configs say
 
 Each enabled workspace gets one crontab line, with its own `flock` (a shared
 lock would let one slow instance suppress every other) and a
-`# second-brain-maintenance:<id>` marker. **Only marked lines are ever read,
+`# kovium-maintenance:<id>` marker. **Only marked lines are ever read,
 rewritten or removed** — the crontab belongs to the user and usually holds
 unrelated jobs. `disable` keeps the time and batch so re-enabling restores the
 same schedule rather than silently reverting to the default.
@@ -1705,6 +1705,10 @@ It proposes by default; `apply: true` writes the facet keys of the note's
 frontmatter in place and emits a `refacet_apply` governance event. Notes that
 already carry facets are skipped unless `include_assigned: true`, since
 re-deciding them costs an agent turn and risks overwriting a human correction.
+One call takes at most `limit` notes (25; the nightly batch is 5): the first
+that need a review, in name order, read until the batch is full. Before
+2026-10-25 it took the first `limit` files and then skipped those that needed
+nothing, so notes that sorted after them were never offered.
 An empty assignment is never written: a facet the agent could not place stays
 as it was, because a missing facet is recoverable and an erased one is not.
 

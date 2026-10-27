@@ -4,12 +4,12 @@ title: "Source roots and portable provenance"
 description: "that stays true) and Workstream D (a workspace that can be moved, backed up and restored as one thing)."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/source_roots_and_portable_provenance_v1.md"
-doc_sha256: "d0a37ca8afda96cd938970fac3cec89037ec45d595f2dcf6f19bbfe3052b8abd"
+doc_sha256: "abfb57b9b7a1bab0627a327e40c4284dea354fcd3311ade4f613574ae2e1d216"
 ---
 
 # Source roots and portable provenance
@@ -84,6 +84,26 @@ first, so this never arises. Refusing was chosen over recording the bare name
 because the bare name is the silent failure this replaces.
 
 `POST /sources/process` also accepts `library:papers/offloading.pdf` as a path.
+
+**The converted copy is spelled by the same rule (2026-10-25).** A note's
+`converted_markdown_path` and its `- Converted markdown reference:` line used to
+go through `portable_path`, which keeps only a file name outside the checkout,
+so a collection living elsewhere recorded `a_page.md`. They now use the
+original's rule, so the copy is checkout-relative inside the checkout and
+collection-relative outside it; a re-read that repoints notes spells it the
+same way.
+
+**A copied or moved collection reads its checkout spellings as its own.** A
+collection inside a checkout records `sandboxes/<id>/sources/...`. Copied to
+another install or moved to a folder of its own, that spelling named nothing in
+the checkout and, read against the collection, `<collection>/sandboxes/<id>/...`:
+a re-processed source's plain text copy was written into that nested folder,
+and its notes, no longer recognised as its own, got a second note beside them.
+`source_roots.relative_readings` now tries, in order, the part after
+`sandboxes/<id>/` inside the collection, the collection, then the checkout;
+`resolve_source` and both ownership keys use it, and when nothing exists the
+collection's own reading is the one returned. For a collection still in the
+checkout the first and last readings are the same file.
 
 ### Ownership keys
 

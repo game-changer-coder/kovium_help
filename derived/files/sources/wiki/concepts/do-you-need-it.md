@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:06.167833+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:42.179277+00:00}"
 ---
 
 # Do you need it
@@ -36,7 +36,6 @@ None recorded.
 
 ## Open problems
 - Do you need it: Everyone needs one, because adding documents is the main thing that uses your subscription. — [[the-option-catalogue|The option catalogue]]
-- Do you need it: Those steps judge new label words, merge concept pages and keep hints up to date, and they wait until you set a limit. — [[the-option-catalogue|The option catalogue]]
 
 ## Hierarchy
 - Broader: none
@@ -52,7 +51,7 @@ None recorded.
 - **Do you need it**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[the-option-catalogue]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[the-option-catalogue]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

@@ -1,20 +1,20 @@
 ---
 type: "documentation"
-title: "Second Brain — the specification and operator's guide"
-description: "This is the first document to read if you are going to run a Second Brain instance, whatever it holds. It says what the platform does, how material moves through it, what the brain keeper is and why it exists, what each feature does and..."
+title: "Kovium — the specification and operator's guide"
+description: "This is the first document to read if you are going to run a Kovium instance, whatever it holds. It says what the platform does, how material moves through it, what the brain keeper is and why it exists, what each feature does and costs..."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "specification"
-audience: "people and agents running second brain"
+audience: "people and agents running Kovium"
 doc_path: "specifications.md"
-doc_sha256: "d0152b5f084bc3f64cdd8f68f9494d4c018c0724facee7c76fb1031f91c93367"
+doc_sha256: "7c19711947be9d9ed48e69661d44ab0ca56fc34d2262dfd68604c6fc1609ca05"
 ---
 
-# Second Brain — the specification and operator's guide
+# Kovium — the specification and operator's guide
 
-This is the first document to read if you are going to *run* a Second Brain
+This is the first document to read if you are going to *run* a Kovium
 instance, whatever it holds. It says what the platform does, how material moves
 through it, what the brain keeper is and why it exists, what each feature does
 and costs, what you can configure and what is fixed, and what to do day to
@@ -39,7 +39,7 @@ one the platform decides for every instance.
 
 ## 1. What this is
 
-Second Brain turns your written material into a knowledge base you can
+Kovium turns your written material into a knowledge base you can
 actually ask questions of.
 
 You give it sources: Markdown notes, PDFs, Word files, web pages, books,
@@ -91,7 +91,7 @@ already use, and their agent makes the calls. The contracts are
 
 1. **One install step**, the same on Linux, macOS and Windows:
    `python scripts/setup.py`. It checks this Python, makes a private
-   environment in the checkout and installs second brain with its MCP extra,
+   environment in the checkout and installs Kovium with its MCP extra,
    looks for the AI programs it knows (Claude Code, Codex, Cursor, OpenClaw),
    checks their sign-in where the program can say it (Claude Code's with
    `claude auth status`, a key that charges per use refused), says in plain words
@@ -100,18 +100,18 @@ already use, and their agent makes the calls. The contracts are
    it found in **welcome mode**: a connection with no collection yet, under
    the program's own agent id. Claude Code gets the plugin this checkout
    ships, a small folder of its own (`skills/claude-code/`: its connection,
-   the four operator skills and a `/second-brain:start` command; Track AY1:
+   the four operator skills and a `/kovium:start` command; Track AY1:
    Claude Code copies a plugin's folder at install), and never a second, plain
    connection beside it; the others get a connection in their own format. A
    second run changes nothing. No service is left running and no token is
    spent.
-2. **Welcome.** The person says "help me start with second brain". A
+2. **Welcome.** The person says "help me start with Kovium". A
    connection in welcome mode offers only the welcome's tools: `welcome` (what
    to do next), `help` (a question about the software itself), `try_example`
    and `tour` (the example collection), `get_manual` (the full manual), and
    `create_collection`, `open_collection` and `check_setup`.
 3. **The example and its tour.** The example (`sandboxes/hello_brain/`) is a
-   few short pages about second brain itself, with their notes already built
+   few short pages about Kovium itself, with their notes already built
    (of three kinds), one original read where it lies, and one page waiting in
    an inbox. Opening it makes a working copy, reads the graph, concept pages
    and maps derived from its notes at release (`derived/`), or builds them by
@@ -128,7 +128,11 @@ already use, and their agent makes the calls. The contracts are
    page is added either free (read by code, as a note written by hand) or by
    the AI, which is a plan with its cost first and runs only with that plan's
    approval. The last step offers the full manual, once its address is set
-   (section 12.5).
+   (section 12.5). Every collection, the example's working copy included,
+   gets Obsidian view settings (Track BE, `docs/obsidian_view_v1.md`): the
+   housekeeping hidden, the graph kept to the notes with arrows and without
+   links to missing notes, and a colour per kind of note; free, merged into
+   Obsidian's own files, a change made in Obsidian kept.
 4. **A collection of one's own.** "Make a collection for ...":
    `create_collection` with a name and a sentence of what it will hold. It
    first asks where the collection goes: the folder the person works in now,
@@ -162,8 +166,8 @@ answer with its source.
 in a service. From the repository root:
 
 ```bash
-./scripts/run_second_brain.sh        # Linux and macOS
-python scripts/run_second_brain.py   # any platform, Windows included
+./scripts/run_kovium.sh        # Linux and macOS
+python scripts/run_kovium.py   # any platform, Windows included
 ```
 
 That creates a virtual environment if there isn't one, installs the package,
@@ -971,15 +975,25 @@ folder, so it travels with it. Three levels, each including the one before:
 The collection's maker is its manager, with every ability and no cap.
 `set_access` (`POST /collections/access`) shows the change as one sentence,
 then applies it with its `confirm` code. An agent never raises its own access;
-changing another's needs `grant`. **The platform has no authentication:** over
-MCP the connection says which agent it is and the policy binds it; over HTTP
-any program on the computer can name any agent, so the routes bind only an
-honest caller, and the guard over HTTP is the approval of each plan
-(section 14).
+changing another's needs `grant`. **Without access tokens the platform has no
+authentication:** over MCP the connection says which agent it is and the
+policy binds it; over HTTP any program on the computer can name any agent, so
+the routes bind only an honest caller, and the guard over HTTP is the approval
+of each plan (section 14). **Access tokens** (Track BB,
+[[access-tokens-v1|`docs/access_tokens_v1.md`]]), per collection and
+off until its owner turns them on (`require_token`, "Access keys for AI
+programs"): a caller proves its agent by holding that agent's token for that
+collection (`sign_in` over MCP, `Authorization: Bearer` over HTTP); only a
+fingerprint is kept, beside the policy; issued by `scripts/access_token.py`,
+by `issue_token` and by a join, taken back by `revoke_token`; the owner's web
+page signs in by a one-time link the start script prints. On one computer
+under one login an agent that can read any file can read another's key file:
+tokens stop mistakes and callers from elsewhere, not a determined local agent
+with a shell.
 
 **A caller agent of its own** (Tracks AG4, AG7,
 `docs/install_and_caller_agent_v1.md`). `make_agent`
-(`POST /collections/agent`) adds a second brain agent for this collection to
+(`POST /collections/agent`) adds a Kovium agent for this collection to
 the person's project, beside their own agents, never over a file it did not
 write: a Claude Code agent file, a Codex custom agent (used when asked for by
 name), or a marked section of an OpenClaw workspace's `AGENTS.md`. Cursor gets
@@ -1030,7 +1044,7 @@ and named in the response's warnings (`request_fields_ignored`); see
 
 Some of this work needs judgement: deciding what the claims in a document
 actually are, which of two notes is a duplicate, what a figure shows, whether a
-gap is real. Second Brain does not do that work itself. It hands each such task
+gap is real. Kovium does not do that work itself. It hands each such task
 to the **brain keeper agent**: one sealed, one-off call per task to an agent
 command-line tool already installed on your machine and running on a
 subscription you already pay for. Supported, in the default order: Claude Code
@@ -1042,7 +1056,7 @@ registered with any backend or left running. A caller agent never talks to it
 directly: everything it produces reaches a caller inside an ordinary HTTP
 response, after the service has validated it.
 
-It works this way for a blunt reason: **Second Brain must never produce a
+It works this way for a blunt reason: **Kovium must never produce a
 metered, per-token charge.** There is no path in the codebase to a paid model
 API — no SDK, no raw HTTP, no flag that switches something into API-key mode.
 Known billing credentials are stripped from the environment before any tool is
@@ -1106,7 +1120,7 @@ confidence and warnings; a versioned response shape (contract v2: every path in
 an answer is workspace-relative).
 
 **Over MCP.** An agent program that speaks MCP reaches the same routes
-without HTTP: `second-brain-mcp` serves over standard input and output,
+without HTTP: `kovium-mcp` serves over standard input and output,
 calling the routes in process, so no service need be running. The install step
 adds the connection (section 3); the contract is `docs/mcp_server_v1.md`.
 
@@ -1138,7 +1152,7 @@ The `manage` grant is held only over a local connection. How wide a session
 may go is the collection's own ceiling (`max_surface` in `config/mcp.json`;
 absent, the default set alone); `request_tools` moves a session within it and
 tells the client its tools changed. The capabilities report is also a
-resource, `second-brain://capabilities`. The contract's "Wiring a harness"
+resource, `kovium://capabilities`. The contract's "Wiring a harness"
 gives the entry for Claude Code, Codex, OpenClaw and Cursor by hand, with each
 one's tool timeout and what to set for `synthesize` (Codex and OpenClaw stop a
 call after 60 s unless raised). An install outside the checkout
@@ -1326,7 +1340,7 @@ matching words, rarer words counting more: no agent and no tokens, with the
 section or entry each passage comes from, or one plain sentence saying it does
 not know. It matches words of one language.
 
-**The full manual** (Track AG6) is second brain's own current documentation
+**The full manual** (Track AG6) is Kovium's own current documentation
 taken in as a collection of its own: one note written by hand per current
 document, built by the maintainers at release with no tokens
 (`scripts/build_help_collection.py`). It is fetched only on a yes, offered at
@@ -1555,7 +1569,7 @@ audit.
 - `answer_cache` — section 4.8. Never for a job carrying conversation history.
 - `normalization_mode`, `source_pipeline_mode` — `deterministic` skips the
   agent for that stage: offline, or in automated testing.
-- No API key appears here or anywhere else. `SECOND_BRAIN_BRAIN_KEEPER_DISABLED=1`
+- No API key appears here or anywhere else. `KOVIUM_BRAIN_KEEPER_DISABLED=1`
   forces the no-model path globally.
 
 ### `conversion.json`, `ingestion.json`
@@ -1919,8 +1933,10 @@ or the caller, and every code says who settles it.
 **Read only unless the owner says otherwise.** A governed caller reads by
 default; an MCP connection reads unless the collection's access policy names
 its agent higher (section 10), and an agent never raises its own access. The
-setup tools need a local connection. There is no authentication: over HTTP
-these rules bind an honest caller, and a plan's approval is the guard.
+setup tools need a local connection. Without access tokens there is no
+authentication: over HTTP these rules bind an honest caller, and a plan's
+approval is the guard; with a collection's tokens on (Track BB), each caller
+proves its agent by its own token.
 
 **A style never drops the essentials.** However a collection's answers are
 worded, they keep their sources, say "the collection does not say" plainly,
@@ -1972,6 +1988,10 @@ program), `/collections/access` (what each agent may do), `/collections/settings
 choice by its plain name), `/collections/agent` (the caller agent for a collection,
 added to a person's project, in the style they choose), `/collections/setup` (what works
 here); `docs/collections_v1.md`, `docs/install_and_caller_agent_v1.md`
+
+**Access tokens** (Track BB) — `/collections/tokens` (issue one for an agent, or list
+them), `/collections/tokens/revoke` (take one back), `/ui/sign-in/code` and `/ui/sign-in`
+(the owner's web page signed in by a one-time link); `docs/access_tokens_v1.md`
 
 **Bringing material in** — `/sources/add` (the plan, then the run with its approval),
 `/sources/add/status` (how an addition is going), `/sources/process`, `/sources/process_book`,
@@ -2171,7 +2191,7 @@ length limit.
 | folders, versions and estimates | `docs/folder_intake_v1.md` |
 | renaming anything | `docs/renames_v1.md` |
 | the owner's work, ideas, tails | `docs/owner_work_v1.md`, `docs/ideas_v1.md`, `docs/instance_tails_v1.md` |
-| how the code is organised | `second_brain_architecture.md`, `docs/implementation_overview.md` |
+| how the code is organised | `architecture.md`, `docs/implementation_overview.md` |
 | the graph's domain model | `schema/ontology_v1.md`, `schema/graph_schema_v1.md` |
 | how any piece got the way it is | `IMPLEMENTATION_JOURNEY.md` |
 | to change the platform itself | `project_guidelines.md`, then `CLAUDE.md` |
@@ -2186,7 +2206,7 @@ follow.
 ## 26. A checklist for a new instance
 
 1. Run `python scripts/setup.py` and read what it says is missing.
-2. In your AI program, say "help me start with second brain"; open the example
+2. In your AI program, say "help me start with Kovium"; open the example
    and follow its tour, so you have seen a working instance.
 3. Make your own collection from the conversation (`create_collection`; over
    HTTP `POST /collections`). You are asked where it goes: the folder your

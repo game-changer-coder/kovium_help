@@ -10,14 +10,14 @@ definition_basis: sources
 sources: [mcp-server-v1]
 concepts: [type]
 broader: []
-narrower: [type-specific-sections]
+narrower: [type-in-a-terminal, type-specific-sections]
 source_count: 1
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:02.287721+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:41.322595+00:00}"
 ---
 
 # type
@@ -40,7 +40,7 @@ None recorded.
 
 ## Hierarchy
 - Broader: none
-- Narrower: [[type-specific-sections|Type-specific sections]]
+- Narrower: [[type-in-a-terminal|Type in a terminal]], [[type-specific-sections|Type-specific sections]]
 
 ## Sources
 - undated · [[mcp-server-v1|MCP server v1]] — Names this concept.
@@ -52,7 +52,7 @@ None recorded.
 - **type**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[mcp-server-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[mcp-server-v1]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

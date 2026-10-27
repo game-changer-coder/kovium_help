@@ -4,12 +4,12 @@ title: "The documents in `docs/`"
 description: "Two kinds of document live here, and they must not be confused:"
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "overview"
-audience: "someone meeting second brain for the first time"
+audience: "someone meeting Kovium for the first time"
 doc_path: "docs/README.md"
-doc_sha256: "995039e60579254c2ac28a4c0c5ad23f7a63ffedd88ebb59b2c724998db3c2d9"
+doc_sha256: "6428e91542cd9df42bd5c197f97dd7e746b064556ee117a49863da2f009a697f"
 ---
 
 # The documents in `docs/`
@@ -30,7 +30,7 @@ Two kinds of document live here, and they must not be confused:
 
 Start with [[specifications|`../specifications.md`]] (what an instance
 does and how to run one), [[readme|`../README.md`]] (what the platform
-is) and [[second-brain-architecture|`../second_brain_architecture.md`]]
+is) and [[architecture|`../architecture.md`]]
 (how the code is organised). Every change is logged, newest first, in
 `../IMPLEMENTATION_JOURNEY.md`.
 
@@ -38,6 +38,8 @@ is) and [[second-brain-architecture|`../second_brain_architecture.md`]]
 
 | document | what it is the contract for |
 |---|---|
+| [[naming-v1|naming_v1.md]] | the name: Kovium, Kovium instance (km-instance), Kovium collection; the spelling in prose, identifiers, environment variables and markers; what keeps an old name and why (Track BG) |
+| [[upgrading-to-kovium-v1|upgrading_to_kovium_v1.md]] | moving an install and its collections made before Kovium to the new names, by hand, step by step, for a separate agent (Track BG9) |
 | [[api-spec-v1|api_spec_v1.md]] | the HTTP routes, grouped, with their request fields and refusals |
 | [[next-steps-v1|next_steps_v1.md]] | every warning and refusal code with its next step as data: `notices`, a refusal's `error`, the actions, the registry and `GET /agent/knowledge/codes` |
 | [[mcp-server-v1|mcp_server_v1.md]] | the MCP server over the governed routes: launch and fail-closed checks, the generated instructions, the read tools and their generated schemas, the surfaces and the workspace's ceiling (`config/mcp.json`), the write tools that only propose (`remember`, `forget`) and their grant, `request_tools` and the capabilities resource, the compact result view, what is not offered and why, scope from the connection, refusals and `fix.mcp`, audit, progress, standard output; wiring Claude Code, Codex, Cursor and OpenClaw, timeouts, the install outside a checkout, the harness behaviour observed and the token cost measured at the CLI |
@@ -48,7 +50,9 @@ is) and [[second-brain-architecture|`../second_brain_architecture.md`]]
 | [[plain-language-rules-v1|plain_language_rules_v1.md]] | every text a person reads: the nine rules as applied, the option catalogue (`second_brain/catalogue/options_v1.json`, four lines and a "later" line for every option), the welcome's texts (`welcome_v1.json`), the collection tools' texts (`setup_v1.json`), where the words for each code live, the one checker (`second_brain/plain_words.py`) and the settings coverage test |
 | [[welcome-v1|welcome_v1.md]] | the first five minutes: `GET /welcome`, `GET /help`, `POST /welcome/example`, `POST /welcome/tour`; the example collection (`sandboxes/hello_brain`, its manifest, how it is built and opened, the rebuilt-note guard), the tour and its sample added free or by the AI with an approval, help from the user guide and the catalogue or, once fetched, from the full manual (the help collection: its repository, the zero-token build `scripts/build_help_collection.py`, `config/help.json`, `POST /welcome/manual`, a copy of another version reported), the MCP server's welcome mode, the `documentation` kind and kind guessing |
 | [[collections-v1|collections_v1.md]] | collections and who may do what: `POST /collections`, `/collections/open`, `/collections/connect`, `/collections/access`, `/collections/settings`, `GET /collections/setup`; making and opening a collection (from another computer too, with what did not travel), one connection per collection and its binding, the access policy per agent (`read`, `propose`, `manage`) in the collection's `config/mcp.json`, `change_setting` and the words an install adds, the check of what works, the MCP setup tools and their `manage` grant |
-| [[install-and-caller-agent-v1|install_and_caller_agent_v1.md]] | the one install step (`python scripts/setup.py`: the environment, the checks in words, each AI program connected in welcome mode, idempotent), the Claude Code plugin this checkout ships (`skills/claude-code/`, its own small folder: its skills, `/second-brain:start`, its connection and `scripts/mcp_launch.py`, which finds the checkout through the record the step writes; what `claude plugin install` copies, measured), one connection per program, the caller agent added to a person's project (`POST /collections/agent`, `make_agent`) and the answer style kept per collection (`config/style.json`, its four choices, the four things no style drops) |
+| [[obsidian-view-v1|obsidian_view_v1.md]] | the view in Obsidian (Track BE): the template `config/obsidian_view.json`, contributions in `config/obsidian_view.d/`, the owner's word, the housekeeping hidden from the registry's layout, colours by `type:` and the palette recorded in `config/obsidian_view_state.json`, merge never overwrite, nested vaults, when it runs (`create_collection`, the example, the nightly tasks, `scripts/obsidian_view.py`), the `obsidian_view` switch, what Obsidian does with it |
+| [[access-tokens-v1|access_tokens_v1.md]] | access tokens (Track BB): a caller agent proves who it is; the token's format and its fingerprint kept beside the access policy, the `require_token` switch (`access_keys`), the gate on every route, `sign_in` over MCP and `Authorization: Bearer` over HTTP, `POST /collections/tokens`, `GET /collections/tokens`, `POST /collections/tokens/revoke`, `scripts/access_token.py`, the join's token, the owner's one-time web sign-in (`/ui/sign-in`, `/ui/sign-in/code`), the refusals and the honest limit |
+| [[install-and-caller-agent-v1|install_and_caller_agent_v1.md]] | the one install step (`python scripts/setup.py`: the environment, the checks in words, each AI program connected in welcome mode, idempotent), the Claude Code plugin this checkout ships (`skills/claude-code/`, its own small folder: its skills, `/kovium:start`, its connection and `scripts/mcp_launch.py`, which finds the checkout through the record the step writes; what `claude plugin install` copies, measured), one connection per program, the caller agent added to a person's project (`POST /collections/agent`, `make_agent`) and the answer style kept per collection (`config/style.json`, its four choices, the four things no style drops) |
 | [[adding-documents-v1|adding_documents_v1.md]] | adding files, folders and links in one request (`POST /sources/add`): the plan, its approval, the standing token budget (`/ops/budget`) and the one question about it, retries, the six-line report |
 | [[document-conversion-v1|document_conversion_v1.md]] | the PDF converter as configuration, docling, figures read by vision on request, reading a source again, books with pages and a cost ceiling |
 | [[images-v1|images_v1.md]] | images as sources, images inside Markdown, HTML and Word, equations written in text or MathML, the figure and equation routes without docling |
@@ -74,9 +78,10 @@ is) and [[second-brain-architecture|`../second_brain_architecture.md`]]
 
 | document | for |
 |---|---|
+| ../GETTING_STARTED.md, with one page per AI program in [[claude-code|getting_started/]] ([[claude-code|Claude Code]], [[codex|Codex]], [[openclaw|OpenClaw]]) | a beginner, step by step: install once, connect the AI program, the welcome and the tour, a collection of one's own or joining one, readers and writers, the first document (Track BF; held to the code by `tests/contracts/test_getting_started_guide.py`) |
 | [[user-guide-v1|user_guide_v1.md]] | a person, not an agent: what a collection is, adding documents, asking, what happens at night, what uses the subscription (a guide, not a contract) |
 | [[first-instance-lifecycle-guide-v1|first_instance_lifecycle_guide_v1.md]] | someone setting up their first instance, from an empty folder to a restore rehearsal |
-| [[test-me-first|TEST_ME_FIRST.md]], [[run-local|run_local.md]] | starting the service and the sample workspace |
+| [[test-me-first|TEST_ME_FIRST.md]], [[run-local|run_local.md]] | developers: starting the web page and the sample workspace over HTTP (a newcomer is sent to the getting started guide) |
 | [[deployment-spec-v1|deployment_spec_v1.md]] | the local-only deployment scope |
 | [[implementation-overview|implementation_overview.md]] | a map of the repository and of every subpackage, with the guard tests |
 

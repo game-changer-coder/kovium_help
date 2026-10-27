@@ -7,7 +7,7 @@ description:
 status: draft
 synthesis: deterministic
 definition_basis: sources
-sources: [second-brain-operations]
+sources: [kovium-operations]
 concepts: [never-accept-a-note-with-mode]
 broader: [per-note, the-note]
 narrower: []
@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 2
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:04.166364+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:41.058899+00:00}"
 ---
 
 # Never accept a note with mode
@@ -39,7 +39,7 @@ None recorded.
 - Narrower: none
 
 ## Sources
-- undated · [[second-brain-operations|Second Brain Operations (Claude Code)]] — Names this concept.
+- undated · [[kovium-operations|Kovium Operations (Claude Code)]] — Names this concept.
 
 ## Concepts
 - [[never-accept-a-note-with-mode|Never accept a note with mode]]
@@ -48,8 +48,8 @@ None recorded.
 - **Never accept a note with mode**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[second-brain-operations]] — rebuilt from its sources without an agent
-- 2026-10-23 · hierarchy — broader: [[per-note]], [[the-note]]
+- 2026-10-27 · assembled · [[kovium-operations]] — rebuilt from its sources without an agent
+- 2026-10-27 · hierarchy — broader: [[per-note]], [[the-note]]
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

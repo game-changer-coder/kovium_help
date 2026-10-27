@@ -4,12 +4,12 @@ title: "Images and equations in every kind of source v1 (Track T)"
 description: "How an image becomes a source, how the images a document embeds are kept and read, how an equation already written in a source becomes an equation, and how the figure and equation routes work without docling. Plan..."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/images_v1.md"
-doc_sha256: "2f189fecad6775b91aaf98499097816dbf8dcddf5b72a13c87359d04ba71663d"
+doc_sha256: "8e0ed7c78bdf8c5542b8f14010fae202ced4669e0194394691d34b8630a89167"
 ---
 
 # Images and equations in every kind of source v1 (Track T)
@@ -31,7 +31,7 @@ image embedded in Markdown, HTML or a Word file was never catalogued (and the
 one-call read deleted its link); LaTeX already written in a note gave no
 Equation item, and a bullet that was mostly a formula was dropped from the
 graph; `/sources/figures` told every non-PDF source to "re-read with
-docling". A second brain for recipes, customer relationships, a lab notebook
+docling". A Kovium instance for recipes, customer relationships, a lab notebook
 or a blog archive needs the same abilities as one for papers: a photo of a
 dish, an equation in a blog post, a whiteboard pasted into a meeting note.
 Nothing below names a subject; every rule is about the shape of a file.

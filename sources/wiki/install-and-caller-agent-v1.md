@@ -4,12 +4,12 @@ title: "The install step, the Claude Code plugin and the caller agent v1"
 description: "The contract for Track AG4 of docs/first_run_experience_plan_v1.md: the one install step (D1), the Claude Code plugin this checkout ships (D1; its own folder since Track AY1), the caller agent added to a person's project and the answer..."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/install_and_caller_agent_v1.md"
-doc_sha256: "5ab105da8bb7cbd5d21a2c5b96b36573b9082d1495bd91dd6d29ddd4b7749206"
+doc_sha256: "ff4384d9032d452f32ebf0673416ccfd0817a5f9a711ba73127529b0c279a392"
 ---
 
 # The install step, the Claude Code plugin and the caller agent v1
@@ -73,26 +73,46 @@ supports (`requires-python` in `pyproject.toml`). In order:
      `cursor`, `openclaw`; the AG2 default `welcome` was shared by every
      program): Claude Code as the plugin (below); with `--no-plugin`, or when
      the plugin's start command cannot run here, by a plain connection named
-     `second-brain` (`claude mcp add --transport stdio --scope user`); the
+     `kovium` (`claude mcp add --transport stdio --scope user`); the
      others the way `connect_agent` adds theirs (`docs/collections_v1.md`),
-     named `second-brain`, with `--agent <program> --root <checkout>`;
+     named `kovium`, with `--agent <program> --root <checkout>`;
    - **never two connections in Claude Code** (Track AY1): with the plugin
-     connected, `claude mcp get second-brain` is asked; a plain connection that
+     connected, `claude mcp get kovium` is asked; a plain connection that
      is exactly what `--no-plugin` adds (user scope, the same program and
-     arguments) is removed with `claude mcp remove second-brain -s user` and
+     arguments) is removed with `claude mcp remove kovium -s user` and
      said (`install.plain_removed`); any other of that name is left as it is
      and named, with what to do (`install.plain_kept`), since it may be another
      install's or someone else's. With `--no-plugin` while the plugin is
      installed (`claude plugin list --json`), that is said
      (`install.plugin_beside_plain`); nothing is removed then: a plain
      connection was asked for.
+   - **OpenClaw's four skills** (`skills/openclaw/*`) are installed with OpenClaw's
+     own `openclaw skills install <folder>`, once OpenClaw is connected. Checked
+     against OpenClaw 2026.9.5: it copies a local skill folder into the default
+     agent's workspace (`<workspace>/skills/<name>`), and a second run answers
+     "already exists" with exit status 1 and changes nothing. `--force` is never
+     passed, so a skill the person changed is never replaced, and no setting is
+     changed. With more than one agent, OpenClaw refuses a skill with no owner
+     ("Pass --agent <id>"); the step then names the agent `openclaw agents list
+     --json` marks as default (`isDefault`), the one a single-agent install gets
+     them in, and keeps that owner for the remaining skills (found in the
+     OpenClaw live test, 2026-10-27, where every skill was refused). Said as `install.skills_added`, `install.skills_already` or
+     `install.skills_failed`. A skill that cannot be installed costs nothing
+     else, because the connection's own instructions carry the newcomer flow.
+     Agents with a workspace of their own do not see them; copy them by hand
+     there (`skills/openclaw/README.md`).
 4. **What to do next**, in words: open the program and say "help me start
-   with second brain"; start a new conversation if it was open.
+   with Kovium"; start a new conversation if it was open.
 
 **Idempotent.** A second run makes nothing again: the environment is found, a
 connection or plugin already there is said ("was already connected, so
-nothing changed"), and no settings file changes. For Codex that is a table
-already in `config.toml`; for OpenClaw it is `openclaw mcp show second-brain
+nothing changed"), OpenClaw's skills already there are left as they are, and
+no settings file changes. The check whether the environment already runs this
+checkout is made with `python -I`, so a folder named `second_brain` beside the
+checkout (the checkout itself, by its usual name) is not read as the package:
+without it the second run crashed there (found in the live OpenClaw test,
+2026-10-24). For Codex that is a table
+already in `config.toml`; for OpenClaw it is `openclaw mcp show kovium
 --json` asked **before** `openclaw mcp set`, because `set` replaces an entry of
 the same name without a word: the same entry is "already connected", a
 different one is left as it is and said so (`install.why_other_entry`), and
@@ -127,9 +147,9 @@ checkout's root is a marketplace that lists it (Track AY1):
 
 | file | holds |
 | --- | --- |
-| `skills/claude-code/.claude-plugin/plugin.json` | `name: second-brain`, `version` (the package's), `skills: ./` (the four caller skills at the plugin's root), `commands: [./commands/]`, and `mcpServers.second-brain` |
-| `.claude-plugin/marketplace.json` | `name: second-brain`, `owner`, one plugin with `source: ./skills/claude-code` |
-| `skills/claude-code/commands/start.md` | the start command, `/second-brain:start` (a plugin's commands are named after it): call `welcome` and follow it; `help` for how second brain works |
+| `skills/claude-code/.claude-plugin/plugin.json` | `name: kovium`, `version` (the package's), `skills: ./` (the four caller skills at the plugin's root), `commands: [./commands/]`, and `mcpServers.kovium` |
+| `.claude-plugin/marketplace.json` | `name: kovium`, `owner`, one plugin with `source: ./skills/claude-code` |
+| `skills/claude-code/commands/start.md` | the start command, `/kovium:start` (a plugin's commands are named after it): call `welcome` and follow it; `help` for how Kovium works |
 | `skills/claude-code/scripts/mcp_launch.py` | what the connection starts |
 | `skills/claude-code/checkout.json` | written by the install step, ignored by git: where this computer's checkout is and which program its server is |
 
@@ -138,7 +158,7 @@ with Claude Code's own commands:
 
 ```bash
 claude plugin marketplace add <checkout>
-claude plugin install second-brain@second-brain --scope user
+claude plugin install kovium@kovium --scope user
 ```
 
 **What Claude Code does with it, measured** (Track AY1, the real `claude`
@@ -178,13 +198,13 @@ the cached copy, the record travels with it.
 validated by `claude plugin validate` 2.1.240 in a scratch home: "Validation
 passed" for the plugin and for the marketplace):
 
-- the four caller skills (`skills/claude-code/second-brain-*`), at the
+- the four caller skills (`skills/claude-code/kovium-*`), at the
   plugin's root; the plugin has no default `skills/` folder of its own, so
   nothing is loaded twice;
 - the start command;
 - the connection, `python ${CLAUDE_PLUGIN_ROOT}/scripts/mcp_launch.py --agent
   claude-code`, in welcome mode; its tools are named
-  `mcp__plugin_second-brain_second-brain__<tool>`. Once `create_collection` or
+  `mcp__plugin_kovium_kovium__<tool>`. Once `create_collection` or
   `open_collection` binds it (`docs/collections_v1.md`), the same entry starts
   bound to that collection, and in the same conversation the server tells the
   program its tool list changed (`docs/mcp_server_v1.md`, Track AY3).
@@ -195,7 +215,7 @@ plugin files only (no environment, collection, data or package) and under
 2 MB.
 
 **The launcher.** `skills/claude-code/scripts/mcp_launch.py` (standard
-library only, importing nothing of second brain: until it reads the record it
+library only, importing nothing of Kovium: until it reads the record it
 does not know where that is) reads `checkout.json` in the plugin's folder,
 appends `--root <checkout>` unless given, and runs the recorded server with
 the plugin's standard input and output passed through; it writes nothing to
@@ -203,7 +223,7 @@ standard output. With no record it says so on standard error
 (`install.not_set_up`); with a record whose checkout or server is gone, that
 the checkout moved and the setup is to be run again from where it is now
 (`install.moved`); exit status 2 either way. The two sentences are copies of
-the catalogue's, held equal by a test. `SECOND_BRAIN_PLUGIN_RECORD` names
+the catalogue's, held equal by a test. `KOVIUM_PLUGIN_RECORD` names
 another record file (the suite points it outside the checkout).
 
 **Moving from the earlier plugin.** An install made before AY1 has the plugin
@@ -212,7 +232,7 @@ with the whole checkout as its source. After updating the checkout, run
 and plugin already there (Claude Code reads the marketplace's new source on
 its own), and removes a plain connection the step made earlier with
 `--no-plugin`. The old, large cached copy can be dropped with `claude plugin
-uninstall second-brain@second-brain` followed by the step again.
+uninstall kovium@kovium` followed by the step again.
 
 ## The caller agent (`POST /collections/agent`, `make_agent`)
 
@@ -233,7 +253,7 @@ call by name is refused `access_not_granted`.
 | `confirm` | the preview's code; omitted: the preview |
 
 **The preview** (no `confirm`) changes nothing and returns `file` (relative to
-the project: `.claude/agents/second-brain-<collection>.md`), `agents_beside`
+the project: `.claude/agents/kovium-<collection>.md`), `agents_beside`
 (the project's own agent files, by name), `style`, `say` (what will be added,
 beside how many agents, the style, and that no style drops sources, "not
 found" or the question before spending), `asks` and, when something would
@@ -263,17 +283,31 @@ is there; it is left as it is); a stale or other preview's code (409, as
 `set_access`); `access_not_granted` (403).
 
 **The file.** Claude Code's subagent format: a frontmatter of `name`
-(`second-brain-<collection>`) and `description`, a marker line naming the
+(`kovium-<collection>`) and `description`, a marker line naming the
 collection (how a later run knows the file is its own), and the body of
 `second_brain/caller_agent/template_v1.md` filled for the collection: when to
 use which tool, asking before spending, sources and warnings, `help`, its
 access, the style, and what never changes. `tools` is left out on purpose: a
 subagent without it inherits the session's tools, MCP ones included, so it
-reaches the collection's connection whatever it is named (`second-brain-<collection>`
-or the plugin's). Without that connection in its session it starts second
-brain's own service with one line (`scripts/run_second_brain.py --skip-install`)
-and calls it over HTTP with the collection and its agent id; the rules are
-the same. One template, one renderer (`render.py`, `FORMATS`): Codex and
+reaches the collection's connection whatever it is named (`kovium-<collection>`
+or the plugin's). **Which connection the instructions name** (2026-10-27): an
+agent that joined with a connection of its own keeps its name (Track BC2);
+otherwise, when the install step's shared `kovium` connection is bound
+to this collection for the calling agent id (`config/mcp_connections.json`,
+how a collection made or opened through it is served), that one, with its one
+caveat (`render.SHARED`: it serves one collection at a time, so `overview`
+naming another means `open_collection` first); otherwise the collection's own,
+`kovium-<collection>`. Before this, a collection made through the shared
+connection got instructions naming `kovium-<collection>`, which nothing
+had added, and the OpenClaw live test's agent found no such tools. Without a
+connection in its session the agent starts Kovium's own service with one
+line (`scripts/run_kovium.py --skip-install --background`) and calls it
+over HTTP with the collection and its agent id; the rules are the same.
+`--background` runs the service detached from the terminal (its output in
+`logs/service.log`) and returns once it answers, or at once when one already
+answers on the port: an agent's command tool waits until every process its
+command started lets go of the terminal, so a service started in the
+foreground or with a plain `&` held the agent's whole conversation open. One template, one renderer (`render.py`, `FORMATS`): Codex and
 OpenClaw are rendered there from the same text, so the three cannot drift.
 Only the lines that name the agent's role and its second connection differ
 (`render.ROLE`, `render.ALTERNATIVE`).
@@ -288,7 +322,7 @@ entries were live-checked earlier, `docs/mcp_server_v1.md`).
 | | Claude Code | Codex | OpenClaw |
 | --- | --- | --- | --- |
 | what an agent is | a subagent file | a custom agent: one TOML file | a workspace; no file for one more agent |
-| where the caller agent goes | `.claude/agents/second-brain-<collection>.md` | `.codex/agents/second_brain_<collection>.toml` | a marked section of `AGENTS.md` in the agent's workspace folder |
+| where the caller agent goes | `.claude/agents/kovium-<collection>.md` | `.codex/agents/kovium_<collection>.toml` | a marked section of `AGENTS.md` in the agent's workspace folder |
 | what is written | the whole file | the whole file: `name`, `description`, `developer_instructions` (the three fields the format requires) and nothing that could override the session | the section only, below the person's text |
 | refused when | a same-named file is not ours | a same-named file is not ours | the file cannot be read as text, or our section lost its end line |
 | used by | the main agent hands it requests | Codex hands work to an agent **named in the request**, so the final sentence tells the person to ask for it by name | the agent follows it whenever the person asks about the collection, as it is part of its instructions |
@@ -296,7 +330,7 @@ entries were live-checked earlier, `docs/mcp_server_v1.md`).
 
 - **Codex.** A custom agent inherits its parent's permissions, provider and MCP
   servers and cannot override them, so the file carries no model, sandbox or
-  server key. Its name is snake case (`second_brain_` plus the collection's name
+  server key. Its name is snake case (`kovium_` plus the collection's name
   with every other character turned into `_`), like Codex's own examples; two
   collections whose names differ only by `-` and `_` share a file, and the
   second is refused as `agent_file_taken`. Project-scoped agents load for a
@@ -306,9 +340,9 @@ entries were live-checked earlier, `docs/mcp_server_v1.md`).
   compares.
 - **OpenClaw.** What tells the agent how to work is the workspace's `AGENTS.md`
   (loaded every session, cut at 20,000 characters a file by default). The caller
-  agent is a section between two marker lines, `<!-- second-brain caller agent v1
+  agent is a section between two marker lines, `<!-- kovium caller agent v1
   for collection <id>; begins here ... -->` and `<!-- ... ends here -->`, with its
-  headings one level down under `## Second brain: <name>`. A new section is
+  headings one level down under `## Kovium: <name>`. A new section is
   added at the end, after a blank line; an existing one is replaced in place;
   **every byte outside the markers stays as it was**, including a byte-order
   mark, a missing final newline and CRLF endings (the section then uses CRLF
@@ -418,7 +452,10 @@ installed here and the real home is never used), a person, Linux.
 - The plugin's connection starts with `python` from `PATH`. Where that is not
   a Python new enough (only `python3`, or a stub that opens a store), the step
   connects Claude Code by a plain connection instead, without the plugin's
-  skills and start command, and says it connected.
+  skills and start command. It says it connected, and then why there is no
+  plugin, what that leaves out and how to get it (`install.plugin_needs_python`,
+  Track BF0: seen on a Linux with only `python3`, where the person was told only
+  "connected").
 - On Windows a checkout in a deeply nested folder can fail the install: a
   dependency's files exceed the 260-character path limit (seen with the
   checkout in a folder 153 characters long; one of 52 worked). Keep the
@@ -436,11 +473,51 @@ installed here and the real home is never used), a person, Linux.
   that cannot be run is not shipped. A plain connection and the caller agent
   give both the whole newcomer flow; a plugin would add only what the Claude Code
   one adds (skills and a start command).
-- OpenClaw's four operator skills (`skills/openclaw/`) are still copied by hand
-  into a workspace's `skills` folder (`skills/README.md`). Setting
+- OpenClaw's four operator skills (`skills/openclaw/`) go only into the
+  **default** agent's workspace (what `openclaw skills install` does). Another
+  agent with its own workspace gets them by hand (`skills/README.md`). Setting
   `skills.load.extraDirs` from the install step would replace the person's own
   list (`openclaw config set` replaces a whole array) and OpenClaw's docs say
   `config set` needs its gateway stopped, so it is not done.
+- OpenClaw's `mcp.servers` is one list for every agent: once connected, every
+  OpenClaw agent on the computer sees Kovium's tools. OpenClaw 2026.9.5
+  has a per-server agent list, `mcp.servers.<name>.codex.agents`, but only
+  agents on the Codex app-server runtime honour it; agents on any other runtime
+  still see the server. The install step does not write it: it would look like
+  a boundary while being none, an OpenClaw version that does not know the key
+  may refuse it, and a mistyped agent id hides the tools without a word. One
+  connection shown to one agent is what `join_collection` does (Track BC,
+  [[collections-v1|collections_v1.md]]): asked "connect yourself to my thesis
+  collection", the agent joins under its own id, its entry
+  `kovium-<collection id>` carries `codex.agents` naming it, and its
+  `AGENTS.md` section names the tools as its runtime shows them. The join says
+  in words that this hides the tools and is no lock.
+- **On OpenClaw's Codex runtime, a connection's tools are not in the model's
+  view.** They are deferred: the model finds them only by searching its tool
+  list, and it searches only when something tells it to. In the live test a
+  bound agent asked about "my PhD collection" in a fresh conversation used
+  OpenClaw's own memory search, which failed, and never looked for the
+  collection's tools. What tells it is the caller agent's section in that
+  agent's `AGENTS.md`, which `join_collection` writes (and `make_agent` for a
+  bound connection): since Track BC it names the tools exactly as the runtime
+  spells them (`mcp__kovium_<id>__<tool>`), says to search the tool list
+  for them, and to use them whenever the person names the collection or asks
+  about what it holds, before any memory search of its own.
+- **The agent id is said, not proved.** A connection's `--agent` is whatever its
+  entry says, and on OpenClaw every agent shares the install's one entry, so
+  every OpenClaw agent calls as `openclaw`. When one of them binds the welcome
+  connection to a collection (`create_collection`, `open_collection`), the
+  binding is keyed by that id, so every OpenClaw agent opens that collection
+  from then on. Today the protection is what a collection grants (read only
+  unless the owner raises it, `set_access` with a shown sentence), the budgets
+  and the audit, which guards against mistakes between one person's own agents,
+  not against an agent that pretends. Track BB (access tokens, built
+  2026-10-25, [[access-tokens-v1|`access_tokens_v1.md`]]) is the fix, per
+  collection and off until its owner turns it on: each agent then signs in
+  with its own token (`sign_in`), so the shared `openclaw` id stops mattering.
+  A join to a collection with tokens on writes the agent's key file
+  (`<project>/.kovium/<collection>.token`) and the caller agent's text
+  tells it to sign in with that file first.
 - Codex hands work to a custom agent only when asked by name (its documentation
   says so); the caller agent's closing sentence says it. The same agent's
   instructions are reachable without it: the connection's instructions carry the

@@ -1,32 +1,47 @@
 {
-  "_note": "What this collection describes, written by scripts/build_help_collection.py in the second brain checkout it was built from. Second brain compares platform_version with its own and says so when they differ. size_mb is the size of the notes, the settings and what was derived from them (derived/), which is what fetching it costs.",
-  "name": "kbrain_help",
+  "_note": "What this collection describes, written by scripts/build_help_collection.py in the Kovium checkout it was built from. Kovium compares platform_version with its own and says so when they differ. size_mb is the size of the notes, the settings and what was derived from them (derived/), which is what fetching it costs.",
+  "name": "kovium_help",
   "describes": {
     "platform_version": "0.1.0",
     "schema_version": 7
   },
   "built_with": "no AI and no tokens: each document is a note written by hand, read by code",
-  "notes": 46,
-  "size_bytes": 4418761,
-  "size_mb": 4.3,
+  "notes": 54,
+  "size_bytes": 4882648,
+  "size_mb": 4.7,
   "sources": {
     "README.md": {
-      "sha256": "3a306a820f076515152ef517bbddca07cfdc6151a34af2173e0d53d37a7fc2a5",
+      "sha256": "cfd686a7beafb22f3ae371def0cd3af7b32c6ead2f76e1cad709917b12d0addf",
       "note": "sources/wiki/readme.md",
       "doc_kind": "overview"
     },
+    "architecture.md": {
+      "sha256": "0a22f71ab6e3c5c3f1c2c6ecb0eff920bcf010346a9736e60b7ae7728d9ae0a5",
+      "note": "sources/wiki/architecture.md",
+      "doc_kind": "overview"
+    },
+    "docs/../GETTING_STARTED.md": {
+      "sha256": "7919b4f2820d9ba79f8709ee99eaf1e3d8d41b1f299698044dbcdf2d1c70dd28",
+      "note": "sources/wiki/getting-started.md",
+      "doc_kind": "guide"
+    },
     "docs/README.md": {
-      "sha256": "995039e60579254c2ac28a4c0c5ad23f7a63ffedd88ebb59b2c724998db3c2d9",
+      "sha256": "6428e91542cd9df42bd5c197f97dd7e746b064556ee117a49863da2f009a697f",
       "note": "sources/wiki/which-documents-are-current.md",
       "doc_kind": "overview"
     },
     "docs/TEST_ME_FIRST.md": {
-      "sha256": "5bda159fc2292236847a16848378b3c321b4fad97bff504c41e19b81a67a6824",
+      "sha256": "9449b19abbd9f53af377984294e7a801cffe582d447d21a36926897e64e78a62",
       "note": "sources/wiki/test-me-first.md",
       "doc_kind": "guide"
     },
+    "docs/access_tokens_v1.md": {
+      "sha256": "854e983138108a29471739afaaec94026d447d7edd8bd1732527abfbc0cfb556",
+      "note": "sources/wiki/access-tokens-v1.md",
+      "doc_kind": "contract"
+    },
     "docs/adding_documents_v1.md": {
-      "sha256": "e292fc723c29d900c0eb50c6c26861316851998767c07c64d427cd6fdfe822b8",
+      "sha256": "6abc1782bf7161be485b604e5f591975a14a5ca3cb38e4a1374cd7b62e427bef",
       "note": "sources/wiki/adding-documents-v1.md",
       "doc_kind": "contract"
     },
@@ -36,17 +51,17 @@
       "doc_kind": "contract"
     },
     "docs/agent_memory_contract_v1.md": {
-      "sha256": "9ef6d52514ad9927891dd267e115c9399be77fd8e2920f699fa932e6fb0e0fb7",
+      "sha256": "5254ab6e394279a113c3e68c8d86775913869c5d4a316c4ae4de191f76593713",
       "note": "sources/wiki/agent-memory-contract-v1.md",
       "doc_kind": "contract"
     },
     "docs/api_spec_v1.md": {
-      "sha256": "d78572048a698ffe5a696e02d7e582cc8eafeb90047d76575d8e7a275f14799d",
+      "sha256": "ec4db36e39adf02a5365a7ee7cec222c1f94ad4dcdf3d3992efd940f99e68313",
       "note": "sources/wiki/api-spec-v1.md",
       "doc_kind": "contract"
     },
     "docs/collections_v1.md": {
-      "sha256": "4ddd7c3a70d06adb8f914ff29828487c068eac6546734a19cabd8c14dc0243e2",
+      "sha256": "0118718b3a1c6d5365567f3ee09e49e7b9635d1afaea86d17993bc849dec6b48",
       "note": "sources/wiki/collections-v1.md",
       "doc_kind": "contract"
     },
@@ -61,68 +76,93 @@
       "doc_kind": "guide"
     },
     "docs/document_conversion_v1.md": {
-      "sha256": "eb311375325b8e0f4b80038124601225addcdd837fc8ddc843f19bddd7beaaa9",
+      "sha256": "fa71d465d0648ace705fc3a6b584540c0ef528adced91c62e58738857c50a2f3",
       "note": "sources/wiki/document-conversion-v1.md",
       "doc_kind": "contract"
     },
     "docs/equations_v1.md": {
-      "sha256": "64b1b322f46ee6f713a8376a1e3d23d151a946b3db847cf0285189bfd5617c20",
+      "sha256": "4c1fc5178e3a046830ce199d7c3991b928f365d1e23e83d9c5405e7f5f813a4a",
       "note": "sources/wiki/equations-v1.md",
       "doc_kind": "contract"
     },
     "docs/first_instance_lifecycle_guide_v1.md": {
-      "sha256": "db38361d390ab4e05982d40f613c81db4aa38e8350e65c07e7f9ef9577f32ccc",
+      "sha256": "87163c0ff11c12cc72b3be7f88d48d18469ede74e82fabc5c7126f4a6912ddf0",
       "note": "sources/wiki/first-instance-lifecycle-guide-v1.md",
       "doc_kind": "guide"
     },
     "docs/folder_intake_v1.md": {
-      "sha256": "3fe9f708f224e2b831ce37d374f5a78c86e4992ee5ad42acae47330cdc6a90a7",
+      "sha256": "9779676d720d7d8a5d0d1a27a39a9b6ca5c125dbb4867e75416d26bc26ee4332",
       "note": "sources/wiki/folder-intake-v1.md",
       "doc_kind": "contract"
     },
+    "docs/getting_started/claude_code.md": {
+      "sha256": "3e05e3b5cdd56923b3206028c477cc5c46a43dee08d5e4b384fea0b5cadfceb8",
+      "note": "sources/wiki/claude-code.md",
+      "doc_kind": "guide"
+    },
+    "docs/getting_started/codex.md": {
+      "sha256": "9a38e6150bf0344c8b19543faa033c47ae267fcbc951b2230be7bceb159d22e1",
+      "note": "sources/wiki/codex.md",
+      "doc_kind": "guide"
+    },
+    "docs/getting_started/openclaw.md": {
+      "sha256": "d47aa8da58c2d7082ce87dc88a9610fdb946177abd9e998d327a13b4ab64419b",
+      "note": "sources/wiki/openclaw.md",
+      "doc_kind": "guide"
+    },
     "docs/ideas_v1.md": {
-      "sha256": "69a385b84b6f4b977831f81650a17d056ede8f66453d60a7280b7384d42f95e7",
+      "sha256": "fda2ce5826bf44658ce8ff59c971acdd9604c9c9883d72c3444c05039ea8397f",
       "note": "sources/wiki/ideas-v1.md",
       "doc_kind": "contract"
     },
     "docs/images_v1.md": {
-      "sha256": "2f189fecad6775b91aaf98499097816dbf8dcddf5b72a13c87359d04ba71663d",
+      "sha256": "8e0ed7c78bdf8c5542b8f14010fae202ced4669e0194394691d34b8630a89167",
       "note": "sources/wiki/images-v1.md",
       "doc_kind": "contract"
     },
     "docs/implementation_overview.md": {
-      "sha256": "0723bd9f8d97a04cfaff82ccb4c63553c641078b0a3fd9afe37b41d4ba2f9e19",
+      "sha256": "b73568b411608213f2343f6fb9ff8a0831baf9a1ff34302bf74cc7ec12dcc058",
       "note": "sources/wiki/implementation-overview.md",
       "doc_kind": "guide"
     },
     "docs/ingestion_spec_v1.md": {
-      "sha256": "cc82d9147a8e3aac54b32c229e3ca45c99a2db0e6277c3be6edaf3b8aa02495e",
+      "sha256": "c63c96d741c2506bceccb8650c6874a1ad21af097fd65e567c2650917eed1b48",
       "note": "sources/wiki/ingestion-spec-v1.md",
       "doc_kind": "contract"
     },
     "docs/install_and_caller_agent_v1.md": {
-      "sha256": "5ab105da8bb7cbd5d21a2c5b96b36573b9082d1495bd91dd6d29ddd4b7749206",
+      "sha256": "ff4384d9032d452f32ebf0673416ccfd0817a5f9a711ba73127529b0c279a392",
       "note": "sources/wiki/install-and-caller-agent-v1.md",
       "doc_kind": "contract"
     },
     "docs/instance_tails_v1.md": {
-      "sha256": "95cb009a029c7d32c32fb616af7d770eee05977d62dba2300b90dd6946ce1784",
+      "sha256": "603b414bc876de17a53ebf20129887e0d27cd69229f9e8c7b7a15724f0c05fee",
       "note": "sources/wiki/instance-tails-v1.md",
       "doc_kind": "contract"
     },
     "docs/mcp_server_v1.md": {
-      "sha256": "57b5450d29ac02f9bbe3659b3e7c8fa73ad4f5adcc3f6c3e52147132b98a0534",
+      "sha256": "a93718d9e07fb84f200819c0faa93b52a232e75d94d093febc93645f13635739",
       "note": "sources/wiki/mcp-server-v1.md",
       "doc_kind": "contract"
     },
+    "docs/naming_v1.md": {
+      "sha256": "3be28baa07bc4b474e2a26929db332a8ffeedc5e51fb9f29b1e1d085f2d553c5",
+      "note": "sources/wiki/naming-v1.md",
+      "doc_kind": "contract"
+    },
     "docs/next_steps_v1.md": {
-      "sha256": "8f20f5ddc96446996406533713274e64408a7d11079bb53e31c32eba2e170dd2",
+      "sha256": "4d0669ac49da198541938cd60fcf263ca07345b6edf5eb4e187d0a96d693040a",
       "note": "sources/wiki/next-steps-v1.md",
       "doc_kind": "contract"
     },
     "docs/note_format_contract_v1.md": {
-      "sha256": "9d67cf630edbaaa4a22660e36613edd2fa4b917a4bcc4999d81f58ea50508ec9",
+      "sha256": "cba94501a130b657285f712fde71a9374f8471e4c92a322b4534517a73a9a0be",
       "note": "sources/wiki/note-format-contract-v1.md",
+      "doc_kind": "contract"
+    },
+    "docs/obsidian_view_v1.md": {
+      "sha256": "c5dc0163f4146dbb84437d41c425b4a90f39c69ce0b34dbcab7208d7b98c8039",
+      "note": "sources/wiki/obsidian-view-v1.md",
       "doc_kind": "contract"
     },
     "docs/owner_work_v1.md": {
@@ -131,12 +171,12 @@
       "doc_kind": "contract"
     },
     "docs/plain_language_rules_v1.md": {
-      "sha256": "eb62c77d4472f991cb7e768d8f2db045e6a44e96ef8d228abc78dacbbe07f6c7",
+      "sha256": "4b345ac440c870349743095e661058e1c4e5e14d9b023a816f29f87778e5fc75",
       "note": "sources/wiki/plain-language-rules-v1.md",
       "doc_kind": "contract"
     },
     "docs/prompt_system_v1.md": {
-      "sha256": "8ed12d8fc7f0d527106293ffaf85e2e9f9863fd06cacb736463965fd8fc3c77c",
+      "sha256": "a621d835fc62876d8f67f4c9adcc0ed5856e9248d231cc05369c76c0fbba0138",
       "note": "sources/wiki/prompt-system-v1.md",
       "doc_kind": "contract"
     },
@@ -156,7 +196,7 @@
       "doc_kind": "contract"
     },
     "docs/run_local.md": {
-      "sha256": "4b1f1c1129d281b6b725bfe35915a17b95a2ff7c34aead2f69b054dd87bbe40d",
+      "sha256": "76f67e5111606361518522701118486cb7d148c98a4e24232d5ef36ee3473392",
       "note": "sources/wiki/run-local.md",
       "doc_kind": "guide"
     },
@@ -166,7 +206,7 @@
       "doc_kind": "contract"
     },
     "docs/source_roots_and_portable_provenance_v1.md": {
-      "sha256": "d0a37ca8afda96cd938970fac3cec89037ec45d595f2dcf6f19bbfe3052b8abd",
+      "sha256": "abfb57b9b7a1bab0627a327e40c4284dea354fcd3311ade4f613574ae2e1d216",
       "note": "sources/wiki/source-roots-and-portable-provenance-v1.md",
       "doc_kind": "contract"
     },
@@ -175,8 +215,13 @@
       "note": "sources/wiki/source-tables-v1.md",
       "doc_kind": "contract"
     },
+    "docs/upgrading_to_kovium_v1.md": {
+      "sha256": "54c1605637fc14b7bf77944f35566d47fe830fae54986a22f08b0a4ade09e34c",
+      "note": "sources/wiki/upgrading-to-kovium-v1.md",
+      "doc_kind": "contract"
+    },
     "docs/user_guide_v1.md": {
-      "sha256": "176deb52618ec0fcddd0c33eabee18b81c56c3410e2ad757bdab4af25433e0ae",
+      "sha256": "71e330daa4c324b56c3092d86321ee27d1b012581c3e18326844daab1d6a32bc",
       "note": "sources/wiki/user-guide-v1.md",
       "doc_kind": "guide"
     },
@@ -186,12 +231,12 @@
       "doc_kind": "contract"
     },
     "docs/welcome_v1.md": {
-      "sha256": "228440530567accad7dcb9a8a5c6bdec983d6db6df6b1603eec46da863550df2",
+      "sha256": "244055dc764ad73e320dd63d472ac248fe30a75b11c9192c4bf182a71254b92d",
       "note": "sources/wiki/welcome-v1.md",
       "doc_kind": "contract"
     },
     "docs/workstream_b_governance_and_routing_policy_v1.md": {
-      "sha256": "5075bea4cf47a749a232a3b0724acefcf2f22ee76270967a6ebc7ed942683128",
+      "sha256": "1ac42dc79b2fca9f4e86b3a664bfee3bdc4e22a8806f17912070dd8eb61394a4",
       "note": "sources/wiki/workstream-b-governance-and-routing-policy-v1.md",
       "doc_kind": "contract"
     },
@@ -206,37 +251,32 @@
       "doc_kind": "contract"
     },
     "second_brain/catalogue/options_v1.json": {
-      "sha256": "130f0f6b65a9a539dcfe5cdedc7573ff504b63ff5819e8ab03ef36309a8b5275",
+      "sha256": "5f4916a16305ebe3acef9151f43fd24cb0708ae79c605e11f8f63c732c1bba3e",
       "note": "sources/wiki/the-option-catalogue.md",
       "doc_kind": "reference"
     },
-    "second_brain_architecture.md": {
-      "sha256": "cb11130d085d8a0040254a8d5c3d280930dbfe8ffe4d5a05359ccb54ec738bb3",
-      "note": "sources/wiki/second-brain-architecture.md",
-      "doc_kind": "overview"
-    },
-    "skills/claude-code/second-brain-intake/SKILL.md": {
-      "sha256": "794abe565a41b68f95eb203f4915d4d44f975eaf6a2430936e80d73b19431933",
-      "note": "sources/wiki/second-brain-intake.md",
+    "skills/claude-code/kovium-intake/SKILL.md": {
+      "sha256": "deb889d5b0d52d84b99102c3e9ecc13ac7e9d2ca1f986e7d2c4fe11090264b8f",
+      "note": "sources/wiki/kovium-intake.md",
       "doc_kind": "skill"
     },
-    "skills/claude-code/second-brain-onboarding/SKILL.md": {
-      "sha256": "d046f91471e8e5277b1ea02bbaa22616d51446c48bf80859b8522f4ec0715e86",
-      "note": "sources/wiki/second-brain-onboarding.md",
+    "skills/claude-code/kovium-onboarding/SKILL.md": {
+      "sha256": "58b52d555f227f01b0ee795c3e990527e11092f6b79c97e8ee1b92386dbddfbe",
+      "note": "sources/wiki/kovium-onboarding.md",
       "doc_kind": "skill"
     },
-    "skills/claude-code/second-brain-operations/SKILL.md": {
-      "sha256": "ef28e2abd482cc99026b6deab51e66eaca9cbd4ed1c02d9e25c49e0da94b975c",
-      "note": "sources/wiki/second-brain-operations.md",
+    "skills/claude-code/kovium-operations/SKILL.md": {
+      "sha256": "08f3191c030cb4751f55cbea650ff43501a435f25ee42cc164ca8ea8c8edf2d7",
+      "note": "sources/wiki/kovium-operations.md",
       "doc_kind": "skill"
     },
-    "skills/claude-code/second-brain-research-answering/SKILL.md": {
-      "sha256": "af1989fdc15daa83c72bef9f3b4f18169d0418a65fd61fd1311ae5288e3576fb",
-      "note": "sources/wiki/second-brain-research-answering.md",
+    "skills/claude-code/kovium-research-answering/SKILL.md": {
+      "sha256": "28e33d2d24415eda376ce37a6723e8cc819801c948c27bb667b7034d711335fd",
+      "note": "sources/wiki/kovium-research-answering.md",
       "doc_kind": "skill"
     },
     "specifications.md": {
-      "sha256": "d0152b5f084bc3f64cdd8f68f9494d4c018c0724facee7c76fb1031f91c93367",
+      "sha256": "7c19711947be9d9ed48e69661d44ab0ca56fc34d2262dfd68604c6fc1609ca05",
       "note": "sources/wiki/specifications.md",
       "doc_kind": "specification"
     }

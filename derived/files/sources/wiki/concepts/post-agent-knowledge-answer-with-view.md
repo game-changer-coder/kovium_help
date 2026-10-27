@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 2
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:04.616829+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:41.182963+00:00}"
 ---
 
 # POST /agent/knowledge/answer with "view
@@ -39,7 +39,7 @@ None recorded.
 - Narrower: none
 
 ## Sources
-- undated · [[specifications|Second Brain — the specification and operator's guide]] — Names this concept.
+- undated · [[specifications|Kovium — the specification and operator's guide]] — Names this concept.
 
 ## Concepts
 - [[post-agent-knowledge-answer-with-view|POST /agent/knowledge/answer with "view]]
@@ -48,8 +48,8 @@ None recorded.
 - **POST /agent/knowledge/answer with "view**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[specifications]] — rebuilt from its sources without an agent
-- 2026-10-23 · hierarchy — broader: [[agent]], [[knowledge-answer]]
+- 2026-10-27 · assembled · [[specifications]] — rebuilt from its sources without an agent
+- 2026-10-27 · hierarchy — broader: [[agent]], [[knowledge-answer]]
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

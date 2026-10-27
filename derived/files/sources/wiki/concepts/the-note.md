@@ -10,14 +10,14 @@ definition_basis: sources
 sources: [ingestion-spec-v1]
 concepts: [the-note]
 broader: []
-narrower: [declared-broader-on-a-note, for-an-owner-maintained-note-only-owner-maintained, it-outlives-its-note, never-accept-a-note-with-mode, not-an-owner-work-note, the-rebuilt-note-guard]
+narrower: [declared-broader-on-a-note, for-an-owner-maintained-note-only-owner-maintained, it-outlives-its-note, never-accept-a-note-with-mode, not-an-owner-work-note]
 source_count: 1
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:01.590046+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:40.794701+00:00}"
 ---
 
 # The note
@@ -42,7 +42,7 @@ None recorded.
 
 ## Hierarchy
 - Broader: none
-- Narrower: [[declared-broader-on-a-note|declared broader on a note]], [[for-an-owner-maintained-note-only-owner-maintained|for an owner-maintained note, only owner_maintained]], [[it-outlives-its-note|It outlives its note]], [[never-accept-a-note-with-mode|Never accept a note with mode]], [[not-an-owner-work-note|Not an owner-work note]], [[the-rebuilt-note-guard|The rebuilt-note guard]]
+- Narrower: [[declared-broader-on-a-note|declared broader on a note]], [[for-an-owner-maintained-note-only-owner-maintained|for an owner-maintained note, only owner_maintained]], [[it-outlives-its-note|It outlives its note]], [[never-accept-a-note-with-mode|Never accept a note with mode]], [[not-an-owner-work-note|Not an owner-work note]]
 
 ## Sources
 - undated · [[ingestion-spec-v1|Ingestion Specification V1]] — Names this concept.
@@ -54,7 +54,7 @@ None recorded.
 - **The note**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[ingestion-spec-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[ingestion-spec-v1]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

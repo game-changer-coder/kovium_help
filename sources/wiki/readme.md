@@ -1,18 +1,18 @@
 ---
 type: "documentation"
-title: "second_brain"
+title: "Kovium"
 description: "A local-first, provenance-backed, workspace-aware knowledge platform. It turns your written material — Markdown notes, PDFs, Word files, web pages, books, images, transcripts — into a structured, queryable knowledge graph with retrieval..."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "overview"
-audience: "someone meeting second brain for the first time"
+audience: "someone meeting Kovium for the first time"
 doc_path: "README.md"
-doc_sha256: "3a306a820f076515152ef517bbddca07cfdc6151a34af2173e0d53d37a7fc2a5"
+doc_sha256: "cfd686a7beafb22f3ae371def0cd3af7b32c6ead2f76e1cad709917b12d0addf"
 ---
 
-# second_brain
+# Kovium
 
 A local-first, provenance-backed, workspace-aware knowledge platform. It turns
 your written material — Markdown notes, PDFs, Word files, web pages, books,
@@ -30,9 +30,12 @@ pages, graph nodes and edges, maintained state — stays rebuildable from it.
 
 **No metered billing.** Every piece of work that requires judgment is handed
 to a *brain keeper*: a one-off call to an agent CLI (Claude Code, Codex or
-OpenClaw) that runs on your own already-paid subscription. second_brain itself
+OpenClaw) that runs on your own already-paid subscription. Kovium itself
 never calls a paid model API and never holds an API key, and everything that
 spends that subscription states its cost first. See [Billing rule](#billing-rule).
+
+**New here?** Follow GETTING_STARTED.md: a step-by-step guide for Claude Code,
+Codex and OpenClaw, from the download to your first answer.
 
 ## Install, in one step
 
@@ -41,14 +44,14 @@ python scripts/setup.py
 ```
 
 The same command on Linux, macOS and Windows, with any Python 3.10 or later.
-It makes the private environment (`.venv`), installs second brain into it,
+It makes the private environment (`.venv`), installs Kovium into it,
 checks the AI programs on this computer and their sign-in, says in plain words
-which optional helpers are missing and what each brings, and connects second
-brain to every AI program it finds: Claude Code as a plugin (the connection,
-the skills and `/second-brain:start`), Codex, Cursor and OpenClaw by a
+which optional helpers are missing and what each brings, and connects Kovium
+to every AI program it finds: Claude Code as a plugin (the connection,
+the skills and `/kovium:start`), Codex, Cursor and OpenClaw by a
 connection each. It needs no administrator password, spends no token, and a
 second run changes nothing. Then open your AI program and say **"help me
-start with second brain"**: nothing else is typed, and there is no server to
+start with Kovium"**: nothing else is typed, and there is no server to
 keep running. Once you have a collection, your program can add an agent of its
 own for it, in the program's own format: a Claude Code agent file, a Codex
 custom agent (ask for it by name), or a marked section of an OpenClaw
@@ -58,10 +61,10 @@ workspace's `AGENTS.md`, always beside what is already there. The contract:
 ## Try it in five minutes, over HTTP
 
 ```bash
-./scripts/run_second_brain.sh
+./scripts/run_kovium.sh
 ```
 
-On Windows, or anywhere without bash: `python scripts/run_second_brain.py`
+On Windows, or anywhere without bash: `python scripts/run_kovium.py`
 (`--port`, `--skip-install`; `--help` for the rest).
 
 This creates a `.venv` if one doesn't exist, installs the package, and starts
@@ -70,13 +73,13 @@ interactive API docs: `http://127.0.0.1:8000/docs`.
 
 A small example collection ships in the repository,
 `sandboxes/hello_brain/`: a few short pages
-about second brain itself, their notes already built. Connected over MCP (see
-`docs/mcp_server_v1.md`), say "help me start with second brain" to your agent:
+about Kovium itself, their notes already built. Connected over MCP (see
+`docs/mcp_server_v1.md`), say "help me start with Kovium" to your agent:
 it calls `welcome`, opens the example, answers a suggested question with its
 sources and offers a short tour, with no command typed and no tokens spent
 (`docs/welcome_v1.md`). Then "make my own collection", or "open my collection
 in this folder", makes or opens one and binds the conversation to it
-(`docs/collections_v1.md`). "Make me a second brain agent" adds that
+(`docs/collections_v1.md`). "Make me a Kovium agent" adds that
 collection's own agent to your project, beside your own agents, answering in
 the style you choose (`docs/install_and_caller_agent_v1.md`). Over HTTP, with
 no registration first:
@@ -179,7 +182,7 @@ raw source → converted Markdown (+ figure and equation catalogs) → templated
 ```
 
 Each layer is derived from the one before it and stays rebuildable from it.
-[[second-brain-architecture|`second_brain_architecture.md`]] maps the layers
+[[architecture|`architecture.md`]] maps the layers
 onto the `second_brain/` package; [[implementation-overview|`docs/implementation_overview.md`]]
 lists every subpackage.
 
@@ -224,7 +227,7 @@ and never invents.
 .venv/bin/pytest -q tests/unit/test_retrieval_service.py::test_name
 # in a random order fixed by a seed (files, and the tests inside each, are shuffled);
 # `random` draws a seed and prints it, the same seed repeats the order
-.venv/bin/pytest -q --shuffle-seed random      # or SECOND_BRAIN_TEST_SHUFFLE_SEED=1234
+.venv/bin/pytest -q --shuffle-seed random      # or KOVIUM_TEST_SHUFFLE_SEED=1234
 # Every test fails at teardown, by name, if it leaves an environment variable or the working
 # folder changed, or a file in the checkout's config/, data/, sources/, logs/ or sandboxes/;
 # caches of settings files are dropped before each test (tests/conftest.py).
@@ -250,7 +253,7 @@ and never invents.
 
 ## Self-contained, and safe to publish
 
-second_brain depends on nothing outside its own tree or a workspace assigned
+Kovium depends on nothing outside its own tree or a workspace assigned
 to an instance. No dependency on another project's files or formats, no
 private corpus, no credential, no machine-specific path. Real workspaces
 (`sandboxes/*`, other than `hello_brain`) and instance tails are per-machine
@@ -260,7 +263,7 @@ and written into `CLAUDE.md` as a standing rule.
 
 ## Billing rule
 
-**second_brain must never cause a metered, per-token charge.** All model work
+**Kovium must never cause a metered, per-token charge.** All model work
 goes through the brain keeper, which runs on your own paid subscription.
 Nothing in this project may create a cost beyond that. No calls to a paid
 model API, no metered credentials passed to a subprocess, no direct HTTP to a
@@ -279,7 +282,7 @@ and checkable live via `GET /ops/billing_safety`. Full statement in
 | [[api-spec-v1|`docs/api_spec_v1.md`]] | the HTTP routes and their contracts |
 | [[agent-memory-contract-v1|`docs/agent_memory_contract_v1.md`]] | the governed `/agent/knowledge/*` contract |
 | [[note-format-contract-v1|`docs/note_format_contract_v1.md`]] | the note contract, facet vocabulary, lint, nightly maintenance |
-| [[second-brain-architecture|`second_brain_architecture.md`]] | how the code is organised, layer by layer |
+| [[architecture|`architecture.md`]] | how the code is organised, layer by layer |
 | `CLAUDE.md`, `project_guidelines.md` | the rules for changing the platform |
 | `IMPLEMENTATION_JOURNEY.md` | the persistent implementation history, newest first |
 

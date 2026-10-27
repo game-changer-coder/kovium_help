@@ -7,17 +7,17 @@ description:
 status: draft
 synthesis: deterministic
 definition_basis: sources
-sources: [source-roots-and-portable-provenance-v1]
+sources: [source-roots-and-portable-provenance-v1, obsidian-view-v1, upgrading-to-kovium-v1]
 concepts: [status]
 broader: []
 narrower: [status-readout]
-source_count: 1
+source_count: 3
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:05.103626+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:41.821554+00:00}"
 ---
 
 # Status
@@ -46,6 +46,8 @@ None recorded.
 
 ## Sources
 - undated · [[source-roots-and-portable-provenance-v1|Source roots and portable provenance]] — Names this concept.
+- undated · [[obsidian-view-v1|The view in Obsidian (Track BE)]] — Names this concept.
+- undated · [[upgrading-to-kovium-v1|Upgrading a collection made before Kovium]] — Names this concept.
 
 ## Concepts
 - [[status|Status]]
@@ -54,7 +56,7 @@ None recorded.
 - **Status**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[source-roots-and-portable-provenance-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[source-roots-and-portable-provenance-v1]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

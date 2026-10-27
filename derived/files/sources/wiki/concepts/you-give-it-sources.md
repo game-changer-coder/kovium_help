@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: {by: process:concept-assembly, at: 2026-10-23T19:23:04.593951+00:00}
+created: 2026-10-27
+updated: 2026-10-27
+generated: {by: process:concept-assembly, at: 2026-10-27T20:04:41.162212+00:00}
 ---
 
 # You give it sources
@@ -39,7 +39,7 @@ None recorded.
 - Narrower: none
 
 ## Sources
-- undated · [[specifications|Second Brain — the specification and operator's guide]] — Names this concept.
+- undated · [[specifications|Kovium — the specification and operator's guide]] — Names this concept.
 
 ## Concepts
 - [[you-give-it-sources|You give it sources]]
@@ -48,7 +48,7 @@ None recorded.
 - **You give it sources**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[specifications]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[specifications]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

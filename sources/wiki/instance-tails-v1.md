@@ -1,20 +1,20 @@
 ---
 type: "documentation"
 title: "Instance tails v1: one shared head, a tail per instance (Track R)"
-description: "Every second brain is built from this repository by someone whose collection has nothing in common with anyone else's: papers, leases, recipes, lab notebooks, minutes in a language nobody here reads. The instructions the repository ships..."
+description: "Every Kovium is built from this repository by someone whose collection has nothing in common with anyone else's: papers, leases, recipes, lab notebooks, minutes in a language nobody here reads. The instructions the repository ships (the..."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/instance_tails_v1.md"
-doc_sha256: "95cb009a029c7d32c32fb616af7d770eee05977d62dba2300b90dd6946ce1784"
+doc_sha256: "603b414bc876de17a53ebf20129887e0d27cd69229f9e8c7b7a15724f0c05fee"
 ---
 
 # Instance tails v1: one shared head, a tail per instance (Track R)
 
-Every second brain is built from this repository by someone whose collection
+Every Kovium is built from this repository by someone whose collection
 has nothing in common with anyone else's: papers, leases, recipes, lab
 notebooks, minutes in a language nobody here reads. The instructions the
 repository ships (the **head**) must therefore stay general. A general

@@ -4,12 +4,12 @@ title: "Your first instance, end to end"
 description: "A step-by-step guide for somebody who has never set one of these up. It goes from an empty folder to a working instance that has answered a real question from a real document, and back again through a restore rehearsal."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "guide"
-audience: "a person setting up or using second brain"
+audience: "a person setting up or using Kovium"
 doc_path: "docs/first_instance_lifecycle_guide_v1.md"
-doc_sha256: "db38361d390ab4e05982d40f613c81db4aa38e8350e65c07e7f9ef9577f32ccc"
+doc_sha256: "87163c0ff11c12cc72b3be7f88d48d18469ede74e82fabc5c7126f4a6912ddf0"
 ---
 
 # Your first instance, end to end
@@ -72,7 +72,7 @@ In a terminal, in the checkout, and leave it running:
 
 ```bash
 cd /path/to/your/second_brain-checkout
-./scripts/run_second_brain.sh
+./scripts/run_kovium.sh
 ```
 
 First run creates a virtualenv and installs; give it a few minutes. Then in a
@@ -116,15 +116,15 @@ inventing a procedure.
 ```bash
 mkdir -p ~/lifecycle-test && cd ~/lifecycle-test
 mkdir -p .claude/skills
-cp -r "$BRAIN/skills/claude-code/second-brain-onboarding" .claude/skills/
-cp -r "$BRAIN/skills/claude-code/second-brain-operations" .claude/skills/
+cp -r "$BRAIN/skills/claude-code/kovium-onboarding" .claude/skills/
+cp -r "$BRAIN/skills/claude-code/kovium-operations" .claude/skills/
 ```
 
 Record the coordinates where a later session will find them:
 
 ```bash
 cat > CLAUDE.md <<'EOF'
-# Second brain coordinates
+# Kovium coordinates
 
 - agent_id:     lifecycle-agent
 - workspace_id: lifecycle_test
@@ -133,15 +133,16 @@ cat > CLAUDE.md <<'EOF'
 Send BOTH ids on every call. A missing workspace_id is a 422; an unregistered
 one is a 404. GET /ops/workspaces lists what exists.
 
-Use the `second-brain-operations` skill before touching the brain at all.
+Use the `kovium-operations` skill before touching the brain at all.
 Never answer from note files directly; use the API.
 EOF
 ```
 
 Start Claude in that folder and type `/skills`. Both should be listed.
 
-*(Using OpenClaw instead? Copy from `skills/openclaw/` into
-`<agent workspace>/skills/` and follow its registration step. Do not mix the two
+*(Using OpenClaw instead? `python scripts/setup.py --program OpenClaw` installs
+`skills/openclaw/` into the default agent's workspace; for another agent, copy
+them into `<agent workspace>/skills/` and follow its registration step. Do not mix the two
 sets.)*
 
 ---
@@ -218,7 +219,7 @@ JSON
 *(If you chose a custom `root_path`, write it to `<root_path>/config/brain_keeper.json`.)*
 
 **Then restart the service** — Ctrl-C in the first terminal and run
-`./scripts/run_second_brain.sh` again. The configuration is read **once**, when
+`./scripts/run_kovium.sh` again. The configuration is read **once**, when
 the workspace is first used in a running process; a file written afterwards is
 not picked up until a restart, and the symptom is silent.
 
@@ -525,7 +526,7 @@ address is accepted. Set `"enabled": false` in
 nothing answering, retrieval degrades to its other routes and says so
 (`semantic_search_server_unreachable` in `GET /ops/self_check`), and the
 server is not asked again for `down_cooldown_seconds` (default 60): on
-Windows each unanswered attempt costs 2.3 s. `SECOND_BRAIN_EMBEDDINGS_DISABLED=1`
+Windows each unanswered attempt costs 2.3 s. `KOVIUM_EMBEDDINGS_DISABLED=1`
 switches them off whatever the files say; the test suite sets it.
 
 **PDF converter and figures (Track M).** Shipped with **no** PDF converter
@@ -584,5 +585,5 @@ the plan looks right, run it with `"dry_run": false` and a `"token_budget"`; it
 stops cleanly before the document that would pass it. See
 `docs/folder_intake_v1.md`.
 
-From here on, `second-brain-operations` is the entry point for every
+From here on, `kovium-operations` is the entry point for every
 interaction.

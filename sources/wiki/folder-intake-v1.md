@@ -4,12 +4,12 @@ title: "Folder intake v1"
 description: "POST /sources/process_folder feeds a whole folder of sources into a workspace: triage first, with no agent call, then processing in date order under a token budget. Implemented in second_brain/source_pipeline/folder_intake.py."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/folder_intake_v1.md"
-doc_sha256: "3fe9f708f224e2b831ce37d374f5a78c86e4992ee5ad42acae47330cdc6a90a7"
+doc_sha256: "9779676d720d7d8a5d0d1a27a39a9b6ca5c125dbb4867e75416d26bc26ee4332"
 ---
 
 # Folder intake v1
@@ -271,6 +271,26 @@ read, and the basis says how many such runs there were. The concept-layer
 calls an ingest causes are left out: they do not depend on the document's
 length.
 
+**A short document's first guess (2026-10-25).** The two stated fixed parts
+(`tokens_per_document`, 30,000, and the concept upkeep default
+`concept_sync_tokens_per_document`, 40,000) describe a paper of tens of
+thousands of characters, and put a five-line note at about 70 thousand tokens.
+While nothing is measured, a document shorter than
+`estimate_small_document_chars` (20,000) has each fixed part scaled in a
+straight line from a floor at no length to the full part at that length: the
+extraction floor `estimate_small_document_tokens` (23,000: the example
+collection's four measured readings of 1,400 to 2,300 characters billed 21,929
+to 26,986 tokens, fixed parts of about 21,000 to 26,000), the upkeep floor
+`estimate_small_document_upkeep_tokens` (12,000: about one agent call, since a
+short reading's two passes billed 23,310, and a short document's upkeep is one
+`maintain_concepts` call; inferred, not measured). A 300-character note is now
+about 36 thousand (23,255 reading, 12,420 upkeep), a 10,000-character one about
+58 thousand, and from 20,000 characters nothing changes. The default range
+stays wide, its basis says the figure was made smaller for a short document,
+and the plan still calls it a first guess. Measured figures, once this install
+has runs or measured upkeep, are never scaled. `0` turns the scaling off; a
+fixed part set below its floor is kept as set.
+
 ### Estimates that learn from this install (Track AM)
 
 Found on a real collection: short papers ran at about 0.6 times their
@@ -434,6 +454,7 @@ registered later is decided for with no change here.
 | `long_document_pages` / `long_document_chars` | `100` / `400000` |
 | `tokens_per_document` / `tokens_per_char` | `30000` / `0.5` |
 | `concept_sync_tokens_per_document` | `40000` |
+| `estimate_small_document_chars` / `estimate_small_document_tokens` / `estimate_small_document_upkeep_tokens` | `20000` / `23000` / `12000` (with nothing measured, a shorter document's fixed parts scale down to these floors; `0` chars turns it off) |
 | `estimate_min_group_runs` / `estimate_max_bands` | `3` / `3` (runs a note type, and each length band of it, needs before it stands in for all runs / the most bands a type is cut into) |
 | `estimate_default_spread` / `estimate_sparse_spread` | `[0.5, 2.0]` / `[0.7, 1.5]` (low and high as multiples of the expected figure, stated, for a default and for one or two runs) |
 | `estimate_outlier_min_runs` / `estimate_outlier_factor` | `6` / `3.0` (from this many runs, one this many times above or below its fitted figure is left out) |

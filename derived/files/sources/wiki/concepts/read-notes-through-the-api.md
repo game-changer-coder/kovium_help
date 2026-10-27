@@ -7,7 +7,7 @@ description:
 status: draft
 synthesis: deterministic
 definition_basis: sources
-sources: [second-brain-intake, second-brain-research-answering]
+sources: [kovium-intake, kovium-research-answering]
 concepts: [read-notes-through-the-api]
 broader: [notes]
 narrower: []
@@ -15,9 +15,9 @@ source_count: 2
 first_seen:
 last_seen:
 revision: 2
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:03.563533+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:40.969910+00:00}"
 ---
 
 # Read notes through the API
@@ -39,8 +39,8 @@ None recorded.
 - Narrower: none
 
 ## Sources
-- undated · [[second-brain-intake|Second Brain Intake (Claude Code)]] — Names this concept.
-- undated · [[second-brain-research-answering|Second Brain Research Answering (Claude Code)]] — Names this concept.
+- undated · [[kovium-intake|Kovium Intake (Claude Code)]] — Names this concept.
+- undated · [[kovium-research-answering|Kovium Research Answering (Claude Code)]] — Names this concept.
 
 ## Concepts
 - [[read-notes-through-the-api|Read notes through the API]]
@@ -49,8 +49,8 @@ None recorded.
 - **Read notes through the API**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[second-brain-intake]] — rebuilt from its sources without an agent
-- 2026-10-23 · hierarchy — broader: [[notes]]
+- 2026-10-27 · assembled · [[kovium-intake]] — rebuilt from its sources without an agent
+- 2026-10-27 · hierarchy — broader: [[notes]]
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

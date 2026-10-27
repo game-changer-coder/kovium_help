@@ -1,22 +1,22 @@
 ---
 type: "documentation"
 title: "Implementation overview"
-description: "A map of the code: what each part of the repository is, so a reader can find where a behaviour lives. How the parts fit together is in second_brain_architecture.md; what the platform does is in specifications.md; the contracts are indexed..."
+description: "A map of the code: what each part of the repository is, so a reader can find where a behaviour lives. How the parts fit together is in architecture.md; what the platform does is in specifications.md; the contracts are indexed in..."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "guide"
-audience: "a person setting up or using second brain"
+audience: "a person setting up or using Kovium"
 doc_path: "docs/implementation_overview.md"
-doc_sha256: "0723bd9f8d97a04cfaff82ccb4c63553c641078b0a3fd9afe37b41d4ba2f9e19"
+doc_sha256: "b73568b411608213f2343f6fb9ff8a0831baf9a1ff34302bf74cc7ec12dcc058"
 ---
 
 # Implementation overview
 
 A map of the code: what each part of the repository is, so a reader can find
 where a behaviour lives. How the parts fit together is in
-`second_brain_architecture.md`; what the platform does is in
+`architecture.md`; what the platform does is in
 `specifications.md`; the contracts are indexed in `docs/README.md`.
 
 This file once held the first version's plan (a research-only tool, four

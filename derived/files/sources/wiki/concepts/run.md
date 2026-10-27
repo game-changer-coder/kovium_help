@@ -15,9 +15,9 @@ source_count: 2
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:22:59.122857+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:40.388177+00:00}"
 ---
 
 # Run
@@ -36,7 +36,6 @@ None recorded.
 
 ## Open problems
 - The vision allowance is not part of a folder run's token_budget, which — [[document-conversion-v1|Document conversion v1: equations, tables and figures (Track M)]]; similar in [[the-option-catalogue|The option catalogue]]
-- Changing it later: You can raise or lower the limit at any time, and the free steps of the night run either way. — [[the-option-catalogue|The option catalogue]]
 - Of the four harnesses only Claude Code was seen to run the snippets; the — [[mcp-server-v1|MCP server v1]]
 - Progress is counted in the process that started the run; a status read — [[adding-documents-v1|Adding documents in one request (v1)]]
 - python scripts/probe_vision_confinement.py --run --skill read_equations — [[equations-v1|Equations read where the caller needs them v1 (Track N)]]
@@ -56,7 +55,7 @@ None recorded.
 - **Run**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[adding-documents-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[adding-documents-v1]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

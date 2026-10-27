@@ -10,14 +10,14 @@ definition_basis: sources
 sources: [images-v1]
 concepts: [also]
 broader: []
-narrower: []
+narrower: [on-windows-also]
 source_count: 1
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: {by: process:concept-assembly, at: 2026-10-23T19:23:01.411495+00:00}
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:40.755968+00:00}"
 ---
 
 # Also
@@ -36,7 +36,7 @@ None recorded.
 
 ## Hierarchy
 - Broader: none
-- Narrower: none
+- Narrower: [[on-windows-also|On Windows also]]
 
 ## Sources
 - undated · [[images-v1|Images and equations in every kind of source v1 (Track T)]] — Names this concept.
@@ -48,7 +48,7 @@ None recorded.
 - **Also**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[images-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[images-v1]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

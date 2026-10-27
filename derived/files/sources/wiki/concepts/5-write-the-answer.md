@@ -7,7 +7,7 @@ description:
 status: draft
 synthesis: deterministic
 definition_basis: sources
-sources: [second-brain-research-answering]
+sources: [kovium-research-answering]
 concepts: [5-write-the-answer]
 broader: []
 narrower: []
@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: {by: process:concept-assembly, at: 2026-10-23T19:23:04.393051+00:00}
+created: 2026-10-27
+updated: 2026-10-27
+generated: {by: process:concept-assembly, at: 2026-10-27T20:04:41.108160+00:00}
 ---
 
 # 5. Write the answer
@@ -39,7 +39,7 @@ None recorded.
 - Narrower: none
 
 ## Sources
-- undated · [[second-brain-research-answering|Second Brain Research Answering (Claude Code)]] — Names this concept.
+- undated · [[kovium-research-answering|Kovium Research Answering (Claude Code)]] — Names this concept.
 
 ## Concepts
 - [[5-write-the-answer|5. Write the answer]]
@@ -48,7 +48,7 @@ None recorded.
 - **5. Write the answer**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[second-brain-research-answering]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[kovium-research-answering]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

@@ -4,12 +4,12 @@ title: "API Specification V1"
 description: "Provide stable interfaces for:"
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/api_spec_v1.md"
-doc_sha256: "d78572048a698ffe5a696e02d7e582cc8eafeb90047d76575d8e7a275f14799d"
+doc_sha256: "ec4db36e39adf02a5365a7ee7cec222c1f94ad4dcdf3d3992efd940f99e68313"
 ---
 
 # API Specification V1
@@ -932,7 +932,7 @@ catalogue (`second_brain/catalogue/welcome_v1.json`) or the user guide.
   `say` (sentences for the person), `ask` (at most one question:
   `{text, recommended, answers, on}`, recommended first), `next` and `help`
   (the calls to make). With `workspace_id`, the collection's own state. Free.
-- `GET /help` `{question}` — a question about second brain itself, answered
+- `GET /help` `{question}` — a question about Kovium itself, answered
   from the user guide's passages and the option catalogue's entries by code:
   `found`, `answer` (at most three `{text, source}`, `source` a guide
   `section` or a catalogue `entry`), `say`, `help_collection` (`not fetched`,
@@ -961,14 +961,18 @@ catalogue (`second_brain/catalogue/welcome_v1.json`) or the user guide.
   `example_not_found` (404) when the install holds no example. Free.
 - `POST /welcome/tour` `{step?, try_it?, add?, approval?, reset?, wait?, agent_id?}` —
   `step` (`look`, `journey`, `files`, `notes`, `map`, `links`, `concepts`,
-  `add`, or a number; none: the first): `{step, number, of, title, say, do,
-  check_in, look, next_step, next}` (`look.files`: each place to look at, its
-  full `place` on this computer given at run time; a step with an exercise has
-  `ask`, its offer, beside its own `do` and `check_in`); unknown:
-  `tour_step_unknown` (422). `try_it` (`both_ways`, `practice_night`; Track BA)
-  runs a step's exercise, free: `{tried, ran, say, look, check_in, next}`. At `add`: `add: free`
+  `night`, `add`, or a number; none: the first): `{step, number, of, category,
+  title, say, do, check_in, look, next_step, next, way_on}` (`title` composed:
+  "Step 3 of 9 · ⚙️ Configuration: ..."; `check_in` only at the first step,
+  else null; `way_on` the line that ends the message; `look.files`: each place
+  to look at, its full `place` on this computer given at run time; the map step
+  has `look.picture`; the notes step has `answer` and `reply`; a step with an
+  exercise has `ask`, its offer; Track BD); unknown: `tour_step_unknown` (422).
+  `try_it` (`both_ways`, `practice_night`; Track BA) runs a step's exercise,
+  free: `{tried, ran, say, look, do, next_step, next, way_on}`. At `add`: `add: free`
   adds the waiting page by code (`added`, `note`, `map`, `links`,
-  `concept_pages`, `ask_with`); `add: ai` without `approval` is the plan
+  `concept_pages`, `do`, `ask_with`, and the tour's end: `ask` the manual offer,
+  `also` the reset, `way_on`, `tour_end`); `add: ai` without `approval` is the plan
   (`estimated_tokens`, `estimated_range`, `limit`, `approval`, `ask`), with
   the plan's `approval` the run (a background job, or `wait: true`); a wrong
   or stale code is refused before anything runs (`adding_plan_changed`,
@@ -1010,14 +1014,38 @@ the collection's own access policy (the `agents` table of its
   adds the new collection's own connection to that agent program. Refused:
   `collection_name_missing`, `collection_folder_not_absolute`,
   `collection_exists_there` (with the open call), `collection_folder_overlaps`.
-- `POST /collections/open` `{folder, program?}` — an existing collection's
-  folder registered here (or found registered), this agent registered at the
+- `GET /collections` — Track BC1: `collections` (`{id, name, holds, notes,
+  folder, relative_to, joined}`, sorted by name; the example and the manual not
+  listed; `notes` read from each database read only, `null` when unreadable),
+  `say`, `next`. Opens and registers nothing. Free.
+- `POST /collections/open` `{folder | collection, program?}` — an existing collection's
+  folder registered here (or found registered), or (Track BC1) one already
+  registered, by its name or id, this agent registered at the
   access it gives: `collection` `{id, name, notes, folder,
   already_known_here}`, `access` `{level, ..., claimed}`, `travel`
   (`folders_missing`, `search_built_elsewhere`, `program`), `say`. Refused
-  `collection_folder_not_a_collection`.
+  `collection_folder_not_a_collection`, `collection_name_missing`,
+  `collection_name_unknown`, `collection_name_ambiguous`.
+- `POST /collections/join` `{collection | folder, program?, agent?, project,
+  read_only?, level?, length?, tone?, extra?, confirm?}` — Track BC2 to BC4:
+  this agent joins a collection under its own id. Without `confirm`:
+  `collection` `{id, name}`, `program`, `agent`, `connection` `{name, place,
+  why_wider?}` (`place` `project`, `agent` or `everywhere`), `access` `{level,
+  ..., how}` (`claimed`, `read`, `narrowed`, `kept`), `agent_file`, `style`,
+  `say`, `would_change`, and `asks` while the style is unanswered, else
+  `confirm`. With it: the same and `joined`, `steps` (`connection` `{done,
+  already, place, why_wider? | code, detail}`, `agent_file`). Refused:
+  `program_unknown`, `program_not_found`, `agent_project_not_found`,
+  `join_agent_missing`, `join_agent_shared`, `join_answers_missing`,
+  `collection_name_*`, `collection_folder_*`, `agent_file_taken`,
+  `confirm_code_invalid`, `confirm_code_stale`, `access_not_granted`. See
+  `docs/collections_v1.md`.
+- `POST /collections/leave` `{collection, program?, agent?, project}` — Track
+  BC4: `collection`, `program`, `agent`, `left`, `steps` (`connection`
+  `{done, removed, place | code, detail}`, `agent_file` `{outcome, file}`
+  (`removed`, `absent`, `not_ours`), `binding`), `say`. The collection stays.
 - `POST /collections/connect` `{program, agent?}` — this collection's own
-  connection (`second-brain-<id>`) added to Claude Code, Codex, Cursor or
+  connection (`kovium-<id>`) added to Claude Code, Codex, Cursor or
   OpenClaw, its agent named `read`: `program`, `agent`, `connection` `{added,
   already, name}`, `access`, `say`. Needs a manage entry that may grant.
   Refused: `program_unknown`, `program_not_found`, `program_entry_differs`,
@@ -1061,6 +1089,42 @@ the collection's own access policy (the `agents` table of its
 - `GET /ops/workspaces` `{agent_id}` with no `workspace_id`, in strict scope:
   the registered ids and their agents (`entries`), never a folder; the call
   `workspace_not_named` names.
+
+### 6h. Access tokens (Track BB)
+The contract is [[access-tokens-v1|access_tokens_v1.md]]. With a
+collection's `require_token` on (the catalogue's `access_keys`, off for every
+collection until its owner turns it on), every route that names it refuses a
+call without a valid token for it: `token_required`, `token_unknown`,
+`token_other_collection`, `token_expired` (401, `WWW-Authenticate: Bearer`)
+and `token_agent_mismatch` (403). The token goes in `Authorization: Bearer
+<token>` on every request; an omitted `agent_id` is the token's agent. The
+system header (`X-Kovium-System`) and the owner's signed-in browser are
+exempt. What a holder may call is its policy entry's level
+(`access_not_granted` otherwise).
+
+- `POST /collections/tokens` `{agent, project | to, level?, may?, expires?,
+  confirm?}` — a token for one agent: without `confirm`, `agent`, `access`,
+  `file` (relative to `project`), `ends_at`, `would_change`, `confirm`, `say`;
+  with it, `issued`, `short` (the first 8 characters of its fingerprint) and
+  the same, the token written to `<project>/.kovium/<collection>.token`
+  (or `to`, the owner's script's only) and never returned. Needs a manage entry
+  that may grant, and over plain HTTP a caller signed in with its own token
+  (`token_issue_not_allowed`), or the system header. Refused also:
+  `access_self_raise`, `access_agent_invalid`, `agent_project_not_found`,
+  `token_file_outside_project`, `token_end_invalid`, `confirm_code_*`.
+- `GET /collections/tokens` — `tokens` (`{short, agent, level, made_at,
+  made_by, ends_at, expired, last_used}`), `require_token`, `say`. Needs a
+  manage entry that may grant. Never a token.
+- `POST /collections/tokens/revoke` `{fingerprint}` — `revoked`, `short`,
+  `agent`, `say`: the token is refused from the next call. An agent's own, or
+  another's with a manage entry that may grant. Refused:
+  `token_fingerprint_invalid`, `token_not_found`, `token_fingerprint_ambiguous`.
+- `POST /ui/sign-in/code` `{next?}` — the system header only
+  (`sign_in_link_owner_only`): `link` (`/ui/sign-in?once=<code>`), valid ten
+  minutes, once. The start scripts print it.
+- `GET /ui/sign-in` `{once, next?}` — signs the browser in (an HttpOnly,
+  `SameSite=Strict` cookie) and redirects to `next` (a page of this server) or
+  `/`; a used, unknown or old code answers 401.
 
 ### 7. Concept notes
 One maintained note per concept the collection's notes name — see
@@ -1261,5 +1325,6 @@ Recommended fields:
 - `recommended_actions`
 
 ## V1 Authentication
-None beyond local-only loopback binding and process privacy.
-If needed later, add token-based local auth.
+Loopback binding and process privacy, and, per collection, access tokens
+(Track BB, section 6h, [[access-tokens-v1|access_tokens_v1.md]]): off until
+a collection's owner turns them on.

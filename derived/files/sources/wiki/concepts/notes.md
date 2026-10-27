@@ -7,7 +7,7 @@ description:
 status: draft
 synthesis: deterministic
 definition_basis: sources
-sources: [second-brain-architecture]
+sources: [architecture]
 concepts: [notes]
 broader: []
 narrower: [post-notes-native-extract-dry-run, read-notes-through-the-api, reads-notes-you-write-yourself, the-owner-s-own-notes]
@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:23:03.332796+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:40.928050+00:00}"
 ---
 
 # notes/
@@ -39,13 +39,14 @@ None recorded.
 - ASCII names (Track AK1) apply to an addition's notes and files, as to — [[adding-documents-v1|Adding documents in one request (v1)]]
 - Concept notes are passage-indexed when written (if the workspace has an — [[concept-notes-v1|Concept notes v1]]
 - Languages are taken from what notes declare; two languages in one script are — [[instance-tails-v1|Instance tails v1: one shared head, a tail per instance (Track R)]]
+- The notes step's reply (BD7) is written in advance for its one question; the — [[welcome-v1|The welcome, the example, the tour and help (v1)]]
 
 ## Hierarchy
 - Broader: none
 - Narrower: [[post-notes-native-extract-dry-run|POST /notes/native/extract {dry_run]], [[read-notes-through-the-api|Read notes through the API]], [[reads-notes-you-write-yourself|Reads notes you write yourself]], [[the-owner-s-own-notes|The owner's own notes]]
 
 ## Sources
-- undated · [[second-brain-architecture|Second Brain Architecture]] — Names this concept.
+- undated · [[architecture|Kovium Architecture]] — Names this concept.
 
 ## Concepts
 - [[notes|notes/]]
@@ -54,7 +55,7 @@ None recorded.
 - **notes/**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[second-brain-architecture]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[architecture]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

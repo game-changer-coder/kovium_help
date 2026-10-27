@@ -15,9 +15,9 @@ source_count: 1
 first_seen:
 last_seen:
 revision: 1
-created: 2026-10-23
-updated: 2026-10-23
-generated: "{by: process:concept-assembly, at: 2026-10-23T19:22:59.800580+00:00}"
+created: 2026-10-27
+updated: 2026-10-27
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:40.466894+00:00}"
 ---
 
 # holds
@@ -38,6 +38,7 @@ None recorded.
 - "Tested" reads a source's statements as the graph holds them, so a source — [[ideas-v1|Ideas v1]]
 - Books (Track O3, above): a chapter's equations are those its text holds or — [[equations-v1|Equations read where the caller needs them v1 (Track N)]]
 - The agent file holds the full path of this install's interpreter and — [[install-and-caller-agent-v1|The install step, the Claude Code plugin and the caller agent v1]]
+- The record (skills/claude-code/checkout.json) holds this computer's — [[install-and-caller-agent-v1|The install step, the Claude Code plugin and the caller agent v1]]
 
 ## Hierarchy
 - Broader: none
@@ -53,7 +54,7 @@ None recorded.
 - **holds**: see the definition above.
 
 ## Revision history
-- 2026-10-23 · assembled · [[collections-v1]] — rebuilt from its sources without an agent
+- 2026-10-27 · assembled · [[collections-v1]] — rebuilt from its sources without an agent
 
 ## My notes
-<!-- Yours. Second brain never rewrites this section. -->
+<!-- Yours. Kovium never rewrites this section. -->

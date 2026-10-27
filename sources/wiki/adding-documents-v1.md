@@ -4,12 +4,12 @@ title: "Adding documents in one request (v1)"
 description: "Track AR. The contract for POST /sources/add, the standing token budget (GET and POST /ops/budget), the one question a user is asked about it, and the short report. Lower-level intake (/sources/process, /sources/process_book..."
 status: "stable"
 reading_status: "read"
-product: "second brain"
+product: "Kovium"
 product_version: "0.1.0"
 doc_kind: "contract"
-audience: "people and agents using or changing second brain"
+audience: "people and agents using or changing Kovium"
 doc_path: "docs/adding_documents_v1.md"
-doc_sha256: "e292fc723c29d900c0eb50c6c26861316851998767c07c64d427cd6fdfe822b8"
+doc_sha256: "6abc1782bf7161be485b604e5f591975a14a5ca3cb38e4a1374cd7b62e427bef"
 ---
 
 # Adding documents in one request (v1)
@@ -30,7 +30,7 @@ every route that spends ("The approval on every spending route", below).
 
 ## The rule
 
-The caller agent and the knowledge brain system settle the work between
+The caller agent and Kovium settle the work between
 themselves. Whatever the system recommends, the caller carries out; whatever
 failed is tried again by the system before anyone is told. A user is asked
 about two things only: the collection's standing token budget, set once and
@@ -139,12 +139,14 @@ tokens" from the stated default, with nothing saying it was a guess. Now:
   (the header's, else its first heading, else its name) and its text (its header
   left out). That route shows its own plan with a `confirm` code first and writes
   only on the person's yes. The paid plan is unchanged beside it.
-- Not done here: the default's fixed part per document (`tokens_per_document`,
-  30,000, plus the concept upkeep default, 40,000) is what a short file mostly
-  pays in the estimate. It stands for the real overhead of a reading (prompts,
-  two passes), measured at 23,310 tokens for the example's one short page, so
-  scaling it down for small files is a change to the estimator's model (Track
-  AM), left for its own decision.
+- A short file's first guess is scaled to its length (2026-10-25): with
+  nothing measured, a document under `estimate_small_document_chars` (20,000)
+  has the default's fixed parts (30,000 for the reading, 40,000 for concept
+  upkeep) scaled down towards floors of 23,000 and 12,000, the measured
+  overhead of reading a short page (the example's one short page billed 23,310)
+  and about one concept call. A five-line file is planned at about 36 thousand
+  tokens, not 70 thousand; the figure is still called a first guess. Details and
+  settings: [[folder-intake-v1|folder_intake_v1.md]], Cost.
 
 ### Keep a copy of each original, or point to it (Track AZ4)
 
@@ -457,8 +459,11 @@ as they always did, so a collection with the setting off behaves as before.
   a file that changed since, or another budget), `spending_approval_expired`
   (409: older than `adding_approval_valid_hours`). Each says the next step: the
   same call as a dry run, its plan shown, then the real call with its approval.
-- **What it cannot do.** The platform has no authentication: the code proves a
-  plan was made for exactly this call, not that a person read it.
+- **What it cannot do.** The code proves a plan was made for exactly this
+  call, not that a person read it. While a collection's access tokens are off
+  (the default), the platform has no authentication there; with them on
+  (Track BB, [[access-tokens-v1|`access_tokens_v1.md`]]) the caller proves
+  its agent by its token.
 
 ## The standing budget: `GET` and `POST /ops/budget`
 
@@ -475,10 +480,11 @@ as they always did, so a collection with the setting off behaves as before.
 
 `POST /ops/budget` takes `tokens_per_run` (0 or more, or null to remove it),
 `agent_id` and `workspace_id`, writes the file and records the change in the
-governance audit. It is the user's answer, relayed by the caller agent: the
-platform has no authentication, so over HTTP any program on the machine could
-call it, as it could any route (the same limit as the first-run plan's access
-policy states).
+governance audit. It is the user's answer, relayed by the caller agent. While
+the collection's access tokens are off (the default), the platform has no
+authentication there, so over HTTP any program on the machine could call it,
+as it could any route (the same limit as the first-run plan's access policy
+states); with them on (Track BB), it needs a token whose agent holds `manage`.
 
 ## Settings (`config/intake.json`)
 
@@ -528,6 +534,8 @@ rest) are those of [[folder-intake-v1|folder_intake_v1.md]].
 - **Progress** is counted in the process that started the run; a status read
   from another process says the run is under way without the count.
 - **The caps** bind the agent a call names: over MCP that is the connection's
-  agent; over HTTP any program can name any agent (no authentication).
+  agent; over HTTP any program can name any agent while the collection's
+  access tokens are off (the default); with them on (Track BB), the token's
+  agent.
 - **Over MCP** only `POST /sources/add` is offered; the lower-level intake
   routes stay the owner's operations, under the same enforced approval.

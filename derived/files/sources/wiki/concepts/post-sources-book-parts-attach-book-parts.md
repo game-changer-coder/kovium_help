@@ -17,7 +17,7 @@ last_seen:
 revision: 1
 created: 2026-10-27
 updated: 2026-10-27
-generated: {by: process:concept-assembly, at: 2026-10-27T20:04:40.439117+00:00}
+generated: {by: process:concept-assembly, at: 2026-10-27T20:18:40.909005+00:00}
 ---
 
 # POST /sources/book_parts/attach {book, parts

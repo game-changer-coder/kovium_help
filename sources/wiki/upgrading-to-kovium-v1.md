@@ -9,7 +9,7 @@ product_version: "0.1.0"
 doc_kind: "contract"
 audience: "people and agents using or changing Kovium"
 doc_path: "docs/upgrading_to_kovium_v1.md"
-doc_sha256: "54c1605637fc14b7bf77944f35566d47fe830fae54986a22f08b0a4ade09e34c"
+doc_sha256: "8ef25da24410330c88e6784aadba505454ef337a96c06096171501e864ca3026"
 ---
 
 # Upgrading a collection made before Kovium
@@ -157,8 +157,8 @@ For every km-instance in the registry (`config/workspace_registry.json`), with n
   (`python scripts/ui_sign_in_link.py`). The header the system's own processes send is now
   `X-Kovium-System`; a script of your own that sends the old one is refused until changed.
 - **The help manual**, if it was fetched: the km-instance `kbrain_help` is now `kovium_help`. Remove the old
-  folder and its registry entry, and fetch the manual again from the tour or from `help`. Until the manual is
-  republished under the new name, its pages still say second brain.
+  folder and its registry entry, and fetch the manual again from the tour or from `help`. The manual is now
+  published as `game-changer-coder/kovium_help` (`config/help.json`), in Kovium's words.
 
 ## 8. Inside each collection's notes
 

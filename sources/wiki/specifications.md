@@ -9,7 +9,7 @@ product_version: "0.1.0"
 doc_kind: "specification"
 audience: "people and agents running Kovium"
 doc_path: "specifications.md"
-doc_sha256: "7c19711947be9d9ed48e69661d44ab0ca56fc34d2262dfd68604c6fc1609ca05"
+doc_sha256: "173a16674010c0215ea87a029386854db3b261d03003d6a7f1fcacd6d53eff18"
 ---
 
 # Kovium — the specification and operator's guide
@@ -2163,8 +2163,8 @@ group are known gaps.
   checks Claude Code's sign-in and a moved checkout is found in the caller
   agent file and offered again.
 
-Also open: the help collection's address in `config/help.json` is a
-placeholder until it is published, so the full manual is not offered yet; only
+The help collection's address in `config/help.json` is the published manual's
+public repository (`kovium_help`), so the tour offers it. Also open: only
 Claude Code has a plugin (Codex and OpenClaw get a connection and the caller
 agent, Cursor a connection only, and OpenClaw's skills are copied by hand); on
 Windows a checkout in a deeply nested folder can fail the install on the path

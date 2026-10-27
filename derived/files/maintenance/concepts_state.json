@@ -11,7 +11,7 @@
         "kovium-s-own-processes"
       ],
       "hash": "997c587d1aa75b274cd839a20aeaab2cd1bcd2ed8c36caaf71d64d2e3d90ffc2",
-      "integrated_at": "2026-10-27T20:04:40.384392+00:00",
+      "integrated_at": "2026-10-27T20:18:40.853588+00:00",
       "mode": "deterministic"
     },
     "adding-documents-v1": {
@@ -25,7 +25,7 @@
         "the-budget"
       ],
       "hash": "c651d6b3422814417e96de4bac3fc1a7bcb225f2da2921eea6358fd736844464",
-      "integrated_at": "2026-10-27T20:04:40.398900+00:00",
+      "integrated_at": "2026-10-27T20:18:40.868249+00:00",
       "mode": "deterministic"
     },
     "agent-memory-contract-v1": {
@@ -39,7 +39,7 @@
         "task-context"
       ],
       "hash": "c3378153fbeb88c2c00b1ee914483dca9414963a929b5e9df9a8375ad9e93e5f",
-      "integrated_at": "2026-10-27T20:04:40.431283+00:00",
+      "integrated_at": "2026-10-27T20:18:40.901319+00:00",
       "mode": "deterministic"
     },
     "api-spec-v1": {
@@ -53,7 +53,7 @@
         "post-rename-rollback-snapshot-id-force"
       ],
       "hash": "6e336283f6e2d96446f6e4927d6523d81b606e7f0a989fa27748351603bd831e",
-      "integrated_at": "2026-10-27T20:04:40.462429+00:00",
+      "integrated_at": "2026-10-27T20:18:40.932437+00:00",
       "mode": "deterministic"
     },
     "architecture": {
@@ -67,7 +67,7 @@
         "graph"
       ],
       "hash": "15bcf54cfd3729a90714aaa3f0c2f3245f9980b02bb47d0e37789fe05d5463e4",
-      "integrated_at": "2026-10-27T20:04:40.963890+00:00",
+      "integrated_at": "2026-10-27T20:18:41.436752+00:00",
       "mode": "deterministic"
     },
     "claude-code": {
@@ -75,7 +75,7 @@
         "a-new-conversation"
       ],
       "hash": "21ffdda12c99e9cee9b15cfdcd3dfd2e72f24ca5c53573864903dcda58961153",
-      "integrated_at": "2026-10-27T20:04:40.638449+00:00",
+      "integrated_at": "2026-10-27T20:18:41.108806+00:00",
       "mode": "deterministic"
     },
     "codex": {
@@ -83,7 +83,7 @@
         "type-in-a-terminal"
       ],
       "hash": "1ea8240c25d8b93defd82ebcd5ccd43d62fb4a1190a16ce11c8b4963d84c50c0",
-      "integrated_at": "2026-10-27T20:04:40.661226+00:00",
+      "integrated_at": "2026-10-27T20:18:41.131595+00:00",
       "mode": "deterministic"
     },
     "collections-v1": {
@@ -97,7 +97,7 @@
         "program"
       ],
       "hash": "77e8428daea2c0d194b61df7f7ff49e06cdc02f1bfd185a588dee14797bb904d",
-      "integrated_at": "2026-10-27T20:04:40.485355+00:00",
+      "integrated_at": "2026-10-27T20:18:40.955375+00:00",
       "mode": "deterministic"
     },
     "concept-notes-v1": {
@@ -111,7 +111,7 @@
         "keep-separate"
       ],
       "hash": "82e8e54adb76c5aed606c530be73568e72d3d1133c436b462f994c12b6d84837",
-      "integrated_at": "2026-10-27T20:04:40.511991+00:00",
+      "integrated_at": "2026-10-27T20:18:40.982080+00:00",
       "mode": "deterministic"
     },
     "deployment-spec-v1": {
@@ -121,7 +121,7 @@
         "backgrounds-by-default"
       ],
       "hash": "e64fc0f7777c06f55b6d1f28c3514cfdfcea4d796f4b5da295d6eaf7967cd09b",
-      "integrated_at": "2026-10-27T20:04:40.528351+00:00",
+      "integrated_at": "2026-10-27T20:18:40.998159+00:00",
       "mode": "deterministic"
     },
     "document-conversion-v1": {
@@ -135,7 +135,7 @@
         "docling"
       ],
       "hash": "5ec4032f4b760c69fcf281628099b85edd276e1ff704091dcd6e29da9babc344",
-      "integrated_at": "2026-10-27T20:04:40.559112+00:00",
+      "integrated_at": "2026-10-27T20:18:41.028829+00:00",
       "mode": "deterministic"
     },
     "equations-v1": {
@@ -149,7 +149,7 @@
         "layout-pass"
       ],
       "hash": "3722f1583daf8323397b24535c8add09e2f20d746346f1363f5a17d19f350b3f",
-      "integrated_at": "2026-10-27T20:04:40.586540+00:00",
+      "integrated_at": "2026-10-27T20:18:41.056848+00:00",
       "mode": "deterministic"
     },
     "first-instance-lifecycle-guide-v1": {
@@ -163,7 +163,7 @@
         "two-different-folders"
       ],
       "hash": "fde90cc40972105866150cbbe4583ff8639bf638c93c5386b2ae1f6dfdadc802",
-      "integrated_at": "2026-10-27T20:04:43.102138+00:00",
+      "integrated_at": "2026-10-27T20:18:43.597454+00:00",
       "mode": "deterministic"
     },
     "folder-intake-v1": {
@@ -177,7 +177,7 @@
         "frontmatter"
       ],
       "hash": "cac96eb87fa365825fcdc1fc8fd5b295d7bd84f439dcb466e8d32e87e7128784",
-      "integrated_at": "2026-10-27T20:04:40.616095+00:00",
+      "integrated_at": "2026-10-27T20:18:41.086392+00:00",
       "mode": "deterministic"
     },
     "getting-started": {
@@ -191,7 +191,7 @@
         "cursor"
       ],
       "hash": "1702de3121f75a53cc8b7c435e3837153567986587a23389cf0f010f8561ce7a",
-      "integrated_at": "2026-10-27T20:04:40.689578+00:00",
+      "integrated_at": "2026-10-27T20:18:41.160058+00:00",
       "mode": "deterministic"
     },
     "ideas-v1": {
@@ -205,7 +205,7 @@
         "in-place-and-unchanged"
       ],
       "hash": "0d231aca2167dddfd3e29772bd3ae3f4e725ca62efc575edbdd0982f36427e8d",
-      "integrated_at": "2026-10-27T20:04:40.749967+00:00",
+      "integrated_at": "2026-10-27T20:18:41.220886+00:00",
       "mode": "deterministic"
     },
     "images-v1": {
@@ -219,7 +219,7 @@
         "post-sources-equations"
       ],
       "hash": "e58e06b82c855700f94873536f1d8d483daeb1b77638544bf05f1d94c8057f95",
-      "integrated_at": "2026-10-27T20:04:40.784667+00:00",
+      "integrated_at": "2026-10-27T20:18:41.255734+00:00",
       "mode": "deterministic"
     },
     "ingestion-spec-v1": {
@@ -233,7 +233,7 @@
         "the-checks"
       ],
       "hash": "27d0bb13aa89c99ef0181154c810187d4479b4977633cfc1a8bafa3945cbfe8b",
-      "integrated_at": "2026-10-27T20:04:40.841758+00:00",
+      "integrated_at": "2026-10-27T20:18:41.313830+00:00",
       "mode": "deterministic"
     },
     "install-and-caller-agent-v1": {
@@ -247,7 +247,7 @@
         "welcome-mode"
       ],
       "hash": "ab9a80e1b4ee5fe1c3947425bb8254808556836f43b44ba5f3d0d231e872356a",
-      "integrated_at": "2026-10-27T20:04:42.174039+00:00",
+      "integrated_at": "2026-10-27T20:18:42.649636+00:00",
       "mode": "deterministic"
     },
     "instance-tails-v1": {
@@ -261,7 +261,7 @@
         "facets"
       ],
       "hash": "a4bb84544c2d46e44e5bb138632d74ca0ebbe80cd55a9ebbcdc5e6e0dc843bc7",
-      "integrated_at": "2026-10-27T20:04:40.879931+00:00",
+      "integrated_at": "2026-10-27T20:18:41.352225+00:00",
       "mode": "deterministic"
     },
     "kovium-intake": {
@@ -275,7 +275,7 @@
         "read-notes-through-the-api"
       ],
       "hash": "0e5d188d60038149b653c2542fa2de8e20b0380f4870660ba60a0f28d81e60f4",
-      "integrated_at": "2026-10-27T20:04:41.006957+00:00",
+      "integrated_at": "2026-10-27T20:18:41.479950+00:00",
       "mode": "deterministic"
     },
     "kovium-onboarding": {
@@ -289,7 +289,7 @@
         "the-owner-s-own-notes"
       ],
       "hash": "ea757906794f03fe638f09d10e60959cdc226e2aa2eb9f3c1506f7f7959a059d",
-      "integrated_at": "2026-10-27T20:04:41.053987+00:00",
+      "integrated_at": "2026-10-27T20:18:41.527283+00:00",
       "mode": "deterministic"
     },
     "kovium-operations": {
@@ -303,7 +303,7 @@
         "service"
       ],
       "hash": "2c3cb7a2c4ddae5c4dee2090a12f4e1b98ddd142406291f5502041db1d60ede1",
-      "integrated_at": "2026-10-27T20:04:41.103122+00:00",
+      "integrated_at": "2026-10-27T20:18:41.576499+00:00",
       "mode": "deterministic"
     },
     "kovium-research-answering": {
@@ -316,7 +316,7 @@
         "read-notes-through-the-api"
       ],
       "hash": "ebb060d8d4126207fe43b317a6b79e9e2848c3c97567ebacaa219ae9897299bd",
-      "integrated_at": "2026-10-27T20:04:41.151112+00:00",
+      "integrated_at": "2026-10-27T20:18:41.624591+00:00",
       "mode": "deterministic"
     },
     "mcp-server-v1": {
@@ -330,7 +330,7 @@
         "timeout"
       ],
       "hash": "54c003d5d53743bbed279ac92ce491cd320099cf6bb31cecddaa408de589dbb4",
-      "integrated_at": "2026-10-27T20:04:41.391595+00:00",
+      "integrated_at": "2026-10-27T20:18:41.866827+00:00",
       "mode": "deterministic"
     },
     "naming-v1": {
@@ -343,7 +343,7 @@
         "brain-keeper-agent"
       ],
       "hash": "f5bd84ad7fce219ecc1466c92aee56de4f073fccce30e48d5e66ccce9ed4fd23",
-      "integrated_at": "2026-10-27T20:04:41.445945+00:00",
+      "integrated_at": "2026-10-27T20:18:41.920896+00:00",
       "mode": "deterministic"
     },
     "next-steps-v1": {
@@ -356,7 +356,7 @@
         "a-refusal"
       ],
       "hash": "62b699fa7a92099ff4b12a7a4c18f42fcf53c81aa36afc37ac95e41e9867e70a",
-      "integrated_at": "2026-10-27T20:04:41.507126+00:00",
+      "integrated_at": "2026-10-27T20:18:41.982160+00:00",
       "mode": "deterministic"
     },
     "note-format-contract-v1": {
@@ -370,7 +370,7 @@
         "fields"
       ],
       "hash": "a1e5b31361b65022b83440f9cce01fec5f526033373a0634acf9167103c34f0e",
-      "integrated_at": "2026-10-27T20:04:41.300386+00:00",
+      "integrated_at": "2026-10-27T20:18:41.792360+00:00",
       "mode": "deterministic"
     },
     "obsidian-view-v1": {
@@ -384,7 +384,7 @@
         "the-platform-s-own-kinds"
       ],
       "hash": "0b4b75d4b83e124e55e56cafab2474a0a8c7790255ce123fe2d4e9ee2a217d84",
-      "integrated_at": "2026-10-27T20:04:42.410781+00:00",
+      "integrated_at": "2026-10-27T20:18:42.887154+00:00",
       "mode": "deterministic"
     },
     "openclaw": {
@@ -396,7 +396,7 @@
         "a-new-conversation"
       ],
       "hash": "fe2a3c076c9c9f22dd2eb767dee274ea02002258ff8a1611551f5b8cc131ad33",
-      "integrated_at": "2026-10-27T20:04:40.718801+00:00",
+      "integrated_at": "2026-10-27T20:18:41.189375+00:00",
       "mode": "deterministic"
     },
     "owner-work-v1": {
@@ -410,7 +410,7 @@
         "it-outlives-its-note"
       ],
       "hash": "e74ae303c7500a59c65d4a1ec5311446891e184f6dd2054b8cc54c1033627a88",
-      "integrated_at": "2026-10-27T20:04:42.330431+00:00",
+      "integrated_at": "2026-10-27T20:18:42.807459+00:00",
       "mode": "deterministic"
     },
     "plain-language-rules-v1": {
@@ -419,7 +419,7 @@
         "at-most-two-in-one-message"
       ],
       "hash": "7b37cfbdb46b20c07c63e38efeded2db050c4d5973392f1d5c877aeff5b2f411",
-      "integrated_at": "2026-10-27T20:04:41.562422+00:00",
+      "integrated_at": "2026-10-27T20:18:42.037815+00:00",
       "mode": "deterministic"
     },
     "prompt-system-v1": {
@@ -429,7 +429,7 @@
         "answers-stored-before-track-s"
       ],
       "hash": "37b3c3876b1a245e4df7b23bbe12d7e8711fcda76974d8632d725a6e835db515",
-      "integrated_at": "2026-10-27T20:04:41.618544+00:00",
+      "integrated_at": "2026-10-27T20:18:42.094417+00:00",
       "mode": "deterministic"
     },
     "reading-fidelity-v1": {
@@ -443,7 +443,7 @@
         "bytes-rehashed"
       ],
       "hash": "c0cced2b28e25a41a23cf66c26525a2a1ba47431569d63f4990ce3f5a900e29c",
-      "integrated_at": "2026-10-27T20:04:41.684685+00:00",
+      "integrated_at": "2026-10-27T20:18:42.160609+00:00",
       "mode": "deterministic"
     },
     "readme": {
@@ -457,7 +457,7 @@
         "help-me-start-with-kovium"
       ],
       "hash": "05a40bf8adf194d28a4f7a9dc824c014bcb85afb0b177a3ee9c2603157a6df60",
-      "integrated_at": "2026-10-27T20:04:40.920168+00:00",
+      "integrated_at": "2026-10-27T20:18:41.392850+00:00",
       "mode": "deterministic"
     },
     "reference-lists-v1": {
@@ -471,7 +471,7 @@
         "built-without-an-agent"
       ],
       "hash": "64c6ba9422c34552a06b5028f67659c6d5a9547e5f094e367809aad09cf619ec",
-      "integrated_at": "2026-10-27T20:04:41.748998+00:00",
+      "integrated_at": "2026-10-27T20:18:42.224811+00:00",
       "mode": "deterministic"
     },
     "renames-v1": {
@@ -485,7 +485,7 @@
         "exact"
       ],
       "hash": "d75055cb96912428a459ab7a77a23006e3e0dc09eb3c6e877d58e9ef450ccb44",
-      "integrated_at": "2026-10-27T20:04:41.818327+00:00",
+      "integrated_at": "2026-10-27T20:18:42.294237+00:00",
       "mode": "deterministic"
     },
     "source-renames-v1": {
@@ -499,7 +499,7 @@
         "dry-run-default"
       ],
       "hash": "21bc811cfc613f8237957440bfd1e88185971696fee40a52b28d504b11e66efe",
-      "integrated_at": "2026-10-27T20:04:42.029212+00:00",
+      "integrated_at": "2026-10-27T20:18:42.505249+00:00",
       "mode": "deterministic"
     },
     "source-roots-and-portable-provenance-v1": {
@@ -513,7 +513,7 @@
         "most-specific-root-wins"
       ],
       "hash": "b292e8b6c1ae9d9f13118b6a1384b21e9e4a5dd15ce3e870b10dee708c2b9552",
-      "integrated_at": "2026-10-27T20:04:41.885520+00:00",
+      "integrated_at": "2026-10-27T20:18:42.361692+00:00",
       "mode": "deterministic"
     },
     "source-tables-v1": {
@@ -527,7 +527,7 @@
         "the-title"
       ],
       "hash": "d38f448233a6d4d45bfed9e96037c9d4d69a9073d256a81ee55ff549b05c4ae8",
-      "integrated_at": "2026-10-27T20:04:41.954788+00:00",
+      "integrated_at": "2026-10-27T20:18:42.430941+00:00",
       "mode": "deterministic"
     },
     "specifications": {
@@ -540,8 +540,8 @@
         "configurable",
         "post-agent-knowledge-answer-with-view"
       ],
-      "hash": "662a2a6f560ab52e4b18932fc96cf08835b91fee2971dc366b764e4a2df0cd53",
-      "integrated_at": "2026-10-27T20:04:41.227859+00:00",
+      "hash": "df040e4f9b955db7f7b7f466f98ce8a9e684b7dd6d82710c8457b70b0a4ce8c9",
+      "integrated_at": "2026-10-27T20:18:41.701681+00:00",
       "mode": "deterministic"
     },
     "the-option-catalogue": {
@@ -553,7 +553,7 @@
         "changing-it-later"
       ],
       "hash": "51923c1509ed4fe2780ee3d68f2469ac4ccbe3a55a68d68dda4bf4bfcc793ba7",
-      "integrated_at": "2026-10-27T20:04:42.250479+00:00",
+      "integrated_at": "2026-10-27T20:18:42.726404+00:00",
       "mode": "deterministic"
     },
     "upgrading-to-kovium-v1": {
@@ -566,8 +566,8 @@
         "openclaw",
         "then-remove-the-old-one"
       ],
-      "hash": "f337a513268098750e66fe1d71b393edc9d913a55b724c3cf95d4ffb279b6278",
-      "integrated_at": "2026-10-27T20:04:42.586503+00:00",
+      "hash": "a22ec1637f1dfead024cca5e0a80d02b0c8918e0dee7d679c8d9e21eab1d3b40",
+      "integrated_at": "2026-10-27T20:18:43.063157+00:00",
       "mode": "deterministic"
     },
     "user-guide-v1": {
@@ -581,7 +581,7 @@
         "token-limit-for-adding-documents"
       ],
       "hash": "1702a09ed86e3d5d902dc11d7ddfa9bfaa4fe2897c188f569413daa0ac632a5d",
-      "integrated_at": "2026-10-27T20:04:42.675840+00:00",
+      "integrated_at": "2026-10-27T20:18:43.152727+00:00",
       "mode": "deterministic"
     },
     "video-intake-v1": {
@@ -595,7 +595,7 @@
         "player-endpoint"
       ],
       "hash": "ecc3f3bc91d978fad98c99fdfaeda47609bcd0fa8340ccd5993360775fe81fc0",
-      "integrated_at": "2026-10-27T20:04:42.759743+00:00",
+      "integrated_at": "2026-10-27T20:18:43.236325+00:00",
       "mode": "deterministic"
     },
     "welcome-v1": {
@@ -609,7 +609,7 @@
         "your-turn"
       ],
       "hash": "911a5e1f1ccab84e6326265bea4f2e7f97d5247e5b30f14036f23f8851e51cfe",
-      "integrated_at": "2026-10-27T20:04:42.501700+00:00",
+      "integrated_at": "2026-10-27T20:18:42.977864+00:00",
       "mode": "deterministic"
     },
     "which-documents-are-current": {
@@ -619,7 +619,7 @@
         "plans-reports-and-records"
       ],
       "hash": "a09d0b730f848d8165efc426f1dd034f165fc311eb084b4dbdb8e384d5ba6206",
-      "integrated_at": "2026-10-27T20:04:42.097076+00:00",
+      "integrated_at": "2026-10-27T20:18:42.573196+00:00",
       "mode": "deterministic"
     },
     "workstream-b-governance-and-routing-policy-v1": {
@@ -627,7 +627,7 @@
         "not"
       ],
       "hash": "482b376c910e968b01a075da21fcf30126c9f05cc86ee6c854aa283270a51e64",
-      "integrated_at": "2026-10-27T20:04:42.840579+00:00",
+      "integrated_at": "2026-10-27T20:18:43.317467+00:00",
       "mode": "deterministic"
     },
     "workstream-c-human-review-workflow-v1": {
@@ -639,7 +639,7 @@
         "the-deciding-agent-id-is-not-authenticated"
       ],
       "hash": "be5e55dd19c03d1d4bc5d1b4d60999b6704e4430c67921b048fc8ee6ed20b2fa",
-      "integrated_at": "2026-10-27T20:04:42.925182+00:00",
+      "integrated_at": "2026-10-27T20:18:43.402100+00:00",
       "mode": "deterministic"
     },
     "workstream-d-operations-recovery-policy-v1": {
@@ -647,7 +647,7 @@
         "status-readout"
       ],
       "hash": "544b3be16bfbbc9324104e166f416169112b553b1fd089712015416f862caf1f",
-      "integrated_at": "2026-10-27T20:04:43.007753+00:00",
+      "integrated_at": "2026-10-27T20:18:43.484848+00:00",
       "mode": "deterministic"
     }
   },

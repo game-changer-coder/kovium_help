@@ -17,7 +17,7 @@ last_seen:
 revision: 1
 created: 2026-10-27
 updated: 2026-10-27
-generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:42.681145+00:00}"
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:18:43.157978+00:00}"
 ---
 
 # player endpoint

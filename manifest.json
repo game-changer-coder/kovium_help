@@ -7,7 +7,7 @@
   },
   "built_with": "no AI and no tokens: each document is a note written by hand, read by code",
   "notes": 54,
-  "size_bytes": 4882648,
+  "size_bytes": 4882719,
   "size_mb": 4.7,
   "sources": {
     "README.md": {
@@ -216,7 +216,7 @@
       "doc_kind": "contract"
     },
     "docs/upgrading_to_kovium_v1.md": {
-      "sha256": "54c1605637fc14b7bf77944f35566d47fe830fae54986a22f08b0a4ade09e34c",
+      "sha256": "8ef25da24410330c88e6784aadba505454ef337a96c06096171501e864ca3026",
       "note": "sources/wiki/upgrading-to-kovium-v1.md",
       "doc_kind": "contract"
     },
@@ -276,7 +276,7 @@
       "doc_kind": "skill"
     },
     "specifications.md": {
-      "sha256": "7c19711947be9d9ed48e69661d44ab0ca56fc34d2262dfd68604c6fc1609ca05",
+      "sha256": "173a16674010c0215ea87a029386854db3b261d03003d6a7f1fcacd6d53eff18",
       "note": "sources/wiki/specifications.md",
       "doc_kind": "specification"
     }

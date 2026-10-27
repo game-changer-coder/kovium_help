@@ -17,7 +17,7 @@ last_seen:
 revision: 2
 created: 2026-10-27
 updated: 2026-10-27
-generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:42.181132+00:00}"
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:18:42.656485+00:00}"
 ---
 
 # What is recommended

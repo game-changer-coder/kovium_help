@@ -17,7 +17,7 @@ last_seen:
 revision: 2
 created: 2026-10-27
 updated: 2026-10-27
-generated: "{by: process:concept-assembly, at: 2026-10-27T20:04:41.242606+00:00}"
+generated: "{by: process:concept-assembly, at: 2026-10-27T20:18:41.716864+00:00}"
 ---
 
 # Derived sections
